@@ -16,6 +16,8 @@
 @property (retain, nonatomic) IBOutlet MKMapView *mapView;
 @property (assign, nonatomic) id <WMMapViewControllerDelegate> delegate;
 
+- (void)setOnline:(BOOL)online; //default - YES;
+
 @end
 
 @protocol WMMapViewControllerDelegate <NSObject>
@@ -25,3 +27,4 @@
 - (CLLocationCoordinate2D)getCurrentLocationForMapController:(WMMapViewController *)mapController;
 
 @end
+
