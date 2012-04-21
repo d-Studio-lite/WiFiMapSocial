@@ -193,7 +193,6 @@
 		B2C36D4A15430D4500B30A36 = {
 			isa = PBXGroup;
 			children = (
-				1569D5A4154333C8003C5445 /* libz.dylib */,
 				B2C36D5F15430D4500B30A36 /* WiFi Map Social */,
 				B2C36D5815430D4500B30A36 /* Frameworks */,
 				B2C36D5615430D4500B30A36 /* Products */,
@@ -211,6 +210,7 @@
 		B2C36D5815430D4500B30A36 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1569D5A4154333C8003C5445 /* libz.dylib */,
 				1569D5A2154333B1003C5445 /* MobileCoreServices.framework */,
 				1569D5A0154333A7003C5445 /* SystemConfiguration.framework */,
 				1569D59E15433319003C5445 /* CFNetwork.framework */,
