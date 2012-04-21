@@ -8,8 +8,6 @@
 
 #import "WMSubmitViewController.h"
 #import "ASIHTTPRequest.h"
-#import "JSON.h"
-#import "WMSpot.h"
 
 typedef enum
 {
@@ -22,11 +20,8 @@ typedef enum
 + (NSArray *)arrayWithJSONString:(NSString *)jsonString;
 @end
 
-@interface WMSubmitViewController()<ASIHTTPRequestDelegate>
+@interface WMSubmitViewController()<ASIHTTPRequestDelegate, UITextFieldDelegate>
 
-@property (nonatomic, retain) NSArray *fetchedSpots;
-
-- (void)fetchSpotsFromResponseString:(NSString *)response;
 
 @end
 
@@ -42,8 +37,6 @@ typedef enum
 
 @synthesize currentLocation = _currentLocation;
 
-@synthesize fetchedSpots = _fetchedSpots;
-
 -(void)dealloc
 {
     self.cancelButton = nil;
@@ -52,7 +45,6 @@ typedef enum
     self.passwordTextField = nil;
     self.latitudeLabel = nil;
     self.longitudeLabel = nil;
-    self.fetchedSpots = nil;
     [super dealloc];
 }
 
@@ -64,6 +56,9 @@ typedef enum
                                                           style:UIBarButtonItemStyleBordered
                                                          target:self
                                                          action:@selector(submit:)] autorelease];
+ 
+    self.nameTextField.delegate = self;
+    self.passwordTextField.delegate = self;
     [super viewDidLoad];
 }
 
@@ -74,7 +69,9 @@ typedef enum
     // e.g. self.myOutlet = nil;
     self.cancelButton = nil;
     self.submitButton = nil;
+    self.nameTextField.delegate = nil;
     self.nameTextField = nil;
+    self.passwordTextField.delegate = nil;
     self.passwordTextField = nil;
 }
 
@@ -117,24 +114,12 @@ typedef enum
     }    
 }
 
-- (void)fetchSpotsFromResponseString:(NSString *)response
-{
-    SBJsonParser *parser = [[[SBJsonParser alloc] init] autorelease];
-    id responseObject = [parser objectWithString:response];
-    NSMutableArray *spotObjects = [NSMutableArray arrayWithCapacity:10];
-    for (NSDictionary *spec in responseObject)
-    {
-        [spotObjects addObject:[WMSpot spotWithSpec:spec]];
-    }
-    self.fetchedSpots = [[spotObjects copy] autorelease];
-}
-
 - (void)submit:(id)sender
 {
     NSURL *serverURL = [NSURL URLWithString:kWMServerURL];
     NSURL *spotsURL = [serverURL URLByAppendingPathComponent:[kWMSpotsKey stringByAppendingPathExtension:@"json"]];
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:spotsURL];
-    [request setDelegate:self];
+    [request setRequestMethod:@"POST"];
     [request startAsynchronous];
     
     UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Submitting" message:[[self paramsDictionary] description] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
@@ -168,17 +153,6 @@ typedef enum
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
-    if ([request.requestMethod isEqualToString:@"GET"])
-    {
-        NSString *responseString = [request responseString];
-        [self fetchSpotsFromResponseString:responseString];
-    }
-    else if ([request.requestMethod isEqualToString:@"POST"])
-    {
-        
-    }
-    // Use when fetching text data
-
     [[self navigationController] popViewControllerAnimated:YES];
 }
 
@@ -187,4 +161,11 @@ typedef enum
     NSError *error = [request error];
 }
 
+#pragma mark UITextFieldDelegate methods
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
 @end

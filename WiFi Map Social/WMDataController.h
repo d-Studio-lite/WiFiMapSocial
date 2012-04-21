@@ -10,4 +10,8 @@
 
 @interface WMDataController : NSObject
 
+@property (nonatomic, retain) NSArray *fetchedSpots;
+
+- (void)fetchSpotsFromResponseString:(NSString *)response;
+
 @end
