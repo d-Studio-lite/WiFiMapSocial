@@ -15,6 +15,9 @@
 
 @implementation WMMapViewController
 
+@synthesize mapView = _mapView;
+@synthesize delegate = _delegate;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -28,15 +31,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.mapView setCenterCoordinate:[self.delegate getCurrentLocationForMapController:self]];
 }
 
 - (void)viewDidUnload
 {
+    self.mapView = nil;
     [super viewDidUnload];
 }
 
 - (void)dealloc
 {
+    self.mapView = nil;
     [super dealloc];
 }
 
