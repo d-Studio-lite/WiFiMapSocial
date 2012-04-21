@@ -16,7 +16,7 @@
 @property (retain, nonatomic) IBOutlet MKMapView *mapView;
 @property (assign, nonatomic) id <WMMapViewControllerDelegate> delegate;
 
-- (void)setOnline:(BOOL)online; //default - YES;
+- (void)setUsingOnlineMaps:(BOOL)online;
 
 @end
 

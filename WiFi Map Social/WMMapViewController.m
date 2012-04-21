@@ -49,7 +49,7 @@
     [super dealloc];
 }
 
-- (void)setOnline:(BOOL)online
+- (void)setUsingOnlineMaps:(BOOL)online
 {
     if (online != [self isOnline])
     {
@@ -69,6 +69,11 @@
     return nil;
 }
 
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
+{
+    return nil;
+}
+
 //- (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated;
 //- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated;
 //
@@ -79,7 +84,6 @@
 //// mapView:viewForAnnotation: provides the view for each annotation.
 //// This method may be called for all or some of the added annotations.
 //// For MapKit provided annotations (eg. MKUserLocation) return nil to use the MapKit provided annotation view.
-//- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation;
 //
 //// mapView:didAddAnnotationViews: is called after the annotation views have been added and positioned in the map.
 //// The delegate can implement this method to animate the adding of the annotations views.
