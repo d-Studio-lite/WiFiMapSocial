@@ -20,31 +20,36 @@
 @synthesize dataController = _dataController;
 @synthesize mapViewController = _mapViewController;
 @synthesize submitViewController = _submitViewController;
-@synthesize containerView = _containerView;
-@synthesize indicatorView = _indicatorView;
+
++ (WMMainViewController *)mainViewController;
+{
+    WMMapViewController *mapViewController = [[[WMMapViewController alloc] initWithNibName:@"WMMapView" bundle:nil] autorelease];
+    WMMainViewController *mainViewController = [[[WMMainViewController alloc] initWithRootViewController:mapViewController] autorelease];
+    mainViewController.mapViewController = mapViewController;
+    [mainViewController setNavigationBarHidden:YES];
+
+    UIBarButtonItem *updateButton = [[UIBarButtonItem alloc] initWithTitle:@"Update"
+                                                                     style:UIBarButtonItemStylePlain
+                                                                    target:self
+                                                                    action:@selector(update:)];
+    
+    UIBarButtonItem *submitButton = [[UIBarButtonItem alloc] initWithTitle:@"Submit"
+                                                                     style:UIBarButtonItemStylePlain
+                                                                    target:self
+                                                                    action:@selector(update:)];
+    UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    
+    NSArray *toolbarItems = [NSArray arrayWithObjects:updateButton, flexibleSpace, submitButton, nil];
+    [mainViewController.toolbar setItems:toolbarItems animated:NO];
+    return mainViewController;
+}
 
 - (void)dealloc
 {
     self.mapViewController = nil;
     self.dataController = nil;
     self.submitViewController = nil;
-    self.containerView = nil;
-    self.indicatorView = nil;
     [super dealloc];
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    self.mapViewController = [[[WMMapViewController alloc] initWithNibName:@"WMMapView" bundle:nil] autorelease];
-    [self.view addSubview:[self.mapViewController view]];
-    [[self.mapViewController view] setFrame:[self.containerView frame]];
-}
-
-- (void)viewDidUnload
-{
-    self.mapViewController = nil;
-    [super viewDidUnload];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

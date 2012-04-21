@@ -12,14 +12,13 @@
 @class WMMapViewController;
 @class WMSubmitViewController;
 
-@interface WMMainViewController : UIViewController
+@interface WMMainViewController : UINavigationController
 
 @property (retain, nonatomic) WMDataController *dataController;
 @property (retain, nonatomic) WMMapViewController *mapViewController;
 @property (retain, nonatomic) WMSubmitViewController *submitViewController;
 
-@property (retain, nonatomic) IBOutlet UIView *containerView;
-@property (retain, nonatomic) IBOutlet UIActivityIndicatorView *indicatorView;
++ (WMMainViewController *)mainViewController;
 
 - (IBAction)update:(id)sender;
 - (IBAction)submit:(id)sender;
