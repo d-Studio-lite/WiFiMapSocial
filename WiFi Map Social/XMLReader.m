@@ -133,6 +133,7 @@ NSString *const kXMLReaderTextNodeKey = @"text";
     NSMutableDictionary *dictInProgress = [dictionaryStack lastObject];
     
     // Set the text property
+    textInProgress = [[textInProgress stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] mutableCopy];
     if ([textInProgress length] > 0)
     {
         [dictInProgress setObject:textInProgress forKey:kXMLReaderTextNodeKey];

@@ -101,6 +101,7 @@ typedef enum
 {
     // Use when fetching text data
     NSString *responseString = [request responseString];
+    responseString = [responseString stringByReplacingOccurrencesOfString:@" type=\"array\"" withString:@""];
     NSError *error = nil;
     NSDictionary *responseDictionary = [XMLReader dictionaryForXMLString:responseString error:&error];
     NSArray *spotsArray = [responseDictionary valueForKey:kWMSpotsKey];
