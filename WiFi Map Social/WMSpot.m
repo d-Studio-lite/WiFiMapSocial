@@ -11,6 +11,11 @@
 @implementation WMSpot
 @synthesize name = _name, password = _password, lattitude = _lattitude, longitude = _longitude;
 
++ (WMSpot *)spotWithSpec:(NSDictionary *)spec
+{
+    return [[[self alloc] initWithSpec:spec] autorelease];
+}
+
 - (id)initWithSpec:(NSDictionary *)newSpec
 {
     self = [self init];
