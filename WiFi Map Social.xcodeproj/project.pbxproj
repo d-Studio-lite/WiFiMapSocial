@@ -49,10 +49,10 @@
 		B2C36D8B1543284A00B30A36 /* WMMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C36D8A1543284A00B30A36 /* WMMapViewController.m */; };
 		B2C36D8F1543286000B30A36 /* WMSubmitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C36D8D1543286000B30A36 /* WMSubmitViewController.m */; };
 		B2C36D901543286000B30A36 /* SubmitView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2C36D8E1543286000B30A36 /* SubmitView.xib */; };
+		B2CF86B415437C9900FD8714 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2CF86B315437C9900FD8714 /* CoreLocation.framework */; };
 		B2F86AC515436440006E4FF2 /* CDSpot.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F86AC415436440006E4FF2 /* CDSpot.m */; };
 		B2F86AC8154364B7006E4FF2 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B2F86AC6154364B7006E4FF2 /* Model.xcdatamodeld */; };
 		B2F86ACB154365A1006E4FF2 /* WMSpotSource.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F86ACA154365A1006E4FF2 /* WMSpotSource.m */; };
-		B2F86AD115437B68006E4FF2 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2F86AD015437B68006E4FF2 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -136,12 +136,12 @@
 		B2C36D8C1543286000B30A36 /* WMSubmitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMSubmitViewController.h; sourceTree = "<group>"; };
 		B2C36D8D1543286000B30A36 /* WMSubmitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMSubmitViewController.m; sourceTree = "<group>"; };
 		B2C36D8E1543286000B30A36 /* SubmitView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SubmitView.xib; sourceTree = "<group>"; };
+		B2CF86B315437C9900FD8714 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B2F86AC315436440006E4FF2 /* CDSpot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDSpot.h; sourceTree = "<group>"; };
 		B2F86AC415436440006E4FF2 /* CDSpot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDSpot.m; sourceTree = "<group>"; };
 		B2F86AC7154364B7006E4FF2 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		B2F86AC9154365A1006E4FF2 /* WMSpotSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WMSpotSource.h; path = "WiFi Map Social/WMSpotSource.h"; sourceTree = SOURCE_ROOT; };
 		B2F86ACA154365A1006E4FF2 /* WMSpotSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WMSpotSource.m; path = "WiFi Map Social/WMSpotSource.m"; sourceTree = SOURCE_ROOT; };
-		B2F86AD015437B68006E4FF2 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,8 +149,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2CF86B415437C9900FD8714 /* CoreLocation.framework in Frameworks */,
 				1569D5A5154333C8003C5445 /* libz.dylib in Frameworks */,
-				B2F86AD115437B68006E4FF2 /* CoreLocation.framework in Frameworks */,
 				B240126D154361D30010EA75 /* CoreData.framework in Frameworks */,
 				1569D5A3154333B1003C5445 /* MobileCoreServices.framework in Frameworks */,
 				1569D5A1154333A7003C5445 /* SystemConfiguration.framework in Frameworks */,
@@ -189,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				1569D57D154332E1003C5445 /* ASIHTTPRequest */,
+				18709D6315435B9A00AA5EC2 /* Map */,
 				B2C36D6815430D4500B30A36 /* WMAppDelegate.h */,
 				B2C36D6915430D4500B30A36 /* WMAppDelegate.m */,
 				B2F86AC9154365A1006E4FF2 /* WMSpotSource.h */,
@@ -256,7 +257,7 @@
 			path = ASIHTTPRequest;
 			sourceTree = "<group>";
 		};
-		18709D6315435B9A00AA5EC2 /* MapModel */ = {
+		18709D6315435B9A00AA5EC2 /* Map */ = {
 			isa = PBXGroup;
 			children = (
 				18709D6015435B9000AA5EC2 /* WMSpotData.h */,
@@ -264,7 +265,7 @@
 				18709D5D15435B6300AA5EC2 /* WMOfflineMapData.h */,
 				18709D5E15435B6300AA5EC2 /* WMOfflineMapData.m */,
 			);
-			name = MapModel;
+			name = Map;
 			sourceTree = "<group>";
 		};
 		B240126B154361A50010EA75 /* CoreData */ = {
@@ -280,7 +281,6 @@
 		B2C36D4A15430D4500B30A36 = {
 			isa = PBXGroup;
 			children = (
-				B2F86AD015437B68006E4FF2 /* CoreLocation.framework */,
 				B2C36D5F15430D4500B30A36 /* WiFi Map Social */,
 				B2C36D5815430D4500B30A36 /* Frameworks */,
 				B2C36D5615430D4500B30A36 /* Products */,
@@ -300,6 +300,7 @@
 			children = (
 				1569D5A4154333C8003C5445 /* libz.dylib */,
 				B240126C154361D30010EA75 /* CoreData.framework */,
+				B2CF86B315437C9900FD8714 /* CoreLocation.framework */,
 				1569D5A2154333B1003C5445 /* MobileCoreServices.framework */,
 				1569D5A0154333A7003C5445 /* SystemConfiguration.framework */,
 				1569D59E15433319003C5445 /* CFNetwork.framework */,
@@ -364,7 +365,6 @@
 		B2C36D7C154326B200B30A36 /* MapController */ = {
 			isa = PBXGroup;
 			children = (
-				18709D6315435B9A00AA5EC2 /* MapModel */,
 				B2C36D891543284A00B30A36 /* WMMapViewController.h */,
 				B2C36D8A1543284A00B30A36 /* WMMapViewController.m */,
 				18C2ABD915433265002016B4 /* WMMapView.h */,
