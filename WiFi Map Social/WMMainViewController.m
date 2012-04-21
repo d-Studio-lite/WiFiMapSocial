@@ -88,18 +88,11 @@
 
 - (void)submit:(id)sender
 {
+    CLLocationCoordinate2D currentLocation = [self.mapViewController currentLocation];
     [self pushViewController:self.submitViewController animated:YES];
 }
 
 #pragma mark WMMapViewControllerDelegate methods
 #warning implement me
-
-- (CLLocationCoordinate2D)getCurrentLocationForMapController:(WMMapViewController *)mapController
-{
-    CLLocationCoordinate2D result;
-    result.latitude = 0.0;
-    result.longitude = 0.0;
-    return result;
-}
 
 @end

@@ -34,7 +34,6 @@
 		B2C36D6615430D4500B30A36 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C36D6515430D4500B30A36 /* main.m */; };
 		B2C36D6A15430D4500B30A36 /* WMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C36D6915430D4500B30A36 /* WMAppDelegate.m */; };
 		B2C36D6D15430D4500B30A36 /* WMMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C36D6C15430D4500B30A36 /* WMMainViewController.m */; };
-		B2C36D781543251100B30A36 /* MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2C36D761543251100B30A36 /* MainView.xib */; };
 		B2C36D801543276200B30A36 /* WMDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C36D7F1543276200B30A36 /* WMDataController.m */; };
 		B2C36D8B1543284A00B30A36 /* WMMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C36D8A1543284A00B30A36 /* WMMapViewController.m */; };
 		B2C36D8F1543286000B30A36 /* WMSubmitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C36D8D1543286000B30A36 /* WMSubmitViewController.m */; };
@@ -93,7 +92,6 @@
 		B2C36D6915430D4500B30A36 /* WMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMAppDelegate.m; sourceTree = "<group>"; };
 		B2C36D6B15430D4500B30A36 /* WMMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMMainViewController.h; sourceTree = "<group>"; };
 		B2C36D6C15430D4500B30A36 /* WMMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMMainViewController.m; sourceTree = "<group>"; };
-		B2C36D771543251100B30A36 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainView.xib; sourceTree = "<group>"; };
 		B2C36D7E1543276200B30A36 /* WMDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMDataController.h; sourceTree = "<group>"; };
 		B2C36D7F1543276200B30A36 /* WMDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMDataController.m; sourceTree = "<group>"; };
 		B2C36D891543284A00B30A36 /* WMMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMMapViewController.h; sourceTree = "<group>"; };
@@ -248,7 +246,6 @@
 			children = (
 				B2C36D6B15430D4500B30A36 /* WMMainViewController.h */,
 				B2C36D6C15430D4500B30A36 /* WMMainViewController.m */,
-				B2C36D761543251100B30A36 /* MainView.xib */,
 			);
 			name = MainViewController;
 			sourceTree = "<group>";
@@ -351,7 +348,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2C36D6415430D4500B30A36 /* InfoPlist.strings in Resources */,
-				B2C36D781543251100B30A36 /* MainView.xib in Resources */,
 				B2C36D901543286000B30A36 /* SubmitView.xib in Resources */,
 				18C2ABDD1543371A002016B4 /* WMMapView.xib in Resources */,
 			);
@@ -396,14 +392,6 @@
 				B2C36D6315430D4500B30A36 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		B2C36D761543251100B30A36 /* MainView.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B2C36D771543251100B30A36 /* en */,
-			);
-			name = MainView.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
