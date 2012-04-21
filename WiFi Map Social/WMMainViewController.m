@@ -21,16 +21,28 @@
 @synthesize mapViewController = _mapViewController;
 @synthesize submitViewController = _submitViewController;
 
+@synthesize indicatorView = _indicatorView;
+
+- (void)dealloc
+{
+    self.mapViewController = nil;
+    self.dataController = nil;
+    self.submitViewController = nil;
+    [super dealloc];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    self.mapViewController = [[[WMMapViewController alloc] initWithNibName:@"WMMapView" bundle:nil] autorelease];
+    [self.view addSubview:[self.mapViewController view]];
+    [[self.mapViewController view] setFrame:[self.view frame]];
 }
 
 - (void)viewDidUnload
 {
+    self.mapViewController = nil;
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -46,6 +58,25 @@
         [self setSubmitViewController:[[[WMSubmitViewController alloc] initWithNibName:@"SubmitView" bundle:nil] autorelease]];
     }
     return _submitViewController;
+}
+
+- (WMDataController *)dataController
+{
+    if (nil != _dataController)
+    {
+        [self setDataController:[[[WMDataController alloc] init] autorelease]];
+    }
+    return _dataController;
+}
+
+- (void)update:(id)sender
+{
+    
+}
+
+- (void)submit:(id)sender
+{
+    
 }
 
 @end
