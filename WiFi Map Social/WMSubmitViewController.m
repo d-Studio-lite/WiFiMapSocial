@@ -17,19 +17,16 @@
 @synthesize submitButton = _submitButton;
 @synthesize cancelButton = _cancelButton;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+@synthesize nameTextField = _nameTextField;
+@synthesize passwordTextField = _passwordTextField;
 
-- (void)viewDidLoad
+-(void)dealloc
 {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    self.cancelButton = nil;
+    self.submitButton = nil;
+    self.nameTextField = nil;
+    self.passwordTextField = nil;
+    [super dealloc];
 }
 
 - (void)viewDidUnload
@@ -37,6 +34,10 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+    self.cancelButton = nil;
+    self.submitButton = nil;
+    self.nameTextField = nil;
+    self.passwordTextField = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

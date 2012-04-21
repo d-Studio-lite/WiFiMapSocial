@@ -13,6 +13,8 @@
 @property (retain, nonatomic) IBOutlet UIButton *submitButton;
 @property (retain, nonatomic) IBOutlet UIButton *cancelButton;
 
+@property (retain, nonatomic) IBOutlet UITextField *nameTextField;
+@property (retain, nonatomic) IBOutlet UITextField *passwordTextField;
 
 - (IBAction)submit:(id)sender;
 - (IBAction)cancel:(id)sender;
