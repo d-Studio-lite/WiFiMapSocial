@@ -275,14 +275,14 @@
 		B2C36D7C154326B200B30A36 /* MapController */ = {
 			isa = PBXGroup;
 			children = (
-				18C2ABF615434583002016B4 /* WMMapViewOfflineOverlay.h */,
-				18C2ABF715434583002016B4 /* WMMapViewOfflineOverlay.m */,
-				18C2ABF815434583002016B4 /* WMMapViewSpotsOverlay.h */,
-				18C2ABF915434583002016B4 /* WMMapViewSpotsOverlay.m */,
 				B2C36D891543284A00B30A36 /* WMMapViewController.h */,
 				B2C36D8A1543284A00B30A36 /* WMMapViewController.m */,
 				18C2ABD915433265002016B4 /* WMMapView.h */,
 				18C2ABDA15433265002016B4 /* WMMapView.m */,
+				18C2ABF615434583002016B4 /* WMMapViewOfflineOverlay.h */,
+				18C2ABF715434583002016B4 /* WMMapViewOfflineOverlay.m */,
+				18C2ABF815434583002016B4 /* WMMapViewSpotsOverlay.h */,
+				18C2ABF915434583002016B4 /* WMMapViewSpotsOverlay.m */,
 				18C2ABDC1543371A002016B4 /* WMMapView.xib */,
 			);
 			name = MapController;
