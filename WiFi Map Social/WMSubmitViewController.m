@@ -7,8 +7,9 @@
 //
 
 #import "WMSubmitViewController.h"
+#import "ASIHTTPRequest.h"
 
-@interface WMSubmitViewController ()
+@interface WMSubmitViewController()<ASIHTTPRequestDelegate>
 
 @end
 
@@ -47,12 +48,31 @@
 
 - (void)submit:(id)sender
 {
-    [[self navigationController] popViewControllerAnimated:YES];
+    NSURL *serverURL = [NSURL URLWithString:kWMServerURL];
+    NSURL *spotsURL = [serverURL URLByAppendingPathComponent:@"spots.xml"];
+    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:spotsURL];
+    [request setDelegate:self];
+    [request startAsynchronous];
 }
 
 - (void)cancel:(id)sender
 {
     [[self navigationController] popViewControllerAnimated:YES];
+}
+
+#pragma mark ASIHTTPRequestDelegate methods
+
+- (void)requestFinished:(ASIHTTPRequest *)request
+{
+    // Use when fetching text data
+    NSString *responseString = [request responseString];
+    
+    [[self navigationController] popViewControllerAnimated:YES];
+}
+
+- (void)requestFailed:(ASIHTTPRequest *)request
+{
+    NSError *error = [request error];
 }
 
 @end
