@@ -23,6 +23,7 @@
 		1569D5A5154333C8003C5445 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1569D5A4154333C8003C5445 /* libz.dylib */; };
 		1569D5AC154336A3003C5445 /* WMConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 1569D5AB154336A3003C5445 /* WMConstants.m */; };
 		18C2ABDB15433265002016B4 /* WMMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C2ABDA15433265002016B4 /* WMMapView.m */; };
+		18C2ABDD1543371A002016B4 /* WMMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C2ABDC1543371A002016B4 /* WMMapView.xib */; };
 		B22D35FB154330A30023A8E6 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B22D35FA154330A30023A8E6 /* MapKit.framework */; };
 		B2C36D5A15430D4500B30A36 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2C36D5915430D4500B30A36 /* UIKit.framework */; };
 		B2C36D5C15430D4500B30A36 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2C36D5B15430D4500B30A36 /* Foundation.framework */; };
@@ -71,6 +72,7 @@
 		1569D5AB154336A3003C5445 /* WMConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMConstants.m; sourceTree = "<group>"; };
 		18C2ABD915433265002016B4 /* WMMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMMapView.h; sourceTree = "<group>"; };
 		18C2ABDA15433265002016B4 /* WMMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMMapView.m; sourceTree = "<group>"; };
+		18C2ABDC1543371A002016B4 /* WMMapView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WMMapView.xib; sourceTree = "<group>"; };
 		B22D35FA154330A30023A8E6 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		B2C36D5515430D4500B30A36 /* WiFi Map Social.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WiFi Map Social.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2C36D5915430D4500B30A36 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -269,6 +271,7 @@
 				B2C36D8A1543284A00B30A36 /* WMMapViewController.m */,
 				18C2ABD915433265002016B4 /* WMMapView.h */,
 				18C2ABDA15433265002016B4 /* WMMapView.m */,
+				18C2ABDC1543371A002016B4 /* WMMapView.xib */,
 			);
 			name = MapController;
 			sourceTree = "<group>";
@@ -338,6 +341,7 @@
 				B2C36D6415430D4500B30A36 /* InfoPlist.strings in Resources */,
 				B2C36D781543251100B30A36 /* MainView.xib in Resources */,
 				B2C36D901543286000B30A36 /* SubmitView.xib in Resources */,
+				18C2ABDD1543371A002016B4 /* WMMapView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
