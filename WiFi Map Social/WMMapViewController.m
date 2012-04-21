@@ -10,6 +10,8 @@
 #import "WMMapView.h"
 #import "WMMapViewOfflineOverlay.h"
 #import "WMMapViewSpotsAnnotation.h"
+#import "WMSpotView.h"
+#import "WMOfflineMapView.h"
 
 @interface WMMapViewController ()
 
@@ -38,7 +40,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-  //  [self.mapView setCenterCoordinate:[self.delegate getCurrentLocationForMapController:self]];
+    [self.mapView setCenterCoordinate:[self currentLocation] animated:NO];
 }
 
 - (void)viewDidUnload
@@ -72,8 +74,8 @@
         }
         else
         {
+            [self.mapView removeOverlay:self.offlineOverlay];
             self.offlineOverlay = nil;
-            //[self.mapView
         }
     }
 }
@@ -87,6 +89,10 @@
 
 - (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id <MKOverlay>)overlay
 {
+    if (overlay == self.offlineOverlay)
+    {
+        return [[[WMOfflineMapView alloc] initWithOverlay:overlay] autorelease];
+    }
     return nil;
 }
 

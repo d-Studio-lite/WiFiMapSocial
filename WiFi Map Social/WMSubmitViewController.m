@@ -29,6 +29,8 @@ typedef enum
 @synthesize nameTextField = _nameTextField;
 @synthesize passwordTextField = _passwordTextField;
 
+@synthesize currentLocation = _currentLocation;
+
 -(void)dealloc
 {
     self.cancelButton = nil;
@@ -36,6 +38,17 @@ typedef enum
     self.nameTextField = nil;
     self.passwordTextField = nil;
     [super dealloc];
+}
+
+- (void)viewDidLoad
+{
+    self.cancelButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)] autorelease];
+    
+    self.submitButton = [[[UIBarButtonItem alloc] initWithTitle:@"Submit"
+                                                          style:UIBarButtonItemStyleBordered
+                                                         target:self
+                                                         action:@selector(submit:)] autorelease];
+    [super viewDidLoad];
 }
 
 - (void)viewDidUnload
@@ -88,11 +101,32 @@ typedef enum
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:spotsURL];
     [request setDelegate:self];
     [request startAsynchronous];
+    
+    UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Submitting" message:[[self paramsDictionary] description] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+    [alert show];
 }
 
 - (void)cancel:(id)sender
 {
     [[self navigationController] popViewControllerAnimated:YES];
+}
+
+- (NSArray *)toolbarItems
+{
+    UIBarButtonItem *flexibleSpace = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
+    
+    return [NSArray arrayWithObjects:self.cancelButton, flexibleSpace, self.submitButton, nil];
+}
+
+- (NSDictionary *)paramsDictionary
+{
+    NSDictionary *result = [NSDictionary dictionaryWithObjectsAndKeys:
+                            [self.nameTextField text], kWMSpotNameKey,
+                            [self.passwordTextField text], kWMSpotPasswordKey,
+                            [NSNumber numberWithDouble:self.currentLocation.latitude], kWMSpotLattitudeKey,
+                            [NSNumber numberWithDouble:self.currentLocation.longitude], kWMSpotLongitudeKey,
+                            nil];
+    return result;
 }
 
 #pragma mark ASIHTTPRequestDelegate methods
