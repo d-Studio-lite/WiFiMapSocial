@@ -38,7 +38,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-  //  [self.mapView setCenterCoordinate:[self.delegate getCurrentLocationForMapController:self]];
+    [self.mapView setCenterCoordinate:[self currentLocation]];
 }
 
 - (void)viewDidUnload
@@ -72,8 +72,8 @@
         }
         else
         {
+            [self.mapView removeOverlay:self.offlineOverlay];
             self.offlineOverlay = nil;
-            //[self.mapView
         }
     }
 }
@@ -87,6 +87,10 @@
 
 - (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id <MKOverlay>)overlay
 {
+    if (overlay == self.offlineOverlay)
+    {
+        
+    }
     return nil;
 }
 

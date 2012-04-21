@@ -22,6 +22,8 @@
 		1569D5A3154333B1003C5445 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1569D5A2154333B1003C5445 /* MobileCoreServices.framework */; };
 		1569D5A5154333C8003C5445 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1569D5A4154333C8003C5445 /* libz.dylib */; };
 		1569D5B4154339AB003C5445 /* WMSpot.m in Sources */ = {isa = PBXBuildFile; fileRef = 1569D5B3154339AB003C5445 /* WMSpot.m */; };
+		18709D58154355A300AA5EC2 /* WMOfflineMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18709D57154355A300AA5EC2 /* WMOfflineMapView.m */; };
+		18709D5C154355BC00AA5EC2 /* WMSpotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18709D5B154355BC00AA5EC2 /* WMSpotView.m */; };
 		18C2ABDB15433265002016B4 /* WMMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C2ABDA15433265002016B4 /* WMMapView.m */; };
 		18C2ABDD1543371A002016B4 /* WMMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C2ABDC1543371A002016B4 /* WMMapView.xib */; };
 		18C2ABFA15434583002016B4 /* WMMapViewOfflineOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C2ABF715434583002016B4 /* WMMapViewOfflineOverlay.m */; };
@@ -72,6 +74,10 @@
 		1569D5AA154336A3003C5445 /* WMConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMConstants.h; sourceTree = "<group>"; };
 		1569D5B2154339AB003C5445 /* WMSpot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMSpot.h; sourceTree = "<group>"; };
 		1569D5B3154339AB003C5445 /* WMSpot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMSpot.m; sourceTree = "<group>"; };
+		18709D56154355A300AA5EC2 /* WMOfflineMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMOfflineMapView.h; sourceTree = "<group>"; };
+		18709D57154355A300AA5EC2 /* WMOfflineMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMOfflineMapView.m; sourceTree = "<group>"; };
+		18709D5A154355BC00AA5EC2 /* WMSpotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMSpotView.h; sourceTree = "<group>"; };
+		18709D5B154355BC00AA5EC2 /* WMSpotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMSpotView.m; sourceTree = "<group>"; };
 		18C2ABD915433265002016B4 /* WMMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMMapView.h; sourceTree = "<group>"; };
 		18C2ABDA15433265002016B4 /* WMMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMMapView.m; sourceTree = "<group>"; };
 		18C2ABDC1543371A002016B4 /* WMMapView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WMMapView.xib; sourceTree = "<group>"; };
@@ -278,8 +284,12 @@
 				18C2ABDA15433265002016B4 /* WMMapView.m */,
 				18C2ABF615434583002016B4 /* WMMapViewOfflineOverlay.h */,
 				18C2ABF715434583002016B4 /* WMMapViewOfflineOverlay.m */,
+				18709D56154355A300AA5EC2 /* WMOfflineMapView.h */,
+				18709D57154355A300AA5EC2 /* WMOfflineMapView.m */,
 				18C2ABF815434583002016B4 /* WMMapViewSpotsAnnotation.h */,
 				18C2ABFD15434BFC002016B4 /* WMMapViewSpotsAnnotation.m */,
+				18709D5A154355BC00AA5EC2 /* WMSpotView.h */,
+				18709D5B154355BC00AA5EC2 /* WMSpotView.m */,
 				18C2ABDC1543371A002016B4 /* WMMapView.xib */,
 			);
 			name = MapController;
@@ -380,6 +390,8 @@
 				1569D5B4154339AB003C5445 /* WMSpot.m in Sources */,
 				18C2ABFA15434583002016B4 /* WMMapViewOfflineOverlay.m in Sources */,
 				18C2ABFE15434BFC002016B4 /* WMMapViewSpotsAnnotation.m in Sources */,
+				18709D58154355A300AA5EC2 /* WMOfflineMapView.m in Sources */,
+				18709D5C154355BC00AA5EC2 /* WMSpotView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
