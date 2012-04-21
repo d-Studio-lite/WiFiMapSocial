@@ -8,6 +8,14 @@
 
 #import "WMSubmitViewController.h"
 #import "ASIHTTPRequest.h"
+#import "XMLReader.h"
+
+typedef enum
+{
+    WMResolveDuplicatesNoDuplicatesReturnCode = 0,
+    WMResolveDuplicatesCloseSpotWithSamePasswordReturnCode,
+    WMResolveDuplicatesCloseSpotWithDifferentPasswordReturnCode,
+} WMResolveDuplicatesReturnCode;
 
 @interface WMSubmitViewController()<ASIHTTPRequestDelegate>
 
@@ -46,10 +54,37 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (WMResolveDuplicatesReturnCode)resolveDuplicates
+{
+    WMResolveDuplicatesReturnCode retValue = WMResolveDuplicatesNoDuplicatesReturnCode;
+     return retValue;
+}
+
+- (void)handleResolveDuplicatesReturnCode:(WMResolveDuplicatesReturnCode)returnCode
+{
+    switch (returnCode)
+    {
+        case WMResolveDuplicatesNoDuplicatesReturnCode:
+        {
+            break;
+        }   
+        case WMResolveDuplicatesCloseSpotWithSamePasswordReturnCode:
+        {
+            break;
+        }   
+        case WMResolveDuplicatesCloseSpotWithDifferentPasswordReturnCode:
+        {
+            break;
+        }   
+        default:
+            break;
+    }    
+}
+
 - (void)submit:(id)sender
 {
     NSURL *serverURL = [NSURL URLWithString:kWMServerURL];
-    NSURL *spotsURL = [serverURL URLByAppendingPathComponent:@"spots.xml"];
+    NSURL *spotsURL = [serverURL URLByAppendingPathComponent:[kWMSpotsKey stringByAppendingPathExtension:@"xml"]];
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:spotsURL];
     [request setDelegate:self];
     [request startAsynchronous];
@@ -66,6 +101,9 @@
 {
     // Use when fetching text data
     NSString *responseString = [request responseString];
+    NSError *error = nil;
+    NSDictionary *responseDictionary = [XMLReader dictionaryForXMLString:responseString error:&error];
+    NSArray *spotsArray = [responseDictionary valueForKey:kWMSpotsKey];
     
     [[self navigationController] popViewControllerAnimated:YES];
 }
