@@ -21,6 +21,13 @@
     return self;
 }
 
+- (void)dealloc
+{
+    [_spec release];
+    _spec = nil;
+    [super dealloc];
+}
+
 - (NSString *)name
 {
     return [[_spec valueForKey:kWMSpotNameKey] copy];
