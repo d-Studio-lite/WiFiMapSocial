@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 
 @interface WMSubmitViewController : UIViewController
 
@@ -15,6 +16,10 @@
 
 @property (retain, nonatomic) IBOutlet UITextField *nameTextField;
 @property (retain, nonatomic) IBOutlet UITextField *passwordTextField;
+
+@property (assign, nonatomic) CLLocationCoordinate2D currentLocation;
+
+- (NSDictionary *)paramsDictionary;
 
 - (IBAction)submit:(id)sender;
 - (IBAction)cancel:(id)sender;

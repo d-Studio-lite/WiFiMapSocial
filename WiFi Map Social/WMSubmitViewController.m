@@ -29,6 +29,8 @@ typedef enum
 @synthesize nameTextField = _nameTextField;
 @synthesize passwordTextField = _passwordTextField;
 
+@synthesize currentLocation = _currentLocation;
+
 -(void)dealloc
 {
     self.cancelButton = nil;
@@ -88,11 +90,25 @@ typedef enum
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:spotsURL];
     [request setDelegate:self];
     [request startAsynchronous];
+    
+    UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Subnitting" message:[[self paramsDictionary] description] delegate:nil cancelButtonTitle:nil otherButtonTitles:nil] autorelease];
+    [alert show];
 }
 
 - (void)cancel:(id)sender
 {
     [[self navigationController] popViewControllerAnimated:YES];
+}
+
+- (NSDictionary *)paramsDictionary
+{
+    NSDictionary *result = [NSDictionary dictionaryWithObjectsAndKeys:
+                            [self.nameTextField text], kWMSpotNameKey,
+                            [self.passwordTextField text], kWMSpotPasswordKey,
+                            [NSNumber numberWithDouble:self.currentLocation.latitude], kWMSpotLattitudeKey,
+                            [NSNumber numberWithDouble:self.currentLocation.longitude], kWMSpotLongitudeKey,
+                            nil];
+    return result;
 }
 
 #pragma mark ASIHTTPRequestDelegate methods
