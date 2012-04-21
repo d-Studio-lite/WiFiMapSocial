@@ -6,4 +6,7 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-
+static NSString *const kWMSpotNameKey = @"name"; 
+static NSString *const kWMSpotPasswordKey = @"password"; 
+static NSString *const kWMSpotLattitudeKey = @"lattitude"; 
+static NSString *const kWMSpotLongitudeKey = @"longitude"; 
