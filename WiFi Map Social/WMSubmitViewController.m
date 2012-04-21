@@ -8,7 +8,7 @@
 
 #import "WMSubmitViewController.h"
 #import "ASIHTTPRequest.h"
-#import "XMLReader.h"
+#import "JSON.h"
 
 typedef enum
 {
@@ -97,7 +97,7 @@ typedef enum
 - (void)submit:(id)sender
 {
     NSURL *serverURL = [NSURL URLWithString:kWMServerURL];
-    NSURL *spotsURL = [serverURL URLByAppendingPathComponent:[kWMSpotsKey stringByAppendingPathExtension:@"xml"]];
+    NSURL *spotsURL = [serverURL URLByAppendingPathComponent:[kWMSpotsKey stringByAppendingPathExtension:@"json"]];
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:spotsURL];
     [request setDelegate:self];
     [request startAsynchronous];
@@ -135,11 +135,9 @@ typedef enum
 {
     // Use when fetching text data
     NSString *responseString = [request responseString];
-    responseString = [responseString stringByReplacingOccurrencesOfString:@" type=\"array\"" withString:@""];
-    NSError *error = nil;
-    NSDictionary *responseDictionary = [XMLReader dictionaryForXMLString:responseString error:&error];
-    NSArray *spotsArray = [responseDictionary valueForKey:kWMSpotsKey];
-    
+    SBJsonParser *parser = [[[SBJsonParser alloc] init] autorelease];
+    id responseObject = [parser objectWithString:responseString];
+
     [[self navigationController] popViewControllerAnimated:YES];
 }
 
