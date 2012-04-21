@@ -8,21 +8,46 @@
 
 #import "WMMapViewOfflineOverlay.h"
 
+@interface WMMapViewOfflineOverlay ()
+
+@property (retain, nonatomic) WMOfflineMapData *mapData;
+
+@end
+
 @implementation WMMapViewOfflineOverlay
 
-@synthesize coordinate = _coordinate;
-@synthesize boundingMapRect = _boundingMapRect;
+@synthesize mapData = _mapData;
 
-//optional
-//- (BOOL)intersectsMapRect:(MKMapRect)mapRect
-//{
-//    return NO;
-//}
+- (id)initWithMapData:(WMOfflineMapData *)mapData
+{
+    self = [super init];
+    if (nil != self)
+    {
+        self.mapData = nil;
+    }
+    return self;
+}
 
-//- (void)setCoordinate:(CLLocationCoordinate2D)newCoordinate
-//{
-//    
-//}
+- (void)dealloc
+{
+    self.mapData = nil;
+    [super dealloc];
+}
+
+- (CLLocationCoordinate2D)coordinate
+{
+    return [self.mapData coordinate];
+}
+
+- (MKMapRect)boundingMapRect
+{
+    return [self.mapData boundingMapRect];
+}
+
+- (BOOL)intersectsMapRect:(MKMapRect)mapRect
+{
+    return MKMapRectIntersectsRect(self.boundingMapRect, mapRect);
+}
 
 
 @end

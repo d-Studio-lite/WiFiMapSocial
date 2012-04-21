@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "WMMapView.h"
+#import "WMOfflineMapData.h"
 
 @interface WMMapViewOfflineOverlay : NSObject <MKOverlay>
 
-//- (id)initWithMapData:
+- (id)initWithMapData:(WMOfflineMapData *)mapData;
 
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
 @property (nonatomic, readonly) MKMapRect boundingMapRect;
