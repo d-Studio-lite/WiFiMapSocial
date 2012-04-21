@@ -14,11 +14,13 @@
 
 @synthesize window = _window;
 @synthesize mainViewController = _mainViewController;
+@synthesize navigationController = _navigationController;
 
 - (void)dealloc
 {
     self.window = nil;
     self.mainViewController = nil;
+    self.navigationController = nil;
     [super dealloc];
 }
 
@@ -28,6 +30,8 @@
 
     
     self.mainViewController = [[[WMMainViewController alloc] initWithNibName:@"MainView" bundle:nil] autorelease];
+    self.navigationController = [[[UINavigationController alloc] initWithRootViewController:self.mainViewController] autorelease];
+                                                    
     self.window.rootViewController = self.mainViewController;
     [self.window makeKeyAndVisible];
     return YES;

@@ -14,5 +14,6 @@
 
 @property (retain, nonatomic) UIWindow *window;
 @property (retain, nonatomic) WMMainViewController *mainViewController;
+@property (retain, nonatomic) UINavigationController *navigationController;
 
 @end

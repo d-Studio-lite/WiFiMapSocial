@@ -11,6 +11,4 @@
 
 @interface WMMapView :UIView
 
-@property (retain, nonatomic) IBOutlet MKMapView *mapView;
-
 @end

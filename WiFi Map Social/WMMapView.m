@@ -14,8 +14,6 @@
 
 @implementation WMMapView
 
-@synthesize mapView = _mapView;
-
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -28,7 +26,6 @@
 
 - (void)dealloc
 {
-    self.mapView = nil;
     [super dealloc];
 }
 
