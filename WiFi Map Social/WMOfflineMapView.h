@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "WMMapView.h"
 
-@interface WMOfflineMapView : NSObject
+@interface WMOfflineMapView : MKOverlayView
 
 @end

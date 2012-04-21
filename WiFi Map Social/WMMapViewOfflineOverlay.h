@@ -11,6 +11,8 @@
 
 @interface WMMapViewOfflineOverlay : NSObject <MKOverlay>
 
+//- (id)initWithMapData:
+
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
 @property (nonatomic, readonly) MKMapRect boundingMapRect;
 
