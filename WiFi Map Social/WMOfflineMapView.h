@@ -8,9 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "WMMapView.h"
+#import "WMMapViewOfflineOverlay.h"
 
 @interface WMOfflineMapView : MKOverlayView
 
-- (id)initWithOfflineOverlay:(id<MKOverlay>)overlay;
+- (id)initWithOfflineOverlay:(WMMapViewOfflineOverlay *)overlay;
 
 @end

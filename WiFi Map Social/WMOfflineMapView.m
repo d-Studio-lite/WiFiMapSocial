@@ -8,7 +8,33 @@
 
 #import "WMOfflineMapView.h"
 
+@interface WMOfflineMapView ()
+
+- (WMMapViewOfflineOverlay *)offlineOverlay;
+
+@end
+
 @implementation WMOfflineMapView
+
+- (id)initWithOfflineOverlay:(WMMapViewOfflineOverlay *)overlay
+{
+    self = [super initWithOverlay:overlay];
+    if (nil != self)
+    {
+        
+    }
+    return self;
+}
+
+- (void)dealloc
+{
+    [super dealloc];
+}
+
+- (WMMapViewOfflineOverlay *)offlineOverlay
+{
+    return (WMMapViewOfflineOverlay *)self.overlay;
+}
 
 - (BOOL)canDrawMapRect:(MKMapRect)mapRect zoomScale:(MKZoomScale)zoomScale
 {

@@ -43,6 +43,7 @@
 {
     [super viewDidLoad];
     [self.mapView setCenterCoordinate:[self currentLocation] animated:NO];
+    [self addSpots:[self.delegate getSpotsAroundLocation:[self currentLocation] forMapViewController:self]];
 }
 
 - (void)viewDidUnload
@@ -86,7 +87,8 @@
 {
     for (WMSpotData *spotData in spots)
     {
-        
+        WMMapViewSpotsAnnotation *spotAnnotation = [[[WMMapViewSpotsAnnotation alloc] initWithSpotData:spotData] autorelease];
+        [self.mapView addAnnotation:spotAnnotation];
     }
 }
 
@@ -112,7 +114,12 @@
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
-    return nil;
+    if (mapView != self.mapView)
+    {
+        return nil;
+    }
+    WMSpotView *spotView = [[[WMSpotView alloc] initWithSpotAnnotation:annotation] autorelease];
+    return spotView;
 }
 
 //- (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated;
