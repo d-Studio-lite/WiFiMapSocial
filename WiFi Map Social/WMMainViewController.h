@@ -15,7 +15,7 @@
 @interface WMMainViewController : UIViewController
 
 @property (retain, nonatomic) WMDataController *dataController;
-@property (retain, nonatomic) IBOutlet WMMapViewController *mapViewController;
+@property (retain, nonatomic) WMMapViewController *mapViewController;
 @property (retain, nonatomic) WMSubmitViewController *submitViewController;
 
 @property (retain, nonatomic) IBOutlet UIActivityIndicatorView *indicatorView;
