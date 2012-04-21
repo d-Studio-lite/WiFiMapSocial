@@ -24,6 +24,8 @@
 		1569D5B4154339AB003C5445 /* WMSpot.m in Sources */ = {isa = PBXBuildFile; fileRef = 1569D5B3154339AB003C5445 /* WMSpot.m */; };
 		18709D58154355A300AA5EC2 /* WMOfflineMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18709D57154355A300AA5EC2 /* WMOfflineMapView.m */; };
 		18709D5C154355BC00AA5EC2 /* WMSpotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18709D5B154355BC00AA5EC2 /* WMSpotView.m */; };
+		18709D5F15435B6300AA5EC2 /* WMOfflineMapData.m in Sources */ = {isa = PBXBuildFile; fileRef = 18709D5E15435B6300AA5EC2 /* WMOfflineMapData.m */; };
+		18709D6215435B9100AA5EC2 /* WMSpotData.m in Sources */ = {isa = PBXBuildFile; fileRef = 18709D6115435B9000AA5EC2 /* WMSpotData.m */; };
 		18C2ABDB15433265002016B4 /* WMMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C2ABDA15433265002016B4 /* WMMapView.m */; };
 		18C2ABDD1543371A002016B4 /* WMMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C2ABDC1543371A002016B4 /* WMMapView.xib */; };
 		18C2ABFA15434583002016B4 /* WMMapViewOfflineOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C2ABF715434583002016B4 /* WMMapViewOfflineOverlay.m */; };
@@ -78,6 +80,10 @@
 		18709D57154355A300AA5EC2 /* WMOfflineMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMOfflineMapView.m; sourceTree = "<group>"; };
 		18709D5A154355BC00AA5EC2 /* WMSpotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMSpotView.h; sourceTree = "<group>"; };
 		18709D5B154355BC00AA5EC2 /* WMSpotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMSpotView.m; sourceTree = "<group>"; };
+		18709D5D15435B6300AA5EC2 /* WMOfflineMapData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMOfflineMapData.h; sourceTree = "<group>"; };
+		18709D5E15435B6300AA5EC2 /* WMOfflineMapData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMOfflineMapData.m; sourceTree = "<group>"; };
+		18709D6015435B9000AA5EC2 /* WMSpotData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMSpotData.h; sourceTree = "<group>"; };
+		18709D6115435B9000AA5EC2 /* WMSpotData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMSpotData.m; sourceTree = "<group>"; };
 		18C2ABD915433265002016B4 /* WMMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMMapView.h; sourceTree = "<group>"; };
 		18C2ABDA15433265002016B4 /* WMMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMMapView.m; sourceTree = "<group>"; };
 		18C2ABDC1543371A002016B4 /* WMMapView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WMMapView.xib; sourceTree = "<group>"; };
@@ -194,6 +200,17 @@
 			path = ASIHTTPRequest;
 			sourceTree = "<group>";
 		};
+		18709D6315435B9A00AA5EC2 /* MapModel */ = {
+			isa = PBXGroup;
+			children = (
+				18709D6015435B9000AA5EC2 /* WMSpotData.h */,
+				18709D6115435B9000AA5EC2 /* WMSpotData.m */,
+				18709D5D15435B6300AA5EC2 /* WMOfflineMapData.h */,
+				18709D5E15435B6300AA5EC2 /* WMOfflineMapData.m */,
+			);
+			name = MapModel;
+			sourceTree = "<group>";
+		};
 		B2C36D4A15430D4500B30A36 = {
 			isa = PBXGroup;
 			children = (
@@ -278,6 +295,7 @@
 		B2C36D7C154326B200B30A36 /* MapController */ = {
 			isa = PBXGroup;
 			children = (
+				18709D6315435B9A00AA5EC2 /* MapModel */,
 				B2C36D891543284A00B30A36 /* WMMapViewController.h */,
 				B2C36D8A1543284A00B30A36 /* WMMapViewController.m */,
 				18C2ABD915433265002016B4 /* WMMapView.h */,
@@ -392,6 +410,8 @@
 				18C2ABFE15434BFC002016B4 /* WMMapViewSpotsAnnotation.m in Sources */,
 				18709D58154355A300AA5EC2 /* WMOfflineMapView.m in Sources */,
 				18709D5C154355BC00AA5EC2 /* WMSpotView.m in Sources */,
+				18709D5F15435B6300AA5EC2 /* WMOfflineMapData.m in Sources */,
+				18709D6215435B9100AA5EC2 /* WMSpotData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
