@@ -10,4 +10,14 @@
 
 @implementation WMOfflineMapView
 
+- (BOOL)canDrawMapRect:(MKMapRect)mapRect zoomScale:(MKZoomScale)zoomScale
+{
+    return NO;
+}
+
+- (void)drawMapRect:(MKMapRect)mapRect zoomScale:(MKZoomScale)zoomScale inContext:(CGContextRef)context
+{
+    
+}
+
 @end

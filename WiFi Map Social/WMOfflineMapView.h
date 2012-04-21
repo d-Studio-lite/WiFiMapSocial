@@ -11,4 +11,6 @@
 
 @interface WMOfflineMapView : MKOverlayView
 
+- (id)initWithOfflineOverlay:(id<MKOverlay>)overlay;
+
 @end

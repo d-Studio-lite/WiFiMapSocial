@@ -7,7 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <MapKit/MapKit.h>
 
 @interface WMSpotData : NSObject
+
+- (id)initWithTitle:(NSString *)title networks:(NSDictionary *)networks coordinates:(CLLocationCoordinate2D)coordinates;
+
+@property (retain, nonatomic, readonly) NSString *spotTitle;
+@property (retain, nonatomic, readonly) NSDictionary *networks; //key - @"networkName", value - @"password" (or @"" for free network)
+@property (assign, nonatomic, readonly) CLLocationCoordinate2D coordinates;
 
 @end
