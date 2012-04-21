@@ -7,7 +7,8 @@
 //
 
 #import "WMSubmitViewController.h"
-#import "ASIHTTPRequest.h"
+#import "ASIFormDataRequest.h"
+#import "JSON.h"
 
 typedef enum
 {
@@ -118,9 +119,22 @@ typedef enum
 {
     NSURL *serverURL = [NSURL URLWithString:kWMServerURL];
     NSURL *spotsURL = [serverURL URLByAppendingPathComponent:[kWMSpotsKey stringByAppendingPathExtension:@"json"]];
-    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:spotsURL];
-    [request setRequestMethod:@"POST"];
-    [request startAsynchronous];
+    
+    serverURL = [NSURL URLWithString:@"http://fierce-mountain-3562.herokuapp.com/spots.json"];
+
+    ASIFormDataRequest *postRequest = [ASIFormDataRequest requestWithURL:spotsURL];
+    [ASIFormDataRequest initialize];
+    [postRequest setRequestMethod:@"POST"];
+    [postRequest addRequestHeader:@"Content-Type" value:@"application/json; charset=utf-8"];
+    
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:[self.nameTextField text], kWMSpotNameKey, [self.passwordTextField text], kWMSpotPasswordKey, nil];
+    
+    NSString *jsonParams = [params JSONRepresentation];
+
+    [postRequest appendPostData:[jsonParams dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [postRequest setDelegate:self];
+    [postRequest startAsynchronous];
     
     UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Submitting" message:[[self paramsDictionary] description] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
     [alert show];
