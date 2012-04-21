@@ -21,6 +21,7 @@
 		1569D5A1154333A7003C5445 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1569D5A0154333A7003C5445 /* SystemConfiguration.framework */; };
 		1569D5A3154333B1003C5445 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1569D5A2154333B1003C5445 /* MobileCoreServices.framework */; };
 		1569D5A5154333C8003C5445 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1569D5A4154333C8003C5445 /* libz.dylib */; };
+		1569D5AC154336A3003C5445 /* WMConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 1569D5AB154336A3003C5445 /* WMConstants.m */; };
 		18C2ABDB15433265002016B4 /* WMMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C2ABDA15433265002016B4 /* WMMapView.m */; };
 		B22D35FB154330A30023A8E6 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B22D35FA154330A30023A8E6 /* MapKit.framework */; };
 		B2C36D5A15430D4500B30A36 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2C36D5915430D4500B30A36 /* UIKit.framework */; };
@@ -66,6 +67,8 @@
 		1569D5A0154333A7003C5445 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		1569D5A2154333B1003C5445 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		1569D5A4154333C8003C5445 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		1569D5AA154336A3003C5445 /* WMConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMConstants.h; sourceTree = "<group>"; };
+		1569D5AB154336A3003C5445 /* WMConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMConstants.m; sourceTree = "<group>"; };
 		18C2ABD915433265002016B4 /* WMMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMMapView.h; sourceTree = "<group>"; };
 		18C2ABDA15433265002016B4 /* WMMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMMapView.m; sourceTree = "<group>"; };
 		B22D35FA154330A30023A8E6 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -224,6 +227,8 @@
 				B2C36D6215430D4500B30A36 /* InfoPlist.strings */,
 				B2C36D6515430D4500B30A36 /* main.m */,
 				B2C36D6715430D4500B30A36 /* WiFi Map Social-Prefix.pch */,
+				1569D5AA154336A3003C5445 /* WMConstants.h */,
+				1569D5AB154336A3003C5445 /* WMConstants.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -360,6 +365,7 @@
 				1569D59B154332E1003C5445 /* ASINetworkQueue.m in Sources */,
 				1569D59C154332E1003C5445 /* Reachability.m in Sources */,
 				18C2ABDB15433265002016B4 /* WMMapView.m in Sources */,
+				1569D5AC154336A3003C5445 /* WMConstants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
