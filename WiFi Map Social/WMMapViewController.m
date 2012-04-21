@@ -12,6 +12,8 @@
 #import "WMMapViewSpotsAnnotation.h"
 #import "WMSpotView.h"
 #import "WMOfflineMapView.h"
+#import "WMSpotData.h"
+#import "WMOfflineMapData.h"
 
 @interface WMMapViewController ()
 
@@ -80,6 +82,14 @@
     }
 }
 
+- (void)addSpots:(NSArray *)spots
+{
+    for (WMSpotData *spotData in spots)
+    {
+        
+    }
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
@@ -89,6 +99,10 @@
 
 - (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id <MKOverlay>)overlay
 {
+    if (mapView != self.mapView)
+    {
+        return nil;
+    }
     if (overlay == self.offlineOverlay)
     {
         return [[[WMOfflineMapView alloc] initWithOverlay:overlay] autorelease];

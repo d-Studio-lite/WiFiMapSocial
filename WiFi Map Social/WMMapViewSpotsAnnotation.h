@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "WMMapView.h"
+#import "WMSpotData.h"
 
 @interface WMMapViewSpotsAnnotation : NSObject <MKAnnotation>
 

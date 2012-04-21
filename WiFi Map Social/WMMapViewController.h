@@ -19,6 +19,8 @@
 - (void)setUsingOnlineMaps:(BOOL)online;
 - (CLLocationCoordinate2D)currentLocation;
 
+- (void)addSpots:(NSArray *)spots;
+
 @end
 
 @protocol WMMapViewControllerDelegate <NSObject>
