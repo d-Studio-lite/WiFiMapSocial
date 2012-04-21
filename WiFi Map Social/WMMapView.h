@@ -7,7 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <MapKit/MapKit.h>
 
-@interface WMMapView : NSObject
+@interface WMMapView :UIView
+
+@property (retain, nonatomic) IBOutlet MKMapView *mapView;
 
 @end
