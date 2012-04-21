@@ -21,11 +21,9 @@
 		1569D5A1154333A7003C5445 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1569D5A0154333A7003C5445 /* SystemConfiguration.framework */; };
 		1569D5A3154333B1003C5445 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1569D5A2154333B1003C5445 /* MobileCoreServices.framework */; };
 		1569D5A5154333C8003C5445 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1569D5A4154333C8003C5445 /* libz.dylib */; };
-		1569D5AC154336A3003C5445 /* WMConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 1569D5AB154336A3003C5445 /* WMConstants.m */; };
+		1569D5B4154339AB003C5445 /* WMSpot.m in Sources */ = {isa = PBXBuildFile; fileRef = 1569D5B3154339AB003C5445 /* WMSpot.m */; };
 		18C2ABDB15433265002016B4 /* WMMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C2ABDA15433265002016B4 /* WMMapView.m */; };
 		18C2ABDD1543371A002016B4 /* WMMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C2ABDC1543371A002016B4 /* WMMapView.xib */; };
-		18C2ABED154341B4002016B4 /* WMMapViewOfflineOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C2ABEC154341B4002016B4 /* WMMapViewOfflineOverlay.m */; };
-		18C2ABF115434359002016B4 /* WMMapViewSpotsOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C2ABF015434359002016B4 /* WMMapViewSpotsOverlay.m */; };
 		B22D35FB154330A30023A8E6 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B22D35FA154330A30023A8E6 /* MapKit.framework */; };
 		B2C36D5A15430D4500B30A36 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2C36D5915430D4500B30A36 /* UIKit.framework */; };
 		B2C36D5C15430D4500B30A36 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2C36D5B15430D4500B30A36 /* Foundation.framework */; };
@@ -71,14 +69,11 @@
 		1569D5A2154333B1003C5445 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		1569D5A4154333C8003C5445 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		1569D5AA154336A3003C5445 /* WMConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMConstants.h; sourceTree = "<group>"; };
-		1569D5AB154336A3003C5445 /* WMConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMConstants.m; sourceTree = "<group>"; };
+		1569D5B2154339AB003C5445 /* WMSpot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMSpot.h; sourceTree = "<group>"; };
+		1569D5B3154339AB003C5445 /* WMSpot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMSpot.m; sourceTree = "<group>"; };
 		18C2ABD915433265002016B4 /* WMMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMMapView.h; sourceTree = "<group>"; };
 		18C2ABDA15433265002016B4 /* WMMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMMapView.m; sourceTree = "<group>"; };
 		18C2ABDC1543371A002016B4 /* WMMapView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WMMapView.xib; sourceTree = "<group>"; };
-		18C2ABEB154341B4002016B4 /* WMMapViewOfflineOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMMapViewOfflineOverlay.h; sourceTree = "<group>"; };
-		18C2ABEC154341B4002016B4 /* WMMapViewOfflineOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMMapViewOfflineOverlay.m; sourceTree = "<group>"; };
-		18C2ABEF15434359002016B4 /* WMMapViewSpotsOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMMapViewSpotsOverlay.h; sourceTree = "<group>"; };
-		18C2ABF015434359002016B4 /* WMMapViewSpotsOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMMapViewSpotsOverlay.m; sourceTree = "<group>"; };
 		B22D35FA154330A30023A8E6 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		B2C36D5515430D4500B30A36 /* WiFi Map Social.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WiFi Map Social.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2C36D5915430D4500B30A36 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -127,6 +122,8 @@
 				1569D57D154332E1003C5445 /* ASIHTTPRequest */,
 				B2C36D6815430D4500B30A36 /* WMAppDelegate.h */,
 				B2C36D6915430D4500B30A36 /* WMAppDelegate.m */,
+				1569D5B2154339AB003C5445 /* WMSpot.h */,
+				1569D5B3154339AB003C5445 /* WMSpot.m */,
 			);
 			name = models;
 			sourceTree = "<group>";
@@ -236,7 +233,6 @@
 				B2C36D6515430D4500B30A36 /* main.m */,
 				B2C36D6715430D4500B30A36 /* WiFi Map Social-Prefix.pch */,
 				1569D5AA154336A3003C5445 /* WMConstants.h */,
-				1569D5AB154336A3003C5445 /* WMConstants.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -277,10 +273,6 @@
 				B2C36D8A1543284A00B30A36 /* WMMapViewController.m */,
 				18C2ABD915433265002016B4 /* WMMapView.h */,
 				18C2ABDA15433265002016B4 /* WMMapView.m */,
-				18C2ABEB154341B4002016B4 /* WMMapViewOfflineOverlay.h */,
-				18C2ABEC154341B4002016B4 /* WMMapViewOfflineOverlay.m */,
-				18C2ABEF15434359002016B4 /* WMMapViewSpotsOverlay.h */,
-				18C2ABF015434359002016B4 /* WMMapViewSpotsOverlay.m */,
 				18C2ABDC1543371A002016B4 /* WMMapView.xib */,
 			);
 			name = MapController;
@@ -379,9 +371,7 @@
 				1569D59B154332E1003C5445 /* ASINetworkQueue.m in Sources */,
 				1569D59C154332E1003C5445 /* Reachability.m in Sources */,
 				18C2ABDB15433265002016B4 /* WMMapView.m in Sources */,
-				1569D5AC154336A3003C5445 /* WMConstants.m in Sources */,
-				18C2ABED154341B4002016B4 /* WMMapViewOfflineOverlay.m in Sources */,
-				18C2ABF115434359002016B4 /* WMMapViewSpotsOverlay.m in Sources */,
+				1569D5B4154339AB003C5445 /* WMSpot.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
