@@ -46,6 +46,11 @@
     [super dealloc];
 }
 
+- (void)setOnline:(BOOL)online
+{
+    
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
