@@ -89,6 +89,7 @@
 - (void)submit:(id)sender
 {
     CLLocationCoordinate2D currentLocation = [self.mapViewController currentLocation];
+    [self.submitViewController setCurrentLocation:currentLocation];
     [self pushViewController:self.submitViewController animated:YES];
 }
 
