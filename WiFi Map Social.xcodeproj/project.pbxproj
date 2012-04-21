@@ -281,6 +281,7 @@
 		B2C36D4A15430D4500B30A36 = {
 			isa = PBXGroup;
 			children = (
+				B2F86AD015437B68006E4FF2 /* CoreLocation.framework */,
 				B2C36D5F15430D4500B30A36 /* WiFi Map Social */,
 				B2C36D5815430D4500B30A36 /* Frameworks */,
 				B2C36D5615430D4500B30A36 /* Products */,

@@ -8,15 +8,45 @@
 
 #import "WMMapViewSpotsAnnotation.h"
 
+@interface WMMapViewSpotsAnnotation ()
+
+@property (retain, nonatomic) WMSpotData *spotData;
+
+@end
+
 @implementation WMMapViewSpotsAnnotation
 
-@synthesize title = _title;
-@synthesize subtitle = _subtitle;
-@synthesize coordinate = _coordinate;
+@synthesize spotData = _spotData;
 
-//- (void)setCoordinate:(CLLocationCoordinate2D)newCoordinate
-//{
-//    
-//}
+- (id)initWithSpotData:(WMSpotData *)spotData
+{
+    self = [super init];
+    if (nil != self)
+    {
+        self.spotData = spotData;
+    }
+    return self;
+}
+
+- (void)dealloc
+{
+    self.spotData = nil;
+    [super dealloc];
+}
+
+- (CLLocationCoordinate2D)coordinate
+{
+    return [self.spotData coordinates];
+}
+
+- (NSString *)title
+{
+    return [[self.spotData spotTitle] copy];
+}
+
+- (NSString *)subtitle
+{
+    return nil;
+}
 
 @end
