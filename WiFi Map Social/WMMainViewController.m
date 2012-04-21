@@ -20,7 +20,7 @@
 @synthesize dataController = _dataController;
 @synthesize mapViewController = _mapViewController;
 @synthesize submitViewController = _submitViewController;
-
+@synthesize containerView = _containerView;
 @synthesize indicatorView = _indicatorView;
 
 - (void)dealloc
@@ -28,6 +28,8 @@
     self.mapViewController = nil;
     self.dataController = nil;
     self.submitViewController = nil;
+    self.containerView = nil;
+    self.indicatorView = nil;
     [super dealloc];
 }
 
@@ -36,7 +38,7 @@
     [super viewDidLoad];
     self.mapViewController = [[[WMMapViewController alloc] initWithNibName:@"WMMapView" bundle:nil] autorelease];
     [self.view addSubview:[self.mapViewController view]];
-    [[self.mapViewController view] setFrame:[self.view frame]];
+    [[self.mapViewController view] setFrame:[self.containerView frame]];
 }
 
 - (void)viewDidUnload
@@ -76,7 +78,7 @@
 
 - (void)submit:(id)sender
 {
-    
+    [[self navigationController] pushViewController:self.submitViewController animated:YES];
 }
 
 @end

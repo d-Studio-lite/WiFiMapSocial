@@ -18,6 +18,7 @@
 @property (retain, nonatomic) WMMapViewController *mapViewController;
 @property (retain, nonatomic) WMSubmitViewController *submitViewController;
 
+@property (retain, nonatomic) IBOutlet UIView *containerView;
 @property (retain, nonatomic) IBOutlet UIActivityIndicatorView *indicatorView;
 
 - (IBAction)update:(id)sender;

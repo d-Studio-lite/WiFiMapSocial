@@ -14,6 +14,9 @@
 
 @implementation WMSubmitViewController
 
+@synthesize submitButton = _submitButton;
+@synthesize cancelButton = _cancelButton;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -39,6 +42,16 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (void)submit:(id)sender
+{
+    [[self navigationController] popViewControllerAnimated:YES];
+}
+
+- (void)cancel:(id)sender
+{
+    [[self navigationController] popViewControllerAnimated:YES];
 }
 
 @end
