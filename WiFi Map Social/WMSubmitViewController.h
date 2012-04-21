@@ -17,6 +17,10 @@
 @property (retain, nonatomic) IBOutlet UITextField *nameTextField;
 @property (retain, nonatomic) IBOutlet UITextField *passwordTextField;
 
+@property (retain, nonatomic) IBOutlet UILabel *latitudeLabel;
+@property (retain, nonatomic) IBOutlet UILabel *longitudeLabel;
+
+
 @property (assign, nonatomic) CLLocationCoordinate2D currentLocation;
 
 - (NSDictionary *)paramsDictionary;
