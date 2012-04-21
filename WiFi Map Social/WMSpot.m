@@ -7,6 +7,7 @@
 //
 
 #import "WMSpot.h"
+#import "CDSpot.h"
 
 @implementation WMSpot
 @synthesize name = _name, password = _password, lattitude = _lattitude, longitude = _longitude;
@@ -17,6 +18,19 @@
     if (nil != self)
     {
         _spec = [newSpec copy];
+    }
+    return self;
+}
+
+- (id)initWithCDSpot:(CDSpot *)spot
+{
+    self = [self init];
+    if (nil != self)
+    {
+        self.name = spot.name;
+        self.password = spot.password;
+        self.lattitude = [spot.latitude doubleValue];
+        self.longitude = [spot.longtitude doubleValue];
     }
     return self;
 }
