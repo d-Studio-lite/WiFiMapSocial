@@ -96,4 +96,14 @@
 #pragma mark WMMapViewControllerDelegate methods
 #warning implement me
 
+- (NSArray *)getSpotsAroundLocation:(CLLocationCoordinate2D)location forMapViewController:(WMMapViewController *)controller
+{
+    return [NSArray array];
+}
+
+- (NSArray *)getOfflineMapDataAroundLocation:(CLLocationCoordinate2D)location forMapViewController:(WMMapViewController *)controller
+{
+    return [NSArray array];
+}
+
 @end
