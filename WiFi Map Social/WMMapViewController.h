@@ -17,6 +17,7 @@
 @property (assign, nonatomic) id <WMMapViewControllerDelegate> delegate;
 
 - (void)setUsingOnlineMaps:(BOOL)online;
+- (CLLocationCoordinate2D)currentLocation;
 
 @end
 
@@ -24,7 +25,7 @@
 
 @required
 
-- (CLLocationCoordinate2D)getCurrentLocationForMapController:(WMMapViewController *)mapController;
+
 
 @end
 

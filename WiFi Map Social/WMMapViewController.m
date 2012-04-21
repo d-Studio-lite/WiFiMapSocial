@@ -8,15 +8,19 @@
 
 #import "WMMapViewController.h"
 #import "WMMapView.h"
+#import "WMMapViewOfflineOverlay.h"
+#import "WMMapViewSpotsAnnotation.h"
 
 @interface WMMapViewController ()
 
 @property (assign, nonatomic, getter = isOnline) BOOL online;
+@property (retain, nonatomic) WMMapViewOfflineOverlay *offlineOverlay;
 
 @end
 
 @implementation WMMapViewController
 
+@synthesize offlineOverlay = _offlineOverlay;
 @synthesize mapView = _mapView;
 @synthesize delegate = _delegate;
 @synthesize online = _online;
@@ -26,7 +30,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (nil != self)
     {
-        self.online = YES;
+        self.online = NO;
     }
     return self;
 }
@@ -34,19 +38,26 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.mapView setCenterCoordinate:[self.delegate getCurrentLocationForMapController:self]];
+  //  [self.mapView setCenterCoordinate:[self.delegate getCurrentLocationForMapController:self]];
 }
 
 - (void)viewDidUnload
 {
     self.mapView = nil;
+    self.offlineOverlay = nil;
     [super viewDidUnload];
 }
 
 - (void)dealloc
 {
     self.mapView = nil;
+    self.offlineOverlay = nil;
     [super dealloc];
+}
+
+- (CLLocationCoordinate2D)currentLocation
+{
+    return [[[self.mapView userLocation] location] coordinate];
 }
 
 - (void)setUsingOnlineMaps:(BOOL)online
@@ -54,6 +65,16 @@
     if (online != [self isOnline])
     {
         self.online = online;
+        if (NO == online)
+        {
+            self.offlineOverlay = [[WMMapViewOfflineOverlay new] autorelease];
+            [self.mapView addOverlay:self.offlineOverlay];
+        }
+        else
+        {
+            self.offlineOverlay = nil;
+            //[self.mapView
+        }
     }
 }
 
