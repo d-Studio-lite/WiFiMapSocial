@@ -28,6 +28,8 @@ typedef enum
 
 @synthesize nameTextField = _nameTextField;
 @synthesize passwordTextField = _passwordTextField;
+@synthesize latitudeLabel = _latitudeLabel;
+@synthesize longitudeLabel = _longitudeLabel;
 
 @synthesize currentLocation = _currentLocation;
 
@@ -37,6 +39,8 @@ typedef enum
     self.submitButton = nil;
     self.nameTextField = nil;
     self.passwordTextField = nil;
+    self.latitudeLabel = nil;
+    self.longitudeLabel = nil;
     [super dealloc];
 }
 
@@ -60,6 +64,13 @@ typedef enum
     self.submitButton = nil;
     self.nameTextField = nil;
     self.passwordTextField = nil;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.latitudeLabel setText:[[NSNumber numberWithDouble:self.currentLocation.latitude] stringValue]];
+    [self.longitudeLabel setText:[[NSNumber numberWithDouble:self.currentLocation.longitude] stringValue]];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
