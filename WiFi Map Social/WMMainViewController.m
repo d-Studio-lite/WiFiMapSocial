@@ -21,6 +21,8 @@
 @synthesize mapViewController = _mapViewController;
 @synthesize submitViewController = _submitViewController;
 
+@synthesize indicatorView = _indicatorView;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -46,6 +48,25 @@
         [self setSubmitViewController:[[[WMSubmitViewController alloc] initWithNibName:@"SubmitView" bundle:nil] autorelease]];
     }
     return _submitViewController;
+}
+
+- (WMDataController *)dataController
+{
+    if (nil != _dataController)
+    {
+        [self setDataController:[[[WMDataController alloc] init] autorelease]];
+    }
+    return _dataController;
+}
+
+- (void)update:(id)sender
+{
+    
+}
+
+- (void)submit:(id)sender
+{
+    
 }
 
 @end
