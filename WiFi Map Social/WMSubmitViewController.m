@@ -9,6 +9,7 @@
 #import "WMSubmitViewController.h"
 #import "ASIHTTPRequest.h"
 #import "JSON.h"
+#import "WMSpot.h"
 
 typedef enum
 {
@@ -17,7 +18,15 @@ typedef enum
     WMResolveDuplicatesCloseSpotWithDifferentPasswordReturnCode,
 } WMResolveDuplicatesReturnCode;
 
+@interface NSArray(JSONextension)
++ (NSArray *)arrayWithJSONString:(NSString *)jsonString;
+@end
+
 @interface WMSubmitViewController()<ASIHTTPRequestDelegate>
+
+@property (nonatomic, retain) NSArray *fetchedSpots;
+
+- (void)fetchSpotsFromResponseString:(NSString *)response;
 
 @end
 
@@ -33,6 +42,8 @@ typedef enum
 
 @synthesize currentLocation = _currentLocation;
 
+@synthesize fetchedSpots = _fetchedSpots;
+
 -(void)dealloc
 {
     self.cancelButton = nil;
@@ -41,6 +52,7 @@ typedef enum
     self.passwordTextField = nil;
     self.latitudeLabel = nil;
     self.longitudeLabel = nil;
+    self.fetchedSpots = nil;
     [super dealloc];
 }
 
@@ -105,6 +117,18 @@ typedef enum
     }    
 }
 
+- (void)fetchSpotsFromResponseString:(NSString *)response
+{
+    SBJsonParser *parser = [[[SBJsonParser alloc] init] autorelease];
+    id responseObject = [parser objectWithString:response];
+    NSMutableArray *spotObjects = [NSMutableArray arrayWithCapacity:10];
+    for (NSDictionary *spec in responseObject)
+    {
+        [spotObjects addObject:[WMSpot spotWithSpec:spec]];
+    }
+    self.fetchedSpots = [[spotObjects copy] autorelease];
+}
+
 - (void)submit:(id)sender
 {
     NSURL *serverURL = [NSURL URLWithString:kWMServerURL];
@@ -144,10 +168,16 @@ typedef enum
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
+    if ([request.requestMethod isEqualToString:@"GET"])
+    {
+        NSString *responseString = [request responseString];
+        [self fetchSpotsFromResponseString:responseString];
+    }
+    else if ([request.requestMethod isEqualToString:@"POST"])
+    {
+        
+    }
     // Use when fetching text data
-    NSString *responseString = [request responseString];
-    SBJsonParser *parser = [[[SBJsonParser alloc] init] autorelease];
-    id responseObject = [parser objectWithString:responseString];
 
     [[self navigationController] popViewControllerAnimated:YES];
 }

@@ -20,7 +20,7 @@
 @property (nonatomic, assign) CGFloat longitude;
 @property (nonatomic, readonly) NSDictionary *spec;
 
-- (id)initWithSpec:(NSDictionary *)newSpec;
++ (WMSpot *)spotWithSpec:(NSDictionary *)spec;
 - (id)initWithCDSpot:(CDSpot *)spot;
 
 @end
