@@ -11,6 +11,7 @@
 
 @interface WMSpotData : NSObject
 
+- (id)initWithEngineSpotsArray:(NSArray *)spots;
 - (id)initWithTitle:(NSString *)title networks:(NSDictionary *)networks coordinates:(CLLocationCoordinate2D)coordinates;
 
 @property (retain, nonatomic, readonly) NSString *spotTitle;
