@@ -1,5 +1,5 @@
 //
-//  WMMapViewOfflineOverlay.h
+//  WMMapViewSpotsOverlay.h
 //  WiFi Map Social
 //
 //  Created by Apple on 21.04.12.
@@ -9,9 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "WMMapView.h"
 
-@interface WMMapViewOfflineOverlay : NSObject <MKOverlay>
+@interface WMMapViewSpotsAnnotation : NSObject <MKAnnotation>
 
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
-@property (nonatomic, readonly) MKMapRect boundingMapRect;
+
+//optional
+//@property (nonatomic, readonly, copy) NSString *title;
+//@property (nonatomic, readonly, copy) NSString *subtitle;
 
 @end

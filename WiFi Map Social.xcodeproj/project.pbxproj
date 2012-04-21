@@ -25,7 +25,7 @@
 		18C2ABDB15433265002016B4 /* WMMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C2ABDA15433265002016B4 /* WMMapView.m */; };
 		18C2ABDD1543371A002016B4 /* WMMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C2ABDC1543371A002016B4 /* WMMapView.xib */; };
 		18C2ABFA15434583002016B4 /* WMMapViewOfflineOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C2ABF715434583002016B4 /* WMMapViewOfflineOverlay.m */; };
-		18C2ABFB15434583002016B4 /* WMMapViewSpotsOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C2ABF915434583002016B4 /* WMMapViewSpotsOverlay.m */; };
+		18C2ABFE15434BFC002016B4 /* WMMapViewSpotsAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C2ABFD15434BFC002016B4 /* WMMapViewSpotsAnnotation.m */; };
 		B22D35FB154330A30023A8E6 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B22D35FA154330A30023A8E6 /* MapKit.framework */; };
 		B2C36D5A15430D4500B30A36 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2C36D5915430D4500B30A36 /* UIKit.framework */; };
 		B2C36D5C15430D4500B30A36 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2C36D5B15430D4500B30A36 /* Foundation.framework */; };
@@ -78,8 +78,8 @@
 		18C2ABDC1543371A002016B4 /* WMMapView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WMMapView.xib; sourceTree = "<group>"; };
 		18C2ABF615434583002016B4 /* WMMapViewOfflineOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMMapViewOfflineOverlay.h; sourceTree = "<group>"; };
 		18C2ABF715434583002016B4 /* WMMapViewOfflineOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMMapViewOfflineOverlay.m; sourceTree = "<group>"; };
-		18C2ABF815434583002016B4 /* WMMapViewSpotsOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMMapViewSpotsOverlay.h; sourceTree = "<group>"; };
-		18C2ABF915434583002016B4 /* WMMapViewSpotsOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMMapViewSpotsOverlay.m; sourceTree = "<group>"; };
+		18C2ABF815434583002016B4 /* WMMapViewSpotsAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMMapViewSpotsAnnotation.h; sourceTree = "<group>"; };
+		18C2ABFD15434BFC002016B4 /* WMMapViewSpotsAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMMapViewSpotsAnnotation.m; sourceTree = "<group>"; };
 		B22D35FA154330A30023A8E6 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		B2C36D5515430D4500B30A36 /* WiFi Map Social.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WiFi Map Social.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2C36D5915430D4500B30A36 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -281,8 +281,8 @@
 				18C2ABDA15433265002016B4 /* WMMapView.m */,
 				18C2ABF615434583002016B4 /* WMMapViewOfflineOverlay.h */,
 				18C2ABF715434583002016B4 /* WMMapViewOfflineOverlay.m */,
-				18C2ABF815434583002016B4 /* WMMapViewSpotsOverlay.h */,
-				18C2ABF915434583002016B4 /* WMMapViewSpotsOverlay.m */,
+				18C2ABF815434583002016B4 /* WMMapViewSpotsAnnotation.h */,
+				18C2ABFD15434BFC002016B4 /* WMMapViewSpotsAnnotation.m */,
 				18C2ABDC1543371A002016B4 /* WMMapView.xib */,
 			);
 			name = MapController;
@@ -383,7 +383,7 @@
 				18C2ABDB15433265002016B4 /* WMMapView.m in Sources */,
 				1569D5B4154339AB003C5445 /* WMSpot.m in Sources */,
 				18C2ABFA15434583002016B4 /* WMMapViewOfflineOverlay.m in Sources */,
-				18C2ABFB15434583002016B4 /* WMMapViewSpotsOverlay.m in Sources */,
+				18C2ABFE15434BFC002016B4 /* WMMapViewSpotsAnnotation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
