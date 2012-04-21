@@ -51,6 +51,7 @@
 		B2C36D901543286000B30A36 /* SubmitView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2C36D8E1543286000B30A36 /* SubmitView.xib */; };
 		B2F86AC515436440006E4FF2 /* CDSpot.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F86AC415436440006E4FF2 /* CDSpot.m */; };
 		B2F86AC8154364B7006E4FF2 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B2F86AC6154364B7006E4FF2 /* Model.xcdatamodeld */; };
+		B2F86ACB154365A1006E4FF2 /* WMSpotSource.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F86ACA154365A1006E4FF2 /* WMSpotSource.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -137,6 +138,8 @@
 		B2F86AC315436440006E4FF2 /* CDSpot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDSpot.h; sourceTree = "<group>"; };
 		B2F86AC415436440006E4FF2 /* CDSpot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDSpot.m; sourceTree = "<group>"; };
 		B2F86AC7154364B7006E4FF2 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		B2F86AC9154365A1006E4FF2 /* WMSpotSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WMSpotSource.h; path = "WiFi Map Social/WMSpotSource.h"; sourceTree = SOURCE_ROOT; };
+		B2F86ACA154365A1006E4FF2 /* WMSpotSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WMSpotSource.m; path = "WiFi Map Social/WMSpotSource.m"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +188,8 @@
 				1569D57D154332E1003C5445 /* ASIHTTPRequest */,
 				B2C36D6815430D4500B30A36 /* WMAppDelegate.h */,
 				B2C36D6915430D4500B30A36 /* WMAppDelegate.m */,
+				B2F86AC9154365A1006E4FF2 /* WMSpotSource.h */,
+				B2F86ACA154365A1006E4FF2 /* WMSpotSource.m */,
 				1569D5B2154339AB003C5445 /* WMSpot.h */,
 				1569D5B3154339AB003C5445 /* WMSpot.m */,
 			);
@@ -480,6 +485,7 @@
 				1504D9F515435D0000292F4A /* SBJsonWriter.m in Sources */,
 				B2F86AC515436440006E4FF2 /* CDSpot.m in Sources */,
 				B2F86AC8154364B7006E4FF2 /* Model.xcdatamodeld in Sources */,
+				B2F86ACB154365A1006E4FF2 /* WMSpotSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

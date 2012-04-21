@@ -6,6 +6,8 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
+@class CDSpot;
+
 @interface WMSpot : NSObject
 {
 @private
@@ -18,5 +20,6 @@
 @property (nonatomic, assign) CGPoint location;
 
 + (WMSpot *)spotWithSpec:(NSDictionary *)spec;
+- (id)initWithCDSpot:(CDSpot *)spot;
 
 @end

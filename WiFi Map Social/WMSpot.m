@@ -7,6 +7,7 @@
 //
 
 #import "WMSpot.h"
+#import "CDSpot.h"
 
 @implementation WMSpot
 @dynamic name, password, location;
@@ -22,6 +23,19 @@
     if (nil != self)
     {
         _spec = [newSpec copy];
+    }
+    return self;
+}
+
+- (id)initWithCDSpot:(CDSpot *)spot
+{
+    self = [self init];
+    if (nil != self)
+    {
+        self.name = spot.name;
+        self.password = spot.password;
+        self.lattitude = [spot.latitude doubleValue];
+        self.longitude = [spot.longtitude doubleValue];
     }
     return self;
 }
