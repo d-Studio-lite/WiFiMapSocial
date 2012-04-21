@@ -8,6 +8,34 @@
 
 #import "WMSpotView.h"
 
+@interface WMSpotView ()
+
+- (WMMapViewSpotsAnnotation *)spotAnnotation;
+
+@end
+
 @implementation WMSpotView
+
+- (id)initWithSpotAnnotation:(WMMapViewSpotsAnnotation *)spotAnnotation
+{
+    CLLocationCoordinate2D coord = [spotAnnotation coordinate];
+    NSString *reuseIdentifier = [NSString stringWithFormat:@"%f%f", coord.latitude, coord.longitude];
+    self = [super initWithAnnotation:spotAnnotation reuseIdentifier:reuseIdentifier];
+    if (nil != self)
+    {
+        
+    }
+    return self;
+}
+
+- (void)dealloc
+{
+    [super dealloc];
+}
+
+- (WMMapViewSpotsAnnotation *)spotAnnotation
+{
+    return (WMMapViewSpotsAnnotation *)self.annotation;
+}
 
 @end
