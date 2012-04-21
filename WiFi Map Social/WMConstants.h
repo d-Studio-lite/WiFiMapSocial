@@ -6,8 +6,11 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-static NSString *const kWMSpotNameKey = @"name"; 
-static NSString *const kWMSpotPasswordKey = @"password"; 
-static NSString *const kWMSpotLattitudeKey = @"lattitude"; 
-static NSString *const kWMSpotLongitudeKey = @"longitude"; 
-static NSString *const kWMServerURL = @"http://fierce-mountain-3562.herokuapp.com";
+#define kWMSpotNameKey @"name"
+#define kWMSpotPasswordKey @"password"
+#define kWMSpotLattitudeKey @"lattitude"
+#define kWMSpotLongitudeKey @"longitude"
+#define kWMSpotsKey @"spots"
+#define kWMServerURL @"http://fierce-mountain-3562.herokuapp.com"
+
+extern NSString *const a;
