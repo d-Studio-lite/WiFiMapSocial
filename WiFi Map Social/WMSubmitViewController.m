@@ -40,6 +40,17 @@ typedef enum
     [super dealloc];
 }
 
+- (void)viewDidLoad
+{
+    self.cancelButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)] autorelease];
+    
+    self.submitButton = [[[UIBarButtonItem alloc] initWithTitle:@"Submit"
+                                                          style:UIBarButtonItemStyleBordered
+                                                         target:self
+                                                         action:@selector(submit:)] autorelease];
+    [super viewDidLoad];
+}
+
 - (void)viewDidUnload
 {
     [super viewDidUnload];
@@ -98,6 +109,13 @@ typedef enum
 - (void)cancel:(id)sender
 {
     [[self navigationController] popViewControllerAnimated:YES];
+}
+
+- (NSArray *)toolbarItems
+{
+    UIBarButtonItem *flexibleSpace = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
+    
+    return [NSArray arrayWithObjects:self.cancelButton, flexibleSpace, self.submitButton, nil];
 }
 
 - (NSDictionary *)paramsDictionary

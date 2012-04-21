@@ -32,12 +32,12 @@
     [mainViewController setToolbarHidden:NO animated:NO];
 
     UIBarButtonItem *updateButton = [[[UIBarButtonItem alloc] initWithTitle:@"Update"
-                                                                      style:UIBarButtonItemStylePlain
+                                                                      style:UIBarButtonItemStyleBordered
                                                                      target:mainViewController
                                                                      action:@selector(update:)] autorelease];
     
     UIBarButtonItem *submitButton = [[[UIBarButtonItem alloc] initWithTitle:@"Submit"
-                                                                      style:UIBarButtonItemStylePlain
+                                                                      style:UIBarButtonItemStyleBordered
                                                                      target:mainViewController
                                                                      action:@selector(submit:)] autorelease];
     UIBarButtonItem *flexibleSpace = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];

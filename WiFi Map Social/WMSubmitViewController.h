@@ -11,8 +11,8 @@
 
 @interface WMSubmitViewController : UIViewController
 
-@property (retain, nonatomic) IBOutlet UIButton *submitButton;
-@property (retain, nonatomic) IBOutlet UIButton *cancelButton;
+@property (retain, nonatomic) UIBarButtonItem *submitButton;
+@property (retain, nonatomic) UIBarButtonItem *cancelButton;
 
 @property (retain, nonatomic) IBOutlet UITextField *nameTextField;
 @property (retain, nonatomic) IBOutlet UITextField *passwordTextField;
