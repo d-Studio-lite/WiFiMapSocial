@@ -24,23 +24,28 @@
 + (WMMainViewController *)mainViewController;
 {
     WMMapViewController *mapViewController = [[[WMMapViewController alloc] initWithNibName:@"WMMapView" bundle:nil] autorelease];
+    
     WMMainViewController *mainViewController = [[[WMMainViewController alloc] initWithRootViewController:mapViewController] autorelease];
     mainViewController.mapViewController = mapViewController;
     [mainViewController setNavigationBarHidden:YES];
 
-    UIBarButtonItem *updateButton = [[UIBarButtonItem alloc] initWithTitle:@"Update"
-                                                                     style:UIBarButtonItemStylePlain
-                                                                    target:self
-                                                                    action:@selector(update:)];
+    [mainViewController setToolbarHidden:NO animated:NO];
+
+    UIBarButtonItem *updateButton = [[[UIBarButtonItem alloc] initWithTitle:@"Update"
+                                                                      style:UIBarButtonItemStylePlain
+                                                                     target:mainViewController
+                                                                     action:@selector(update:)] autorelease];
     
-    UIBarButtonItem *submitButton = [[UIBarButtonItem alloc] initWithTitle:@"Submit"
-                                                                     style:UIBarButtonItemStylePlain
-                                                                    target:self
-                                                                    action:@selector(update:)];
-    UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    UIBarButtonItem *submitButton = [[[UIBarButtonItem alloc] initWithTitle:@"Submit"
+                                                                      style:UIBarButtonItemStylePlain
+                                                                     target:mainViewController
+                                                                     action:@selector(submit:)] autorelease];
+    UIBarButtonItem *flexibleSpace = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
     
     NSArray *toolbarItems = [NSArray arrayWithObjects:updateButton, flexibleSpace, submitButton, nil];
-    [mainViewController.toolbar setItems:toolbarItems animated:NO];
+    [mapViewController setToolbarItems:toolbarItems];
+
+    
     return mainViewController;
 }
 
@@ -83,7 +88,7 @@
 
 - (void)submit:(id)sender
 {
-    [[self navigationController] pushViewController:self.submitViewController animated:YES];
+    [self pushViewController:self.submitViewController animated:YES];
 }
 
 #pragma mark WMMapViewControllerDelegate methods
