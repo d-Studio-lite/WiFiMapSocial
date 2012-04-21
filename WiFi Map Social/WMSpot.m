@@ -9,7 +9,7 @@
 #import "WMSpot.h"
 
 @implementation WMSpot
-@synthesize name = _name, password = _password, lattitude = _lattitude, longitude = _longitude;
+@dynamic name, password, location;
 
 + (WMSpot *)spotWithSpec:(NSDictionary *)spec
 {
@@ -76,6 +76,11 @@
 - (NSDictionary *)spec
 {
     return [_spec copy];
+}
+
+- (CGPoint)location
+{
+    return CGPointMake([self lattitude], [self longitude]);
 }
 
 @end

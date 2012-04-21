@@ -15,8 +15,7 @@
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *password;
 @property (nonatomic, assign) CGFloat lattitude;
-@property (nonatomic, assign) CGFloat longitude;
-@property (nonatomic, readonly) NSDictionary *spec;
+@property (nonatomic, assign) CGPoint location;
 
 + (WMSpot *)spotWithSpec:(NSDictionary *)spec;
 
