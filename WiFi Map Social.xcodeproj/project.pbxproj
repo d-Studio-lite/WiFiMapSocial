@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1569D57415432DDA003C5445 /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 1569D57215432DDA003C5445 /* XMLReader.m */; };
 		B2C36D5A15430D4500B30A36 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2C36D5915430D4500B30A36 /* UIKit.framework */; };
 		B2C36D5C15430D4500B30A36 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2C36D5B15430D4500B30A36 /* Foundation.framework */; };
 		B2C36D5E15430D4500B30A36 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2C36D5D15430D4500B30A36 /* CoreGraphics.framework */; };
@@ -22,6 +23,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1569D57215432DDA003C5445 /* XMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLReader.m; sourceTree = "<group>"; };
+		1569D57315432DDA003C5445 /* XMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLReader.h; sourceTree = "<group>"; };
 		B2C36D5515430D4500B30A36 /* WiFi Map Social.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WiFi Map Social.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2C36D5915430D4500B30A36 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B2C36D5B15430D4500B30A36 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -58,6 +61,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1569D54815432D06003C5445 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				B2C36D6815430D4500B30A36 /* WMAppDelegate.h */,
+				B2C36D6915430D4500B30A36 /* WMAppDelegate.m */,
+			);
+			name = models;
+			sourceTree = "<group>";
+		};
+		1569D54A15432D13003C5445 /* views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = views;
+			sourceTree = "<group>";
+		};
+		1569D54B15432D1A003C5445 /* utilities */ = {
+			isa = PBXGroup;
+			children = (
+				1569D57315432DDA003C5445 /* XMLReader.h */,
+				1569D57215432DDA003C5445 /* XMLReader.m */,
+			);
+			name = utilities;
+			sourceTree = "<group>";
+		};
+		1569D54C15432D23003C5445 /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B2C36D79154325D900B30A36 /* MainViewController */,
+				B2C36D7A1543269400B30A36 /* DataController */,
+				B2C36D7C154326B200B30A36 /* MapController */,
+				B2C36D7B154326A300B30A36 /* SubmitController */,
+			);
+			name = controllers;
+			sourceTree = "<group>";
+		};
 		B2C36D4A15430D4500B30A36 = {
 			isa = PBXGroup;
 			children = (
@@ -146,12 +185,10 @@
 		B2C36D7D154326CA00B30A36 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				B2C36D79154325D900B30A36 /* MainViewController */,
-				B2C36D7A1543269400B30A36 /* DataController */,
-				B2C36D7C154326B200B30A36 /* MapController */,
-				B2C36D7B154326A300B30A36 /* SubmitController */,
-				B2C36D6815430D4500B30A36 /* WMAppDelegate.h */,
-				B2C36D6915430D4500B30A36 /* WMAppDelegate.m */,
+				1569D54815432D06003C5445 /* models */,
+				1569D54A15432D13003C5445 /* views */,
+				1569D54C15432D23003C5445 /* controllers */,
+				1569D54B15432D1A003C5445 /* utilities */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -226,6 +263,7 @@
 				B2C36D801543276200B30A36 /* WMDataController.m in Sources */,
 				B2C36D8B1543284A00B30A36 /* WMMapViewController.m in Sources */,
 				B2C36D8F1543286000B30A36 /* WMSubmitViewController.m in Sources */,
+				1569D57415432DDA003C5445 /* XMLReader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -335,6 +373,7 @@
 				B2C36D7515430D4500B30A36 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
