@@ -7,11 +7,13 @@
 //
 
 #import "WMSpotSource.h"
+#import "WMSpotData.h"
 #import "WMAppDelegate.h"
 #import "JSON.h"
 #import "WMSpot.h"
 #import "ASIHTTPRequest.h"
 #import <CoreData/CoreData.h>
+#import "CDSpot.h"
 
 #define kWMUpdaetRequestString @"updateRequest"
 #define kWMRequestTypeKey @"requestType"
@@ -26,6 +28,8 @@
 
 @implementation WMSpotSource
 
+@synthesize delegate = _delegate;
+
 - (id)init
 {
     self = [super init];
@@ -37,6 +41,7 @@
 
 - (void)dealloc
 {
+    self.delegate = nil;
     [super dealloc];
 }
 
@@ -44,9 +49,6 @@
 {
     return [(WMAppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
 }
-
-NSUInteger kMaxVerticalRowOfStopsLength = 20;
-NSUInteger kMaxHorizontalRowOfStopsLength = 15;
 
 - (NSArray *)spotDataArrayInRect:(CGRect)rect
 {
@@ -68,47 +70,61 @@ NSUInteger kMaxHorizontalRowOfStopsLength = 15;
     }
     else
     {
-        NSMutableArray *spotsDataArray = [NSMutableArray arrayWithCapacity:kMaxVerticalRowOfStopsLength * kMaxHorizontalRowOfStopsLength];
-        for (NSUInteger i = kMaxVerticalRowOfStopsLength * kMaxHorizontalRowOfStopsLength; i > 0; --i)
-        {
-            [spotsDataArray addObject:[NSMutableArray array]];
-        }
-        
-        CGFloat widthPerRect = rect.size.width / (CGFloat)kMaxHorizontalRowOfStopsLength;
-        CGFloat heightPerRect = rect.size.height / (CGFloat)kMaxVerticalRowOfStopsLength;
-        
+        NSMutableArray *spotDatas = [NSMutableArray arrayWithCapacity:[results count]];
         for (CDSpot *coreDataSpot in results)
         {
             WMSpot *spot = [[[WMSpot alloc] initWithCDSpot:coreDataSpot] autorelease];
-            
-            NSUInteger ix = (spot.location.x - rect.origin.x) / widthPerRect;
-            NSUInteger iy = (spot.location.y - rect.origin.y) / heightPerRect;
-            NSUInteger index = (iy * kMaxHorizontalRowOfStopsLength + ix);
-            [(NSMutableArray *)[spotsDataArray objectAtIndex:index] addObject:spot];
+            WMSpotData *spotData = [[[WMSpotData alloc] initWithEngineSpotsArray:[NSArray arrayWithObject:spot]] autorelease];
+            if (nil != spot  && nil != spotData)
+            {
+                [spotDatas addObject:spotData];
+            }
         }
-        
-        BOOL (^ block)(id, NSDictionary *) = ^(id object, NSDictionary *binds) {
-            NSArray *array = (NSArray *)object;
-            return (BOOL)([array count] > 0);
-        };
-
-        NSPredicate *predicate = [NSPredicate predicateWithBlock:block];
-        [spotsDataArray filterUsingPredicate:predicate];
-        if ([spotsDataArray count] > 0)
+        if ([spotDatas count] > 0)
         {
-            result = [NSArray arrayWithArray:spotsDataArray];
+            result = [NSArray arrayWithArray:spotDatas];
         }
     }
 	
 	// Memory management.
 	[fetchRequest release];
 	
-	return results;
+	return result;
 }
 
 - (void)resetCoreData:(NSArray *)spots
 {
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"CDSpot" inManagedObjectContext:[self managedObjectContext]];
+    [fetchRequest setEntity:entity];
     
+    NSError *error = nil;
+    NSArray *items = [[self managedObjectContext] executeFetchRequest:fetchRequest error:&error];
+    [fetchRequest release];
+    
+    
+    for (NSManagedObject *managedObject in items)
+    {
+        [[self managedObjectContext] deleteObject:managedObject];
+    }
+    if (![[self managedObjectContext] save:&error])
+    {
+        [self.delegate spotSource:self didUpdateWithError:error];
+    }
+    else
+    {
+        for (WMSpot *spot in spots)
+        {
+            CDSpot *coreDataSpot = [[CDSpot alloc] initWithEntity:entity insertIntoManagedObjectContext:[self managedObjectContext]];
+            [coreDataSpot setName:[spot name]];
+            [coreDataSpot setPassword:[spot password]];
+            [coreDataSpot setLatitude:[NSNumber numberWithDouble:[spot location].x]];
+            [coreDataSpot setLongtitude:[NSNumber numberWithDouble:[spot location].y]];
+            [[self managedObjectContext] insertObject:coreDataSpot];
+        }
+        [[self managedObjectContext] save:&error];
+        [self.delegate spotSource:self didUpdateWithError:error];
+    }
 }
 
 - (void)update

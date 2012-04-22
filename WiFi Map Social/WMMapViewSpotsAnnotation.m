@@ -46,7 +46,7 @@
 
 - (NSString *)subtitle
 {
-    return nil;
+    return [[self.spotData spotTitle] copy];
 }
 
 @end

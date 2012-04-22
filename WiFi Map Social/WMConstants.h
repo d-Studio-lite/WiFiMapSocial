@@ -6,6 +6,8 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
+#define kWMUserDefaultsLastScreenPositionKey @"lastScreenPosition"
+
 #define kWMSpotNameKey @"name"
 #define kWMSpotPasswordKey @"password"
 #define kWMSpotLattitudeKey @"lattitude"

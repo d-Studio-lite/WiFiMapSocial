@@ -11,7 +11,7 @@
 @interface WMSpot : NSObject
 {
 @private
-    NSDictionary *_spec;
+    NSMutableDictionary *_spec;
 }
 
 @property (nonatomic, copy) NSString *name;

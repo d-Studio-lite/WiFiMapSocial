@@ -10,6 +10,7 @@
 #import "WMDataController.h"
 #import "WMMapViewController.h"
 #import "WMSubmitViewController.h"
+#import "WMSpotData.h"
 
 @interface WMMainViewController ()
 
@@ -28,6 +29,7 @@
     WMMainViewController *mainViewController = [[[WMMainViewController alloc] initWithRootViewController:mapViewController] autorelease];
     mainViewController.mapViewController = mapViewController;
     [mapViewController setDelegate:mainViewController];
+    
     [mainViewController setNavigationBarHidden:YES];
 
     [mainViewController setToolbarHidden:NO animated:NO];
@@ -114,7 +116,8 @@
 //array of WMSpotData
 - (NSArray *)getSpotsAroundLocation:(CLLocationCoordinate2D)location forMapViewController:(WMMapViewController *)controller
 {
-    return [NSArray array];
+    NSArray *result = [[self dataController] spotDataArrayInRect:CGRectMake(45, 25, 10, 10)];
+    return result;
 }
 
 //array of WMOfflineMapData

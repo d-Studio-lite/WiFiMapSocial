@@ -14,6 +14,7 @@
 #import "WMOfflineMapView.h"
 #import "WMSpotData.h"
 #import "WMOfflineMapData.h"
+#import "WMConstants.h"
 
 @interface WMMapViewController ()
 
@@ -43,8 +44,24 @@
 {
     [super viewDidLoad];
     [self.mapView setShowsUserLocation:YES];
-    [self.mapView setCenterCoordinate:[self currentLocation] animated:NO];
+    NSArray *lastRegionArray = [[NSUserDefaults standardUserDefaults] objectForKey:kWMUserDefaultsLastScreenPositionKey];
+    if (nil != lastRegionArray)
+    {
+        MKCoordinateRegion region;
+        region.center.latitude = [[lastRegionArray objectAtIndex:0] doubleValue];
+        region.center.longitude = [[lastRegionArray objectAtIndex:1] doubleValue];
+        region.span.latitudeDelta = [[lastRegionArray objectAtIndex:2] doubleValue];
+        region.span.longitudeDelta = [[lastRegionArray objectAtIndex:3] doubleValue];
+        [self.mapView setRegion:region];
+    }
     [self addSpots:[self.delegate getSpotsAroundLocation:[self currentLocation] forMapViewController:self]];
+#warning remove me!
+    for (int i = 0; i < 2; ++i)
+    {
+        NSDictionary *networks = [NSDictionary dictionaryWithObjectsAndKeys:@"1", @"test1", @"2", @"test2", @"", @"test3", nil];
+        WMSpotData *spotData = [[[WMSpotData alloc] initWithTitle:@"test" networks:networks coordinates:CLLocationCoordinate2DMake(50.45 + i /100.0 , 30.51 + i / 100.0)] autorelease];
+        [self addSpots:[NSArray arrayWithObject:spotData]];
+    }
 }
 
 - (void)viewDidUnload
@@ -111,6 +128,14 @@
 }
 
 #pragma mark MKMapViewDelegate methods
+
+- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
+{
+    MKCoordinateRegion region = [mapView region];
+    NSArray *regionArray = [NSArray arrayWithObjects:[NSNumber numberWithDouble:region.center.latitude], [NSNumber numberWithDouble:region.center.longitude], [NSNumber numberWithDouble:region.span.latitudeDelta], [NSNumber numberWithDouble:region.span.longitudeDelta], nil];
+    [[NSUserDefaults standardUserDefaults] setObject:regionArray forKey:kWMUserDefaultsLastScreenPositionKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
 
 - (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id <MKOverlay>)overlay
 {
