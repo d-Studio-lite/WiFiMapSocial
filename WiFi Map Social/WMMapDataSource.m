@@ -88,10 +88,11 @@
 - (void)getImageWithCenter:(CLLocationCoordinate2D)center andScale:(NSUInteger)scale
 {
     NSURL *requestURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://maps.google.com/maps/api/staticmap?center=%f,%f&zoom=%u&size=512x512&sensor=true", center.latitude, center.longitude, scale]];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:120.0];
+    __block NSMutableURLRequest *request = [[NSMutableURLRequest requestWithURL:requestURL cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:120.0] retain];
     [request setValue:@"Mozilla/5.0" forHTTPHeaderField:@"User-Agent"];
-    [NSURLConnection sendAsynchronousRequest:request queue:self.queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+    NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^
     {
+        NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
         if (nil != data)
         {
             NSArray *docPathesArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -99,7 +100,9 @@
             NSString *path = [NSString stringWithFormat:@"%@/%u_%f_%f.png", docPath, scale, center.latitude, center.longitude];
             [data writeToFile:path atomically:YES];
         }
+        [request release];
     }];
+    [self.queue addOperation:operation];
 }
 
 @end
