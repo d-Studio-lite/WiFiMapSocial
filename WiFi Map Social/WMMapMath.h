@@ -29,7 +29,7 @@ CLLocationDegrees validatedDegree(CLLocationDegrees degree)
 NSUInteger getScaleWith(MKCoordinateRegion mapRegion, CGRect screenRect, NSUInteger minScale, NSUInteger maxScale, NSUInteger scaleDelta)
 {
     NSUInteger result = minScale;
-    for (NSUInteger i = minScale; <= maxScale; i += scaleDelta)
+    for (NSUInteger i = minScale;i <= maxScale; i += scaleDelta)
     {
       //  double currentDegreesPerPixel = mapRegion
     }
