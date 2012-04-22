@@ -13,7 +13,8 @@
 #define kWMSpotPasswordKey @"password"
 #define kWMSpotLattitudeKey @"lattitude"
 #define kWMSpotLongitudeKey @"longitude"
-#define kWMSpotAuthorKey @"author"
+#define kWMSpotLikeCountKey @"like_count"
+#define kWMSpotAuthorKey @"cretor_id"
 
 #define kWMSpotsKey @"spots"
 #define kWMServerURL @"http://fierce-mountain-3562.herokuapp.com"

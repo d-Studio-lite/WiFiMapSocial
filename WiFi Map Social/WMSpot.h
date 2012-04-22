@@ -15,6 +15,7 @@
 @property (nonatomic, assign) NSInteger spotId;
 @property (nonatomic, assign) CGPoint location;
 @property (nonatomic, copy) NSString *author;
+@property (nonatomic, assign) NSUInteger likeCount;
 
 + (WMSpot *)spotWithSpec:(NSDictionary *)spec;
 - (id)initWithCDSpot:(CDSpot *)spot;
