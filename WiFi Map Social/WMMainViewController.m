@@ -39,13 +39,19 @@
                                                                      target:mainViewController
                                                                      action:@selector(update:)] autorelease];
     
+    UIBarButtonItem *centerButton = [[[UIBarButtonItem alloc] initWithTitle:@"Center"
+                                                                      style:UIBarButtonItemStyleBordered
+                                                                     target:mainViewController
+                                                                     action:@selector(center:)] autorelease];
+    
     UIBarButtonItem *submitButton = [[[UIBarButtonItem alloc] initWithTitle:@"Submit"
                                                                       style:UIBarButtonItemStyleBordered
                                                                      target:mainViewController
                                                                      action:@selector(submit:)] autorelease];
-    UIBarButtonItem *flexibleSpace = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
+    UIBarButtonItem *flexibleSpace1 = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
+    UIBarButtonItem *flexibleSpace2 = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
     
-    NSArray *toolbarItems = [NSArray arrayWithObjects:updateButton, flexibleSpace, submitButton, nil];
+    NSArray *toolbarItems = [NSArray arrayWithObjects:updateButton, flexibleSpace1, centerButton, flexibleSpace2, submitButton, nil];
     [mapViewController setToolbarItems:toolbarItems];
 
     
@@ -95,6 +101,11 @@
     CLLocationCoordinate2D currentLocation = [self.mapViewController currentLocation];
     [self.submitViewController setCurrentLocation:currentLocation];
     [self pushViewController:self.submitViewController animated:YES];
+}
+
+- (void)center:(id)sender
+{
+    [self.mapViewController centerMapOnCurrentLocation];
 }
 
 - (void)dataController:(WMDataController *)dataController updateDidFinishedWithError:(NSError *)error

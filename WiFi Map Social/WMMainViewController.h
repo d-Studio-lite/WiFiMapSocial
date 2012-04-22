@@ -23,5 +23,6 @@
 
 - (IBAction)update:(id)sender;
 - (IBAction)submit:(id)sender;
+- (IBAction)center:(id)sender;
 
 @end
