@@ -54,7 +54,8 @@
 
 - (void)drawImageForRegion:(MKCoordinateRegion)region scale:(MKZoomScale)scale inRect:(CGRect)rect inContext:(CGContextRef)context
 {
-    
+    UIImage *image = [UIImage imageNamed:@"icon.png"];
+    CGContextDrawImage(context, rect, image.CGImage);
 }
 
 @end

@@ -104,8 +104,12 @@
         self.online = online;
         if (NO == online)
         {
-            NSArray *offlineOverlays = [self.delegate getOfflineMapDataAroundLocation:[self currentLocation] forMapViewController:self];
-            [self.mapView addOverlays:offlineOverlays];
+            NSArray *offlineOverlaysData = [self.delegate getOfflineMapDataAroundLocation:[self currentLocation] forMapViewController:self];
+            for (WMOfflineMapData *data in offlineOverlaysData)
+            {
+                WMMapViewOfflineOverlay *overlay = [[[WMMapViewOfflineOverlay alloc] initWithMapData:data] autorelease];
+                [self.mapView addOverlay:overlay];
+            }
         }
         else
         {
