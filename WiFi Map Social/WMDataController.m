@@ -12,6 +12,7 @@
 @interface WMDataController() <WMSpotSourceDelegate>
 
 @property (retain, nonatomic) WMSpotSource *spotSource;
+@property (retain, nonatomic) WMMapDataSource *mapDataSource;
 
 @end
 
@@ -19,6 +20,7 @@
 
 @synthesize spotSource = _spotSource;
 @synthesize delegate = _delegate;
+@synthesize mapDataSource = _mapDataSource;
 
 - (id)init
 {
@@ -26,6 +28,7 @@
     if (nil != self)
     {
         self.spotSource = [[[WMSpotSource alloc] init] autorelease];
+        self.mapDataSource = [[WMMapDataSource new] autorelease];
         self.spotSource.delegate = self;
     }
     return self;
@@ -34,6 +37,7 @@
 - (void)dealloc
 {
     self.spotSource = nil;
+    self.mapDataSource = nil;
     self.delegate = nil;
     [super dealloc];
 }
@@ -41,6 +45,7 @@
 - (void)update
 {
     [[self spotSource] update];
+    [[self mapDataSource] updateForLocation:[self.delegate dataControllerGetCurrentLocation:self]];
 }
 
 - (NSArray *)spotDataArrayInRect:(CGRect)rect

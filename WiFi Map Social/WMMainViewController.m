@@ -119,6 +119,11 @@
     [self.mapViewController centerMapOnCurrentLocation];
 }
 
+- (CLLocationCoordinate2D)dataControllerGetCurrentLocation:(WMDataController *)dataController
+{
+    return [self.mapViewController currentLocation];
+}
+
 - (void)dataController:(WMDataController *)dataController updateDidFinishedWithError:(NSError *)error
 {
     if (nil != error)

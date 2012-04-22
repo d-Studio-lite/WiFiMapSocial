@@ -7,7 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <MapKit/MapKit.h>
 
 @interface WMMapDataSource : NSObject
+
+- (void)updateForLocation:(CLLocationCoordinate2D)location;
 
 @end

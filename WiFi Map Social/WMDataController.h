@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "WMMapDataSource.h"
 
 @class WMSpotSource;
 
@@ -14,6 +15,7 @@
 
 @interface WMDataController : NSObject
 
+@property (retain, nonatomic, readonly) WMMapDataSource *mapDataSource;
 @property (retain, nonatomic, readonly) WMSpotSource *spotSource;
 @property (assign, nonatomic) id<WMDataContollerDelegate> delegate;
 
@@ -26,6 +28,7 @@
 
 @protocol WMDataContollerDelegate <NSObject>
 
+- (CLLocationCoordinate2D)dataControllerGetCurrentLocation:(WMDataController *)dataController;
 - (void)dataController:(WMDataController *)dataController updateDidFinishedWithError:(NSError *)error;
 
 @end
