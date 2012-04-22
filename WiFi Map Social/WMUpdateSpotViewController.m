@@ -19,6 +19,7 @@
 
 @synthesize updateButton = _updateButton;
 @synthesize cancelButton = _cancelButton;
+@synthesize likeButton = _likeButton;
 
 @synthesize nameLabel = _nameLabel;
 @synthesize passwordTextField = _passwordTextField;
@@ -62,6 +63,8 @@
 {
     [super viewWillAppear:animated];
     
+    [self.nameLabel setText:[self.spot name]];
+    [self.passwordTextField setText:[self.spot password]];
     [self.latitudeLabel setText:[[NSNumber numberWithDouble:[self.spot location].x] stringValue]];
     [self.longitudeLabel setText:[[NSNumber numberWithDouble:[self.spot location].y] stringValue]];
 }
@@ -117,6 +120,10 @@
 - (void)cancel:(id)sender
 {
     [[self navigationController] popViewControllerAnimated:YES];
+}
+
+- (IBAction)like:(id)sender
+{
 }
 
 - (NSArray *)toolbarItems
