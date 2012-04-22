@@ -28,6 +28,8 @@
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistantStoreCoordinator = _persistantStoreCoordinator;
 
+@synthesize facebook;
+
 - (void)dealloc
 {
     self.window = nil;
@@ -37,13 +39,16 @@
     self.managedObjectContext = nil;
     self.persistantStoreCoordinator = nil;
     self.managedObjectModel = nil;
+    
+    self.facebook = nil;
     [super dealloc];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-
+    
+    [self setupFacebook];
     
     self.mainViewController = [WMMainViewController mainViewController];
     self.window.rootViewController = self.mainViewController;
@@ -118,6 +123,37 @@
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
     return basePath;
+}
+
+- (void)setupFacebook
+{
+    self.facebook = [[Facebook alloc] initWithAppId:k_APP_ID andDelegate:self];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if ([defaults objectForKey:@"FBAccessTokenKey"] 
+        && [defaults objectForKey:@"FBExpirationDateKey"]) {
+        facebook.accessToken = [defaults objectForKey:@"FBAccessTokenKey"];
+        facebook.expirationDate = [defaults objectForKey:@"FBExpirationDateKey"];
+    }
+    
+    if (![facebook isSessionValid]) {
+        [facebook authorize:nil];
+    }
+}
+
+#pragma mark FBSessionDelegate methods
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    return [facebook handleOpenURL:url]; 
+}
+
+- (void)fbDidLogin {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:[facebook accessToken] forKey:@"FBAccessTokenKey"];
+    [defaults setObject:[facebook expirationDate] forKey:@"FBExpirationDateKey"];
+    [defaults synchronize];
+    
 }
 
 @end
