@@ -14,11 +14,12 @@
 #define kWMSpotLattitudeKey @"lattitude"
 #define kWMSpotLongitudeKey @"longitude"
 #define kWMSpotLikeCountKey @"like_count"
-#define kWMSpotAuthorKey @"cretor_id"
+#define kWMSpotAuthorKey @"creator_id"
 
 #define kWMSpotsKey @"spots"
 #define kWMServerURL @"http://fierce-mountain-3562.herokuapp.com"
 
 #define k_APP_ID @"342499875814355"
+#define k_ME_URL @"https://graph.facebook.com/me"
 
 extern NSString *const a;

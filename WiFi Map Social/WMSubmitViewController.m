@@ -42,6 +42,7 @@ typedef enum
     self.passwordTextField = nil;
     self.latitudeLabel = nil;
     self.longitudeLabel = nil;
+    self.currentUserID = nil;
     [super dealloc];
 }
 
@@ -174,6 +175,8 @@ typedef enum
                             [self.passwordTextField text], kWMSpotPasswordKey,
                             [NSNumber numberWithDouble:self.currentLocation.latitude], kWMSpotLattitudeKey,
                             [NSNumber numberWithDouble:self.currentLocation.longitude], kWMSpotLongitudeKey,
+                            [NSNumber numberWithInt:0],kWMSpotLikeCountKey,
+                            self.currentUserID, kWMSpotAuthorKey,
                             nil];
     return result;
 }

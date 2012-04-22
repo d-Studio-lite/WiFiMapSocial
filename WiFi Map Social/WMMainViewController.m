@@ -15,8 +15,12 @@
 #import "WMSpotData.h"
 
 #import "FBConnect.h"
+#import "ASIHTTPRequest.h"
 
 @interface WMMainViewController()<FBSessionDelegate>
+
+@property (retain, nonatomic) NSString *currentUserID;
+
 @end
 
 @implementation WMMainViewController
@@ -28,6 +32,7 @@
 @synthesize aboutViewController = _aboutViewController;
 
 @synthesize facebook;
+@synthesize currentUserID = _currentUserID;
 
 #define isNotFirstLaunchKey @"isNotFirstLaunch"
 
@@ -57,6 +62,7 @@
     self.dataController = nil;
     self.submitViewController = nil;
     facebook = nil;
+    self.currentUserID;
     [super dealloc];
 }
 
@@ -142,6 +148,17 @@
     return _aboutViewController;
 }
 
+- (NSString *)currentUserID
+{
+    NSString *validURL = [k_ME_URL stringByAppendingFormat:@"?access_token=%@",facebook.accessToken];
+    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:validURL]];
+    [request startSynchronous];
+    NSString *responseString = [request responseString];
+    SBJsonParser *parser = [[[SBJsonParser alloc] init] autorelease];
+    id responseObject = [parser objectWithString:responseString];
+    return [responseObject valueForKey:@"id"];   
+}
+
 - (WMDataController *)dataController
 {
     if (nil == _dataController)
@@ -165,6 +182,7 @@
     }
     CLLocationCoordinate2D currentLocation = [self.mapViewController currentLocation];
     [self.submitViewController setCurrentLocation:currentLocation];
+    [self.submitViewController setCurrentUserID:[self.currentUserID copy]];
     [self pushViewController:self.submitViewController animated:YES];
 }
 
@@ -244,6 +262,8 @@
         [defaults synchronize];
     }
     [self setupToolbar];
+    
+    self.currentUserID = nil;
 }
     
 - (void)mapViewController:(WMMapViewController *)controller didCallMenuForSpotData:(WMSpotData *)spotData
