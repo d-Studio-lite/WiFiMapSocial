@@ -19,6 +19,7 @@
 
 @synthesize updateButton = _updateButton;
 @synthesize cancelButton = _cancelButton;
+@synthesize likeButton = _likeButton;
 
 @synthesize nameLabel = _nameLabel;
 @synthesize passwordTextField = _passwordTextField;
@@ -117,6 +118,10 @@
 - (void)cancel:(id)sender
 {
     [[self navigationController] popViewControllerAnimated:YES];
+}
+
+- (IBAction)like:(id)sender
+{
 }
 
 - (NSArray *)toolbarItems
