@@ -63,6 +63,8 @@
 {
     [super viewWillAppear:animated];
     
+    [self.nameLabel setText:[self.spot name]];
+    [self.passwordTextField setText:[self.spot password]];
     [self.latitudeLabel setText:[[NSNumber numberWithDouble:[self.spot location].x] stringValue]];
     [self.longitudeLabel setText:[[NSNumber numberWithDouble:[self.spot location].y] stringValue]];
 }
