@@ -123,7 +123,7 @@ typedef enum
     [postRequest setRequestMethod:@"POST"];
     [postRequest addRequestHeader:@"Content-Type" value:@"application/json; charset=utf-8"];
     
-    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:[self.nameTextField text], kWMSpotNameKey, [self.passwordTextField text], kWMSpotPasswordKey, nil];
+    NSDictionary *params = [self paramsDictionary];
     
     NSString *jsonParams = [params JSONRepresentation];
 
