@@ -11,5 +11,6 @@
 @interface WMSpotSource : NSObject
 
 - (NSArray *)spotsInRect:(CGRect)rect;
+- (void)update;
 
 @end
