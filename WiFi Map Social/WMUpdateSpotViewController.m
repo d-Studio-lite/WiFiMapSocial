@@ -10,6 +10,7 @@
 #import "ASIFormDataRequest.h"
 #import "JSON.h"
 #import "WMSpot.h"
+#import "FBLikeButton.h"
 
 @interface WMUpdateSpotViewController ()<ASIHTTPRequestDelegate, UITextFieldDelegate>
 
@@ -44,6 +45,9 @@
     self.cancelButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)] autorelease];
     
     self.passwordTextField.delegate = self;
+    
+    self.likeButton = [[[FBLikeButton alloc] initWithFrame:CGRectMake(114, 237, 200, 200) andUrl:@"" andStyle:FBLikeButtonStyleBoxCount andColor:FBLikeButtonColorLight] autorelease];
+    [self.view addSubview:self.likeButton];
     [super viewDidLoad];
 }
 

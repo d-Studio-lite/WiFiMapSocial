@@ -35,6 +35,7 @@
 		1590E0631543A6CA005CA0A8 /* FBLoginDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 1590E05C1543A6CA005CA0A8 /* FBLoginDialog.m */; };
 		1590E0641543A6CA005CA0A8 /* FBRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1590E05E1543A6CA005CA0A8 /* FBRequest.m */; };
 		159714DD1543C870005D2508 /* FBLikeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 159714DC1543C870005D2508 /* FBLikeButton.m */; };
+		159714E51543CC75005D2508 /* FBCustomLoginDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 159714E41543CC75005D2508 /* FBCustomLoginDialog.m */; };
 		18709D58154355A300AA5EC2 /* WMOfflineMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18709D57154355A300AA5EC2 /* WMOfflineMapView.m */; };
 		18709D5C154355BC00AA5EC2 /* WMSpotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18709D5B154355BC00AA5EC2 /* WMSpotView.m */; };
 		18709D5F15435B6300AA5EC2 /* WMOfflineMapData.m in Sources */ = {isa = PBXBuildFile; fileRef = 18709D5E15435B6300AA5EC2 /* WMOfflineMapData.m */; };
@@ -128,6 +129,8 @@
 		1590E05E1543A6CA005CA0A8 /* FBRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBRequest.m; sourceTree = "<group>"; };
 		159714DB1543C870005D2508 /* FBLikeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBLikeButton.h; sourceTree = "<group>"; };
 		159714DC1543C870005D2508 /* FBLikeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBLikeButton.m; sourceTree = "<group>"; };
+		159714E31543CC75005D2508 /* FBCustomLoginDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBCustomLoginDialog.h; sourceTree = "<group>"; };
+		159714E41543CC75005D2508 /* FBCustomLoginDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBCustomLoginDialog.m; sourceTree = "<group>"; };
 		18709D56154355A300AA5EC2 /* WMOfflineMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMOfflineMapView.h; sourceTree = "<group>"; };
 		18709D57154355A300AA5EC2 /* WMOfflineMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMOfflineMapView.m; sourceTree = "<group>"; };
 		18709D5A154355BC00AA5EC2 /* WMSpotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMSpotView.h; sourceTree = "<group>"; };
@@ -313,6 +316,8 @@
 				1590E05E1543A6CA005CA0A8 /* FBRequest.m */,
 				159714DB1543C870005D2508 /* FBLikeButton.h */,
 				159714DC1543C870005D2508 /* FBLikeButton.m */,
+				159714E31543CC75005D2508 /* FBCustomLoginDialog.h */,
+				159714E41543CC75005D2508 /* FBCustomLoginDialog.m */,
 			);
 			name = FacebookSDK;
 			sourceTree = "<group>";
@@ -589,6 +594,7 @@
 				B26CF6431543B96E003799E5 /* WMUpdateSpotViewController.m in Sources */,
 				18709D851543C45C00AA5EC2 /* WMMapDataSource.m in Sources */,
 				159714DD1543C870005D2508 /* FBLikeButton.m in Sources */,
+				159714E51543CC75005D2508 /* FBCustomLoginDialog.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

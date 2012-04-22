@@ -8,6 +8,7 @@
 
 #import "FBLikeButton.h"
 #import "FBConnect.h"
+#import "FBCustomLoginDialog.h"
 
 //LoginDialog es estatica para abrir unicamente un login en toda la app
 static FBDialog *loginDialog_;
@@ -103,7 +104,7 @@ static FBDialog *loginDialog_;
     
     // if user has to log in, open a new (modal) window
     if ([[[request URL] absoluteString] rangeOfString:@"login.php"].location!=NSNotFound){ 
-        loginDialog_= [[[FBLoginDialog alloc] init] autorelease];
+        loginDialog_= [[[FBCustomLoginDialog alloc] init] autorelease];
         [loginDialog_ loadURL:[[request URL] absoluteString] get:nil]; 
         loginDialog_.delegate = self;
         [loginDialog_ show];
@@ -162,15 +163,15 @@ static FBDialog *loginDialog_;
 /**
  * Called when the dialog is cancelled and is about to be dismissed.
  */
-//- (void)dialogDidNotComplete:(FBDialog *)dialog{
-//    [self dialogDidSucceed:loginDialog_];
-//}
+- (void)dialogDidNotComplete:(FBDialog *)dialog{
+    [self dialogDidSucceed:loginDialog_];
+}
 
 /**
  * Called when dialog failed to load due to an error.
  */
-//- (void)dialog:(FBDialog *)dialog didFailWithError:(NSError *)error{
-//    [self dialogDidSucceed:loginDialog_];
-//}
+- (void)dialog:(FBDialog*)dialog didFailWithError:(NSError *)error{
+    [self dialogDidSucceed:loginDialog_];
+}
 
 @end
