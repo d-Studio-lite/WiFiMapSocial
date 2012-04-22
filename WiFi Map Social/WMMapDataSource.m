@@ -7,8 +7,10 @@
 //
 
 #import "WMMapDataSource.h"
+#import "WMMapMath.h"
 
 #define WMMapDataSourceMaxScale 19
+#define WMMapDataSourceTileSize 512.0
 
 @interface WMMapDataSource ()
 
@@ -62,10 +64,19 @@
     [self getImageWithCenter:center andScale:scale];
     if (scale < maxScale)
     {
+        CLLocationDegrees delta = (WMMapDataSourceTileSize * WMMapMathDegreesPerPixel / scale) / 4.0;
         CLLocationCoordinate2D leftBottom;
+        leftBottom.latitude = validatedDegree(center.latitude - delta);
+        leftBottom.longitude = validatedDegree(center.longitude - delta);
         CLLocationCoordinate2D leftTop;
+        leftTop.latitude = validatedDegree(center.latitude - delta);
+        leftTop.longitude = validatedDegree(center.longitude + delta);
         CLLocationCoordinate2D rightTop;
+        rightTop.latitude = validatedDegree(center.latitude + delta);
+        rightTop.longitude = validatedDegree(center.longitude + delta);
         CLLocationCoordinate2D rightBottom;
+        rightBottom.latitude = validatedDegree(center.latitude + delta);
+        rightBottom.longitude = validatedDegree(center.longitude - delta);
         [self getTileAndSubtilesWithCenter:leftBottom andScale:(scale + 1) andMaxScale:maxScale];
         [self getTileAndSubtilesWithCenter:leftTop andScale:(scale + 1) andMaxScale:maxScale];
         [self getTileAndSubtilesWithCenter:rightTop andScale:(scale + 1) andMaxScale:maxScale];
