@@ -12,6 +12,8 @@
 @class WMSubmitViewController;
 @class Facebook;
 @class WMUpdateSpotViewController;
+@class WMAboutViewController;
+
 #import "WMMapViewController.h"
 #import "WMDataController.h"
 
@@ -21,6 +23,7 @@
 @property (retain, nonatomic) WMMapViewController *mapViewController;
 @property (retain, nonatomic) WMSubmitViewController *submitViewController;
 @property (retain, nonatomic) WMUpdateSpotViewController *updateSpotViewController;
+@property (retain, nonatomic) WMAboutViewController *aboutViewController;
 
 @property (nonatomic, retain) Facebook *facebook;
 

@@ -11,6 +11,7 @@
 #import "WMMapViewController.h"
 #import "WMSubmitViewController.h"
 #import "WMUpdateSpotViewController.h"
+#import "WMAboutViewController.h"
 #import "WMSpotData.h"
 
 #import "FBConnect.h"
@@ -24,8 +25,11 @@
 @synthesize mapViewController = _mapViewController;
 @synthesize submitViewController = _submitViewController;
 @synthesize updateSpotViewController = _updateSpotViewController;
+@synthesize aboutViewController = _aboutViewController;
 
 @synthesize facebook;
+
+#define isNotFirstLaunchKey @"isNotFirstLaunch"
 
 + (WMMainViewController *)mainViewController;
 {
@@ -39,6 +43,11 @@
     
     [mainViewController setupToolbar];
     
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:isNotFirstLaunchKey])
+    {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:isNotFirstLaunchKey];
+        [mainViewController pushViewController:mainViewController.aboutViewController animated:YES];
+    }
     return mainViewController;
 }
 
@@ -122,6 +131,15 @@
         [self setUpdateSpotViewController:[[[WMUpdateSpotViewController alloc] initWithNibName:@"UpdateSpotView" bundle:nil] autorelease]];
     }
     return _updateSpotViewController;
+}
+
+- (WMAboutViewController *)aboutViewController
+{
+    if (nil == _aboutViewController)
+    {
+        [self setAboutViewController:[[[WMAboutViewController alloc] initWithNibName:@"AboutView" bundle:nil] autorelease]];
+    }
+    return _aboutViewController;
 }
 
 - (WMDataController *)dataController

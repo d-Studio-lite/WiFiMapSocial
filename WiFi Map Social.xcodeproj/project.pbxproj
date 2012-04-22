@@ -67,6 +67,8 @@
 		B2C36D901543286000B30A36 /* SubmitView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2C36D8E1543286000B30A36 /* SubmitView.xib */; };
 		B2CF86B415437C9900FD8714 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2CF86B315437C9900FD8714 /* CoreLocation.framework */; };
 		B2D89C261543DA5A0073029F /* WMSpotBaloonView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D89C251543DA5A0073029F /* WMSpotBaloonView.m */; };
+		B2D89C2B1543E1680073029F /* WMAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D89C291543E1680073029F /* WMAboutViewController.m */; };
+		B2D89C2C1543E1680073029F /* AboutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2D89C2A1543E1680073029F /* AboutView.xib */; };
 		B2F86AC8154364B7006E4FF2 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B2F86AC6154364B7006E4FF2 /* Model.xcdatamodeld */; };
 		B2F86ACB154365A1006E4FF2 /* WMSpotSource.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F86ACA154365A1006E4FF2 /* WMSpotSource.m */; };
 /* End PBXBuildFile section */
@@ -182,6 +184,9 @@
 		B2CF86B315437C9900FD8714 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B2D89C241543DA5A0073029F /* WMSpotBaloonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMSpotBaloonView.h; sourceTree = "<group>"; };
 		B2D89C251543DA5A0073029F /* WMSpotBaloonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMSpotBaloonView.m; sourceTree = "<group>"; };
+		B2D89C281543E1680073029F /* WMAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMAboutViewController.h; sourceTree = "<group>"; };
+		B2D89C291543E1680073029F /* WMAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMAboutViewController.m; sourceTree = "<group>"; };
+		B2D89C2A1543E1680073029F /* AboutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutView.xib; sourceTree = "<group>"; };
 		B2F86AC7154364B7006E4FF2 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		B2F86AC9154365A1006E4FF2 /* WMSpotSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WMSpotSource.h; path = "WiFi Map Social/WMSpotSource.h"; sourceTree = SOURCE_ROOT; };
 		B2F86ACA154365A1006E4FF2 /* WMSpotSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WMSpotSource.m; path = "WiFi Map Social/WMSpotSource.m"; sourceTree = SOURCE_ROOT; };
@@ -267,6 +272,7 @@
 				B2C36D79154325D900B30A36 /* MainViewController */,
 				B2C36D7A1543269400B30A36 /* DataController */,
 				B2C36D7C154326B200B30A36 /* MapController */,
+				B2D89C271543E12D0073029F /* AboutViewController */,
 				B26CF6401543B4E2003799E5 /* UpdateSpotController */,
 				B2C36D7B154326A300B30A36 /* SubmitController */,
 			);
@@ -488,6 +494,16 @@
 			name = Classes;
 			sourceTree = "<group>";
 		};
+		B2D89C271543E12D0073029F /* AboutViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B2D89C281543E1680073029F /* WMAboutViewController.h */,
+				B2D89C291543E1680073029F /* WMAboutViewController.m */,
+				B2D89C2A1543E1680073029F /* AboutView.xib */,
+			);
+			name = AboutViewController;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -548,6 +564,7 @@
 				B26CF6451543BD2E003799E5 /* UpdateSpotView.xib in Resources */,
 				B26CF6471543C2EF003799E5 /* edit.png in Resources */,
 				B26CF64D1543C764003799E5 /* pin.png in Resources */,
+				B2D89C2C1543E1680073029F /* AboutView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -601,6 +618,7 @@
 				159714E51543CC75005D2508 /* FBCustomLoginDialog.m in Sources */,
 				B22284C01543CBE700E692A0 /* CDSpot.m in Sources */,
 				B2D89C261543DA5A0073029F /* WMSpotBaloonView.m in Sources */,
+				B2D89C2B1543E1680073029F /* WMAboutViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
