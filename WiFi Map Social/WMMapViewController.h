@@ -20,6 +20,7 @@
 - (CLLocationCoordinate2D)currentLocation;
 
 - (void)addSpots:(NSArray *)spots;
+- (void)removeAllSpots;
 
 @end
 
