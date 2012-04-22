@@ -96,8 +96,28 @@
     if (nil == _persistantStoreCoordinator)
     {
         [self setPersistantStoreCoordinator:[[[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]] autorelease]];
+        
+        NSError *error = nil;
+        
+        NSString *storePath = [[self applicationDocumentsDirectory] stringByAppendingPathComponent: @"CoreData.sqlite"];
+        NSURL *storeUrl = [NSURL fileURLWithPath:storePath];
+        NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption, [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];	
+
+        [_persistantStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeUrl options:options error:&error];
+        if (nil != error)
+        {
+            NSLog(@"SQL error %@", error);
+        }
     }
     return _persistantStoreCoordinator;
+}
+
+- (NSString *)applicationDocumentsDirectory
+{
+	
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
+    return basePath;
 }
 
 @end

@@ -42,4 +42,9 @@
     [[self spotSource] update];
 }
 
+- (NSArray *)spotDataArrayInRect:(CGRect)rect
+{
+    return  [[self spotSource] spotDataArrayInRect:rect];
+}
+
 @end

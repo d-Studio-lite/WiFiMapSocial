@@ -114,7 +114,8 @@
 //array of WMSpotData
 - (NSArray *)getSpotsAroundLocation:(CLLocationCoordinate2D)location forMapViewController:(WMMapViewController *)controller
 {
-    return [NSArray array];
+    NSArray *result = [[self dataController] spotDataArrayInRect:CGRectMake(45, 25, 10, 10)];
+    return result;
 }
 
 //array of WMOfflineMapData

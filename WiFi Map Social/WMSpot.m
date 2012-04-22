@@ -22,7 +22,7 @@
     self = [self init];
     if (nil != self)
     {
-        _spec = [newSpec copy];
+        _spec = [NSMutableDictionary dictionaryWithDictionary:newSpec];
     }
     return self;
 }
@@ -32,6 +32,7 @@
     self = [self init];
     if (nil != self)
     {
+        _spec = [NSMutableDictionary dictionary];
         self.name = spot.name;
         self.password = spot.password;
         self.lattitude = [spot.latitude doubleValue];
@@ -69,22 +70,22 @@
 
 - (CGFloat)lattitude
 {
-    return [[_spec valueForKey:kWMSpotLattitudeKey] floatValue];
+    return [[_spec valueForKey:kWMSpotLattitudeKey] doubleValue];
 }
 
 - (void)setLattitude:(CGFloat)lattitude
 {
-    [_spec setValue:[NSNumber numberWithFloat:lattitude] forKey:kWMSpotLattitudeKey];
+    [_spec setValue:[NSNumber numberWithDouble:lattitude] forKey:kWMSpotLattitudeKey];
 }
 
 - (CGFloat)longitude
 {
-    return [[_spec valueForKey:kWMSpotLongitudeKey] floatValue];
+    return [[_spec valueForKey:kWMSpotLongitudeKey] doubleValue];
 }
 
 - (void)setLongitude:(CGFloat)longitude
 {
-    [_spec setValue:[NSNumber numberWithFloat:longitude] forKey:kWMSpotLongitudeKey];
+    [_spec setValue:[NSNumber numberWithDouble:longitude] forKey:kWMSpotLongitudeKey];
 }
 
 - (NSDictionary *)spec
@@ -95,6 +96,11 @@
 - (CGPoint)location
 {
     return CGPointMake([self lattitude], [self longitude]);
+}
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"%f x %f", [self lattitude], [self longitude]];
 }
 
 @end

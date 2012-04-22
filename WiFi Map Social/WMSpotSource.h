@@ -8,9 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol WMSpotSourceDelegate;
+
 @interface WMSpotSource : NSObject
+
+@property (assign, nonatomic) id<WMSpotSourceDelegate> delegate;
 
 - (NSArray *)spotDataArrayInRect:(CGRect)rect;
 - (void)update;
+
+@end
+
+@protocol WMSpotSourceDelegate <NSObject>
+
+- (void)spotSource:(WMSpotSource *)spotSource didUpdateWithError:(NSError *)error;
 
 @end

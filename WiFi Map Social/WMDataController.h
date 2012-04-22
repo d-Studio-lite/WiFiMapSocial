@@ -19,6 +19,8 @@
 
 - (void)update;
 
+- (NSArray *)spotDataArrayInRect:(CGRect)rect;
+
 @end
 
 
