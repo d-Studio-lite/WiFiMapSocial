@@ -106,7 +106,8 @@
     }
     else
     {
-        
+        [self.mapViewController removeAllSpots];
+        [self.mapViewController addSpots:[[self dataController] spotDataArrayInRect:CGRectMake(45, 25, 10, 10)]];
     }
 }
 

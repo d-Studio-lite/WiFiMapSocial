@@ -9,7 +9,7 @@
 #import "WMDataController.h"
 #import "WMSpotSource.h"
 
-@interface WMDataController()
+@interface WMDataController() <WMSpotSourceDelegate>
 
 @property (retain, nonatomic) WMSpotSource *spotSource;
 
@@ -26,6 +26,7 @@
     if (nil != self)
     {
         self.spotSource = [[[WMSpotSource alloc] init] autorelease];
+        self.spotSource.delegate = self;
     }
     return self;
 }
@@ -45,6 +46,11 @@
 - (NSArray *)spotDataArrayInRect:(CGRect)rect
 {
     return  [[self spotSource] spotDataArrayInRect:rect];
+}
+
+- (void)spotSource:(WMSpotSource *)spotSource didUpdateWithError:(NSError *)error
+{
+    [self.delegate dataController:self updateDidFinishedWithError:error];
 }
 
 @end
