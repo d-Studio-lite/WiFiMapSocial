@@ -33,7 +33,7 @@ static FBDialog *loginDialog_;
         webView_.backgroundColor = [UIColor clearColor];
         webView_.delegate = self;
         webView_.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        [[webView_ scrollView] setBounces:NO];
+        //[[webView_ scrollView] setBounces:NO];
         self.backgroundColor=[UIColor clearColor];
         self.clipsToBounds=YES;
         

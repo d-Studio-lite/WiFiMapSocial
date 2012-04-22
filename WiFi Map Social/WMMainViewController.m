@@ -267,6 +267,10 @@
     
 - (void)mapViewController:(WMMapViewController *)controller didCallMenuForSpotData:(WMSpotData *)spotData
 {
+    if (![self.facebook isSessionValid])
+    {
+        [self.facebook authorize:nil];
+    }
     [[self updateSpotViewController] setSpot:[spotData engineSpot]];
     self.updateSpotViewController.delegate = self;
     [self pushViewController:self.updateSpotViewController animated:YES];
