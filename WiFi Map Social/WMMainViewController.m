@@ -13,8 +13,9 @@
 #import "WMUpdateSpotViewController.h"
 #import "WMSpotData.h"
 
-@interface WMMainViewController ()
+#import "FBConnect.h"
 
+@interface WMMainViewController()<FBSessionDelegate>
 @end
 
 @implementation WMMainViewController
@@ -24,6 +25,8 @@
 @synthesize submitViewController = _submitViewController;
 @synthesize updateSpotViewController = _updateSpotViewController;
 
+@synthesize facebook;
+
 + (WMMainViewController *)mainViewController;
 {
     WMMapViewController *mapViewController = [[[WMMapViewController alloc] initWithNibName:@"WMMapView" bundle:nil] autorelease];
@@ -32,30 +35,9 @@
     mainViewController.mapViewController = mapViewController;
     [mapViewController setDelegate:mainViewController];
     
-    [mainViewController setNavigationBarHidden:YES];
-
-    [mainViewController setToolbarHidden:NO animated:NO];
-
-    UIBarButtonItem *updateButton = [[[UIBarButtonItem alloc] initWithTitle:@"Update"
-                                                                      style:UIBarButtonItemStyleBordered
-                                                                     target:mainViewController
-                                                                     action:@selector(update:)] autorelease];
+    [mainViewController setupFacebook];
     
-    UIBarButtonItem *centerButton = [[[UIBarButtonItem alloc] initWithTitle:@"Center"
-                                                                      style:UIBarButtonItemStyleBordered
-                                                                     target:mainViewController
-                                                                     action:@selector(center:)] autorelease];
-    
-    UIBarButtonItem *submitButton = [[[UIBarButtonItem alloc] initWithTitle:@"Submit"
-                                                                      style:UIBarButtonItemStyleBordered
-                                                                     target:mainViewController
-                                                                     action:@selector(submit:)] autorelease];
-    UIBarButtonItem *flexibleSpace1 = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
-    UIBarButtonItem *flexibleSpace2 = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
-    
-    NSArray *toolbarItems = [NSArray arrayWithObjects:updateButton, flexibleSpace1, centerButton, flexibleSpace2, submitButton, nil];
-    [mapViewController setToolbarItems:toolbarItems];
-
+    [mainViewController setupToolbar];
     
     return mainViewController;
 }
@@ -65,8 +47,58 @@
     self.mapViewController = nil;
     self.dataController = nil;
     self.submitViewController = nil;
-    self.updateSpotViewController = nil;
+    facebook = nil;
     [super dealloc];
+}
+
+- (void)setupToolbar
+{
+    [self setNavigationBarHidden:YES];
+    
+    [self setToolbarHidden:NO animated:NO];
+    
+    UIBarButtonItem *updateButton = [[[UIBarButtonItem alloc] initWithTitle:@"Update"
+                                                                      style:UIBarButtonItemStyleBordered
+                                                                     target:self
+                                                                     action:@selector(update:)] autorelease];
+    
+    UIBarButtonItem *submitButton = [[[UIBarButtonItem alloc] initWithTitle:@"Submit"
+                                                                      style:UIBarButtonItemStyleBordered
+                                                                     target:self
+                                                                     action:@selector(submit:)] autorelease];
+    NSString *title = nil;
+    SEL action = NULL;
+    if (![facebook isSessionValid])
+    {
+        title = @"Log in";
+        action = @selector(login:);
+    }
+    else
+    {
+        title = @"Log out";
+        action = @selector(logout:);
+    }
+    
+    UIBarButtonItem *facebookButton = [[[UIBarButtonItem alloc] initWithTitle:title
+                                                                      style:UIBarButtonItemStyleBordered
+                                                                     target:self
+                                                                     action:action] autorelease];
+    
+    
+    UIBarButtonItem *flexibleSpace = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
+    
+    NSArray *toolbarItems = [NSArray arrayWithObjects:updateButton, flexibleSpace, facebookButton, flexibleSpace, submitButton, nil];
+    [self.mapViewController setToolbarItems:toolbarItems];
+}
+
+- (void)login:(id)sender
+{
+    [facebook authorize:nil];
+}
+
+- (void)logout:(id)sender
+{
+    [facebook logout];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -109,6 +141,10 @@
 
 - (void)submit:(id)sender
 {
+    if (![facebook isSessionValid])
+    {
+        [self login:self];
+    }
     CLLocationCoordinate2D currentLocation = [self.mapViewController currentLocation];
     [self.submitViewController setCurrentLocation:currentLocation];
     [self pushViewController:self.submitViewController animated:YES];
@@ -149,6 +185,44 @@
     return [NSArray array];
 }
 
+#pragma mark FACEBOOK
+
+- (void)setupFacebook
+{
+    facebook = [[Facebook alloc] initWithAppId:k_APP_ID andDelegate:self];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if ([defaults objectForKey:@"FBAccessTokenKey"] 
+        && [defaults objectForKey:@"FBExpirationDateKey"])
+    {
+        facebook.accessToken = [defaults objectForKey:@"FBAccessTokenKey"];
+        facebook.expirationDate = [defaults objectForKey:@"FBExpirationDateKey"];
+    }
+}
+
+#pragma mark FBSessionDelegate methods
+
+- (void)fbDidLogin
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:[facebook accessToken] forKey:@"FBAccessTokenKey"];
+    [defaults setObject:[facebook expirationDate] forKey:@"FBExpirationDateKey"];
+    [defaults synchronize];
+    [self setupToolbar];
+}
+
+- (void)fbDidLogout
+{
+    // Remove saved authorization information if it exists
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if ([defaults objectForKey:@"FBAccessTokenKey"]) {
+        [defaults removeObjectForKey:@"FBAccessTokenKey"];
+        [defaults removeObjectForKey:@"FBExpirationDateKey"];
+        [defaults synchronize];
+    }
+    [self setupToolbar];
+}
+    
 - (void)mapViewController:(WMMapViewController *)controller didCallMenuForSpotData:(WMSpotData *)spotData
 {
     [[self updateSpotViewController] setSpot:[spotData engineSpot]];
