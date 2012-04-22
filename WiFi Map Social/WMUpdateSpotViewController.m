@@ -25,6 +25,7 @@
 @synthesize passwordTextField = _passwordTextField;
 @synthesize latitudeLabel = _latitudeLabel;
 @synthesize longitudeLabel = _longitudeLabel;
+@synthesize authorLabel = _authorLabel;
 
 @synthesize spot = _spot;
 
@@ -36,6 +37,7 @@
     self.passwordTextField = nil;
     self.latitudeLabel = nil;
     self.longitudeLabel = nil;
+    self.authorLabel = nil;
     [super dealloc];
 }
 
@@ -57,6 +59,7 @@
     self.nameLabel = nil;
     self.passwordTextField.delegate = nil;
     self.passwordTextField = nil;
+    self.authorLabel = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -67,6 +70,7 @@
     [self.passwordTextField setText:[self.spot password]];
     [self.latitudeLabel setText:[[NSNumber numberWithDouble:[self.spot location].x] stringValue]];
     [self.longitudeLabel setText:[[NSNumber numberWithDouble:[self.spot location].y] stringValue]];
+    [self.authorLabel setText:[self.spot author]];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -135,14 +139,10 @@
 
 - (NSDictionary *)paramsDictionary
 {
-//    NSDictionary *result = [NSDictionary dictionaryWithObjectsAndKeys:
-//                            [self.nameTextField text], kWMSpotNameKey,
-//                            [self.passwordTextField text], kWMSpotPasswordKey,
-//                            [NSNumber numberWithDouble:self.currentLocation.latitude], kWMSpotLattitudeKey,
-//                            [NSNumber numberWithDouble:self.currentLocation.longitude], kWMSpotLongitudeKey,
-//                            nil];
-//    return result;
-    return nil;
+    WMSpot *spot = [self.spot copy];
+    [spot setPassword:[self.passwordTextField text]];
+    
+    return [spot dictionary];
 }
 
 #pragma mark ASIHTTPRequestDelegate methods

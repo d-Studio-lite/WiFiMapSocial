@@ -129,4 +129,9 @@
     return [NSString stringWithFormat:@"%f x %f", [self lattitude], [self longitude]];
 }
 
+- (NSDictionary *)dictionary
+{
+    return [NSDictionary dictionaryWithDictionary:self.spec];
+}
+
 @end

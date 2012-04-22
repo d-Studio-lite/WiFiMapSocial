@@ -18,5 +18,6 @@
 
 + (WMSpot *)spotWithSpec:(NSDictionary *)spec;
 - (id)initWithCDSpot:(CDSpot *)spot;
+- (NSDictionary *)dictionary;
 
 @end
