@@ -13,6 +13,9 @@
 #import "ASIHTTPRequest.h"
 #import <CoreData/CoreData.h>
 
+#define kWMUpdaetRequestString @"updateRequest"
+#define kWMRequestTypeKey @"requestType"
+
 @interface WMSpotSource()<ASIHTTPRequestDelegate>
 
 - (NSManagedObjectContext *)managedObjectContext;
@@ -84,14 +87,19 @@
     NSString *spotsJSON = [kWMSpotsKey stringByAppendingPathExtension:@"json"];
     NSURL *spotsURL = [serverURL URLByAppendingPathComponent:spotsJSON];
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:spotsURL];
+    [request setUserInfo:[NSDictionary dictionaryWithObject:kWMUpdaetRequestString forKey:kWMRequestTypeKey]];
     [request setDelegate:self];
     [request startAsynchronous];
 }
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
-    NSString *responseString = [request responseString];
-    [self fetchSpotsFromResponseString:responseString];
+    NSString *requestType = [request.userInfo valueForKey:kWMRequestTypeKey];
+    if ([requestType isEqualToString:kWMUpdaetRequestString])
+    {
+        NSString *responseString = [request responseString];
+        [self fetchSpotsFromResponseString:responseString];
+    }
 }
 
 - (void)fetchSpotsFromResponseString:(NSString *)response
