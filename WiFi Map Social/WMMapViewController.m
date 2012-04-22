@@ -66,6 +66,7 @@
 
 - (void)dealloc
 {
+    [self removeAllSpots];
     self.mapView = nil;
     self.offlineOverlay = nil;
     [super dealloc];
