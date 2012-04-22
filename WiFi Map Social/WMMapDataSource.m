@@ -40,9 +40,23 @@
     [super dealloc];
 }
 
+- (NSArray *)getOfflineMapsForLocation:(CLLocationCoordinate2D)location
+{
+    CLLocationCoordinate2D center = [self getRegionCenterForLocation:location];
+    MKCoordinateRegion region;
+    region.center.latitude = center.latitude;
+    region.center.longitude = center.longitude;
+    NSUInteger minScale = [self getMinRegionScaleForLocation:location];
+    region.span.latitudeDelta = (WMMapDataSourceTileSize * WMMapMathDegreesPerPixel) / (double)minScale;
+    region.span.longitudeDelta = (WMMapDataSourceTileSize * WMMapMathDegreesPerPixel) / (double)minScale;
+    
+    WMOfflineMapData *offlineMap = [[[WMOfflineMapData alloc] initWithRegion:region minScale:minScale maxScale:WMMapDataSourceMaxScale scaleDelta:WMMapDataSourceMaxScale] autorelease];
+    return [NSArray arrayWithObject:offlineMap];
+}
+
 - (void)updateForLocation:(CLLocationCoordinate2D)location
 {
-    NSUInteger minScale = [self getRegionScaleForLocation:location];
+    NSUInteger minScale = [self getMinRegionScaleForLocation:location];
     CLLocationCoordinate2D regionCenter = [self getRegionCenterForLocation:location];
     [self getTileAndSubtilesWithCenter:regionCenter andScale:minScale andMaxScale:13];
 }
@@ -55,7 +69,7 @@
     return regionCenter;
 }
 
-- (NSUInteger)getRegionScaleForLocation:(CLLocationCoordinate2D)location
+- (NSUInteger)getMinRegionScaleForLocation:(CLLocationCoordinate2D)location
 {
     return 9;
 }
@@ -65,7 +79,7 @@
     [self getImageWithCenter:center andScale:scale];
     if (scale < maxScale)
     {
-        CLLocationDegrees delta = (WMMapDataSourceTileSize * WMMapMathDegreesPerPixel / scale) / 4.0;
+        CLLocationDegrees delta = ((WMMapDataSourceTileSize * WMMapMathDegreesPerPixel) / (double)scale) / 4.0;
         CLLocationCoordinate2D leftBottom;
         leftBottom.latitude = validatedDegree(center.latitude - delta);
         leftBottom.longitude = validatedDegree(center.longitude - delta);
@@ -88,10 +102,11 @@
 - (void)getImageWithCenter:(CLLocationCoordinate2D)center andScale:(NSUInteger)scale
 {
     NSURL *requestURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://maps.google.com/maps/api/staticmap?center=%f,%f&zoom=%u&size=512x512&sensor=true", center.latitude, center.longitude, scale]];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:120.0];
+    __block NSMutableURLRequest *request = [[NSMutableURLRequest requestWithURL:requestURL cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:120.0] retain];
     [request setValue:@"Mozilla/5.0" forHTTPHeaderField:@"User-Agent"];
-    [NSURLConnection sendAsynchronousRequest:request queue:self.queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+    NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^
     {
+        NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
         if (nil != data)
         {
             NSArray *docPathesArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -99,7 +114,9 @@
             NSString *path = [NSString stringWithFormat:@"%@/%u_%f_%f.png", docPath, scale, center.latitude, center.longitude];
             [data writeToFile:path atomically:YES];
         }
+        [request release];
     }];
+    [self.queue addOperation:operation];
 }
 
 @end

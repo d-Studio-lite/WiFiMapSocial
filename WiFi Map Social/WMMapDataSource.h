@@ -8,9 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
+#import "WMOfflineMapData.h"
 
 @interface WMMapDataSource : NSObject
 
 - (void)updateForLocation:(CLLocationCoordinate2D)location;
+
+- (NSArray *)getOfflineMapsForLocation:(CLLocationCoordinate2D)location;
 
 @end

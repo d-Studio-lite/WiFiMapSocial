@@ -38,14 +38,15 @@
 
 - (BOOL)canDrawMapRect:(MKMapRect)mapRect zoomScale:(MKZoomScale)zoomScale
 {
-    return NO;
+    return YES;
 }
 
 - (void)drawMapRect:(MKMapRect)mapRect zoomScale:(MKZoomScale)zoomScale inContext:(CGContextRef)context
 {
-    UIImage *mapImage = [[[self offlineOverlay] mapData] imageForMapRect:mapRect scale:zoomScale];
-    CGRect drawingRect = [self rectForMapRect:mapRect];
-    CGContextDrawImage(context, drawingRect, [mapImage CGImage]);
+    NSLog(@"zoomScale = %f", zoomScale);
+    CGRect rect = [self rectForMapRect:mapRect];
+    MKCoordinateRegion region = MKCoordinateRegionForMapRect(mapRect);
+    [[self.offlineOverlay mapData] drawImageForRegion:region scale:zoomScale inRect:rect inContext:context];
 }
 
 @end

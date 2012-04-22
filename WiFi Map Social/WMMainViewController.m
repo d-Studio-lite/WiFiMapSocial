@@ -31,7 +31,7 @@
 @synthesize updateSpotViewController = _updateSpotViewController;
 @synthesize aboutViewController = _aboutViewController;
 
-@synthesize facebook;
+@synthesize facebook = _facebook;
 @synthesize currentUserID = _currentUserID;
 
 #define isNotFirstLaunchKey @"isNotFirstLaunch"
@@ -61,8 +61,8 @@
     self.mapViewController = nil;
     self.dataController = nil;
     self.submitViewController = nil;
-    facebook = nil;
-    self.currentUserID;
+    self.facebook = nil;
+    self.currentUserID = nil;
     [super dealloc];
 }
 
@@ -83,7 +83,7 @@
                                                                      action:@selector(submit:)] autorelease];
     NSString *title = nil;
     SEL action = NULL;
-    if (![facebook isSessionValid])
+    if (![self.facebook isSessionValid])
     {
         title = @"Log in";
         action = @selector(login:);
@@ -108,12 +108,12 @@
 
 - (void)login:(id)sender
 {
-    [facebook authorize:nil];
+    [self.facebook authorize:nil];
 }
 
 - (void)logout:(id)sender
 {
-    [facebook logout];
+    [self.facebook logout];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -150,7 +150,7 @@
 
 - (NSString *)currentUserID
 {
-    NSString *validURL = [k_ME_URL stringByAppendingFormat:@"?access_token=%@",facebook.accessToken];
+    NSString *validURL = [k_ME_URL stringByAppendingFormat:@"?access_token=%@",self.facebook.accessToken];
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:validURL]];
     [request startSynchronous];
     NSString *responseString = [request responseString];
@@ -176,7 +176,7 @@
 
 - (void)submit:(id)sender
 {
-    if (![facebook isSessionValid])
+    if (![self.facebook isSessionValid])
     {
         [self login:self];
     }
@@ -211,7 +211,6 @@
 }
 
 #pragma mark WMMapViewControllerDelegate methods
-#warning implement me
 
 //array of WMSpotData
 - (NSArray *)getSpotsAroundLocation:(CLLocationCoordinate2D)location forMapViewController:(WMMapViewController *)controller
@@ -223,21 +222,21 @@
 //array of WMOfflineMapData
 - (NSArray *)getOfflineMapDataAroundLocation:(CLLocationCoordinate2D)location forMapViewController:(WMMapViewController *)controller
 {
-    return [NSArray array];
+    return [self.dataController offlineMapsForLocation:location];
 }
 
 #pragma mark FACEBOOK
 
 - (void)setupFacebook
 {
-    facebook = [[Facebook alloc] initWithAppId:k_APP_ID andDelegate:self];
+    self.facebook = [[Facebook alloc] initWithAppId:k_APP_ID andDelegate:self];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if ([defaults objectForKey:@"FBAccessTokenKey"] 
         && [defaults objectForKey:@"FBExpirationDateKey"])
     {
-        facebook.accessToken = [defaults objectForKey:@"FBAccessTokenKey"];
-        facebook.expirationDate = [defaults objectForKey:@"FBExpirationDateKey"];
+        self.facebook.accessToken = [defaults objectForKey:@"FBAccessTokenKey"];
+        self.facebook.expirationDate = [defaults objectForKey:@"FBExpirationDateKey"];
     }
 }
 
@@ -246,8 +245,8 @@
 - (void)fbDidLogin
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:[facebook accessToken] forKey:@"FBAccessTokenKey"];
-    [defaults setObject:[facebook expirationDate] forKey:@"FBExpirationDateKey"];
+    [defaults setObject:[self.facebook accessToken] forKey:@"FBAccessTokenKey"];
+    [defaults setObject:[self.facebook expirationDate] forKey:@"FBExpirationDateKey"];
     [defaults synchronize];
     [self setupToolbar];
 }

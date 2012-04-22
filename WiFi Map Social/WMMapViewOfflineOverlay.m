@@ -23,7 +23,7 @@
     self = [super init];
     if (nil != self)
     {
-        self.mapData = nil;
+        self.mapData = mapData;
     }
     return self;
 }
@@ -41,7 +41,7 @@
 
 - (MKMapRect)boundingMapRect
 {
-    return [self.mapData boundingMapRect];
+    return MKMapRectWorld;
 }
 
 - (BOOL)intersectsMapRect:(MKMapRect)mapRect

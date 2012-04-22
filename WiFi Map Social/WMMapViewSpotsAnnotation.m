@@ -46,7 +46,7 @@
 
 - (NSString *)subtitle
 {
-    return [[NSString stringWithFormat:@"psw:%@", [self.spotData password]] copy];
+    return [[NSString stringWithFormat:@"password:%@", [self.spotData password]] copy];
 }
 
 @end

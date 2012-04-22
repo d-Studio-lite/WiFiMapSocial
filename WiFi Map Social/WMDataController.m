@@ -58,6 +58,11 @@
     return  [[self spotSource] spotDataArrayInRect:rect];
 }
 
+- (NSArray *)offlineMapsForLocation:(CLLocationCoordinate2D)location
+{
+    return [[self mapDataSource] getOfflineMapsForLocation:location];
+}
+
 - (void)spotSource:(WMSpotSource *)spotSource didUpdateWithError:(NSError *)error
 {
     [self.delegate dataController:self updateDidFinishedWithError:error];

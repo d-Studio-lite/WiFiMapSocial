@@ -15,27 +15,28 @@
 #import "WMSpotData.h"
 #import "WMOfflineMapData.h"
 #import "WMConstants.h"
+#import "Reachability.h"
 
 @interface WMMapViewController ()
 
 @property (assign, nonatomic, getter = isOnline) BOOL online;
-@property (retain, nonatomic) WMMapViewOfflineOverlay *offlineOverlay;
 
 @end
 
 @implementation WMMapViewController
 
-@synthesize offlineOverlay = _offlineOverlay;
 @synthesize mapView = _mapView;
 @synthesize delegate = _delegate;
 @synthesize online = _online;
+@synthesize internetReachability = _internetReachability;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (nil != self)
     {
-        self.online = NO;
+        self.online = YES;
     }
     return self;
 }
@@ -55,20 +56,29 @@
         [self.mapView setRegion:region];
     }
     [self addSpots:[self.delegate getSpotsAroundLocation:[self currentLocation] forMapViewController:self]];
+    
+    
+    self.internetReachability = [Reachability reachabilityForInternetConnection];
+    [self.internetReachability startNotifier];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkNetworkStatus:) name:kReachabilityChangedNotification object:self.internetReachability];
+    [self setUsingOnlineMaps:[self.internetReachability isReachable]];
 }
 
 - (void)viewDidUnload
 {
+    [self removeAllOfflineOverlays];
+    [self removeAllSpots];
     self.mapView = nil;
-    self.offlineOverlay = nil;
+    self.internetReachability = nil;
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [super viewDidUnload];
 }
 
 - (void)dealloc
 {
+    [self removeAllOfflineOverlays];
     [self removeAllSpots];
     self.mapView = nil;
-    self.offlineOverlay = nil;
     [super dealloc];
 }
 
@@ -82,6 +92,12 @@
     [self.mapView setCenterCoordinate:[self currentLocation]];
 }
 
+-(void)checkNetworkStatus:(NSNotification *)notice
+{
+    NetworkStatus internetStatus = [self.internetReachability currentReachabilityStatus];
+    [self setUsingOnlineMaps:internetStatus != NotReachable];
+}
+
 - (void)setUsingOnlineMaps:(BOOL)online
 {
     if (online != [self isOnline])
@@ -89,13 +105,28 @@
         self.online = online;
         if (NO == online)
         {
-            self.offlineOverlay = [[WMMapViewOfflineOverlay new] autorelease];
-            [self.mapView addOverlay:self.offlineOverlay];
+            NSArray *offlineOverlaysData = [self.delegate getOfflineMapDataAroundLocation:[self currentLocation] forMapViewController:self];
+            for (WMOfflineMapData *data in offlineOverlaysData)
+            {
+                WMMapViewOfflineOverlay *overlay = [[[WMMapViewOfflineOverlay alloc] initWithMapData:data] autorelease];
+                [self.mapView addOverlay:overlay];
+            }
         }
         else
         {
-            [self.mapView removeOverlay:self.offlineOverlay];
-            self.offlineOverlay = nil;
+            [self removeAllOfflineOverlays];
+        }
+    }
+}
+
+- (void)removeAllOfflineOverlays
+{
+    NSArray *overlays = [[self mapView] overlays];
+    for (id <MKOverlay> overlay in overlays)
+    {
+        if ([overlay isKindOfClass:[WMMapViewOfflineOverlay class]])
+        {
+            [self.mapView performSelector:@selector(removeOverlay:) withObject:overlay afterDelay:0.0];
         }
     }
 }
@@ -120,7 +151,7 @@
             WMMapViewSpotsAnnotation *spotAnnotation = (WMMapViewSpotsAnnotation *)annotation;
             if ([spotAnnotation spotData] == spotData)
             {
-                [self.mapView removeAnnotation:spotAnnotation];
+                [self.mapView performSelector:@selector(removeAnnotation:) withObject:spotAnnotation afterDelay:0.0];
             }
         }
     }
@@ -134,7 +165,7 @@
     {
         if ([annotation isKindOfClass:[WMMapViewSpotsAnnotation class]])
         {
-            [self.mapView removeAnnotation:annotation];
+            [self.mapView performSelector:@selector(removeAnnotation:) withObject:annotation afterDelay:0.0];
         }
     }
     [self.view setNeedsDisplay];
@@ -168,7 +199,7 @@
     {
         return nil;
     }
-    if (overlay == self.offlineOverlay)
+    if ([overlay isKindOfClass:[WMMapViewOfflineOverlay class]])
     {
         return [[[WMOfflineMapView alloc] initWithOverlay:overlay] autorelease];
     }
