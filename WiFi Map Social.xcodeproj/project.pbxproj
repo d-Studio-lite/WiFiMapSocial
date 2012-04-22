@@ -258,7 +258,7 @@
 				B2C36D79154325D900B30A36 /* MainViewController */,
 				B2C36D7A1543269400B30A36 /* DataController */,
 				B2C36D7C154326B200B30A36 /* MapController */,
-				B26CF6401543B4E2003799E5 /* UpdateController */,
+				B26CF6401543B4E2003799E5 /* UpdateSpotController */,
 				B2C36D7B154326A300B30A36 /* SubmitController */,
 			);
 			name = controllers;
@@ -344,14 +344,14 @@
 			path = "WiFi Map Social";
 			sourceTree = "<group>";
 		};
-		B26CF6401543B4E2003799E5 /* UpdateController */ = {
+		B26CF6401543B4E2003799E5 /* UpdateSpotController */ = {
 			isa = PBXGroup;
 			children = (
 				B26CF6411543B96E003799E5 /* WMUpdateSpotViewController.h */,
 				B26CF6421543B96E003799E5 /* WMUpdateSpotViewController.m */,
 				B26CF6441543BD2E003799E5 /* UpdateSpotView.xib */,
 			);
-			name = UpdateController;
+			name = UpdateSpotController;
 			sourceTree = "<group>";
 		};
 		B2C36D4A15430D4500B30A36 = {
