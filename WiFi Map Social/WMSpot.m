@@ -19,7 +19,7 @@
 
 @synthesize spec = _spec;
 
-@dynamic name, password, location;
+@dynamic name, password, location, spotId, author;
 
 
 + (WMSpot *)spotWithSpec:(NSDictionary *)spec
@@ -79,6 +79,16 @@
     [self.spec setValue:[password copy] forKey:kWMSpotPasswordKey];
 }
 
+- (NSInteger)spotId
+{
+    return [[self.spec valueForKey:kWMSpotIdKey] integerValue];
+}
+
+- (void)setSpotId:(NSInteger)spotId
+{
+    [self.spec setValue:[NSNumber numberWithInteger:spotId] forKey:kWMSpotIdKey];
+}
+
 - (CGFloat)lattitude
 {
     return [[self.spec valueForKey:kWMSpotLattitudeKey] doubleValue];
@@ -102,6 +112,16 @@
 - (CGPoint)location
 {
     return CGPointMake([self lattitude], [self longitude]);
+}
+
+- (NSString *)author
+{
+    return [[self.spec valueForKey:kWMSpotAuthorKey] copy];
+}
+
+- (void)setAuthor:(NSString *)author
+{
+    [self.spec setValue:[author copy] forKey:kWMSpotAuthorKey];
 }
 
 - (NSString *)description
