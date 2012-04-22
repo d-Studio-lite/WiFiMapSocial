@@ -19,7 +19,7 @@
 
 @synthesize spec = _spec;
 
-@dynamic name, password, location;
+@dynamic name, password, location, spotId, author;
 
 
 + (WMSpot *)spotWithSpec:(NSDictionary *)spec
@@ -45,8 +45,10 @@
         self.spec = [NSMutableDictionary dictionary];
         self.name = spot.name;
         self.password = spot.password;
+        self.spotId = [spot.spotId integerValue];
         self.lattitude = [spot.latitude doubleValue];
         self.longitude = [spot.longtitude doubleValue];
+        self.author = spot.author;
     }
     return self;
 }
@@ -77,6 +79,16 @@
     [self.spec setValue:[password copy] forKey:kWMSpotPasswordKey];
 }
 
+- (NSInteger)spotId
+{
+    return [[self.spec valueForKey:kWMSpotIdKey] integerValue];
+}
+
+- (void)setSpotId:(NSInteger)spotId
+{
+    [self.spec setValue:[NSNumber numberWithInteger:spotId] forKey:kWMSpotIdKey];
+}
+
 - (CGFloat)lattitude
 {
     return [[self.spec valueForKey:kWMSpotLattitudeKey] doubleValue];
@@ -102,9 +114,24 @@
     return CGPointMake([self lattitude], [self longitude]);
 }
 
+- (NSString *)author
+{
+    return [[self.spec valueForKey:kWMSpotAuthorKey] copy];
+}
+
+- (void)setAuthor:(NSString *)author
+{
+    [self.spec setValue:[author copy] forKey:kWMSpotAuthorKey];
+}
+
 - (NSString *)description
 {
     return [NSString stringWithFormat:@"%f x %f", [self lattitude], [self longitude]];
+}
+
+- (NSDictionary *)dictionary
+{
+    return [NSDictionary dictionaryWithDictionary:self.spec];
 }
 
 @end

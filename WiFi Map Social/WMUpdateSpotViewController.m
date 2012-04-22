@@ -10,6 +10,7 @@
 #import "ASIFormDataRequest.h"
 #import "JSON.h"
 #import "WMSpot.h"
+#import "FBLikeButton.h"
 
 @interface WMUpdateSpotViewController ()<ASIHTTPRequestDelegate, UITextFieldDelegate>
 
@@ -25,6 +26,7 @@
 @synthesize passwordTextField = _passwordTextField;
 @synthesize latitudeLabel = _latitudeLabel;
 @synthesize longitudeLabel = _longitudeLabel;
+@synthesize authorLabel = _authorLabel;
 
 @synthesize spot = _spot;
 
@@ -36,6 +38,7 @@
     self.passwordTextField = nil;
     self.latitudeLabel = nil;
     self.longitudeLabel = nil;
+    self.authorLabel = nil;
     [super dealloc];
 }
 
@@ -44,6 +47,9 @@
     self.cancelButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)] autorelease];
     
     self.passwordTextField.delegate = self;
+    
+    self.likeButton = [[[FBLikeButton alloc] initWithFrame:CGRectMake(114, 237, 200, 200) andUrl:@"" andStyle:FBLikeButtonStyleBoxCount andColor:FBLikeButtonColorLight] autorelease];
+    [self.view addSubview:self.likeButton];
     [super viewDidLoad];
 }
 
@@ -57,14 +63,18 @@
     self.nameLabel = nil;
     self.passwordTextField.delegate = nil;
     self.passwordTextField = nil;
+    self.authorLabel = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
+    [self.nameLabel setText:[self.spot name]];
+    [self.passwordTextField setText:[self.spot password]];
     [self.latitudeLabel setText:[[NSNumber numberWithDouble:[self.spot location].x] stringValue]];
     [self.longitudeLabel setText:[[NSNumber numberWithDouble:[self.spot location].y] stringValue]];
+    [self.authorLabel setText:[self.spot author]];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -133,14 +143,10 @@
 
 - (NSDictionary *)paramsDictionary
 {
-//    NSDictionary *result = [NSDictionary dictionaryWithObjectsAndKeys:
-//                            [self.nameTextField text], kWMSpotNameKey,
-//                            [self.passwordTextField text], kWMSpotPasswordKey,
-//                            [NSNumber numberWithDouble:self.currentLocation.latitude], kWMSpotLattitudeKey,
-//                            [NSNumber numberWithDouble:self.currentLocation.longitude], kWMSpotLongitudeKey,
-//                            nil];
-//    return result;
-    return nil;
+    WMSpot *spot = [self.spot copy];
+    [spot setPassword:[self.passwordTextField text]];
+    
+    return [spot dictionary];
 }
 
 #pragma mark ASIHTTPRequestDelegate methods

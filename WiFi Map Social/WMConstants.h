@@ -8,10 +8,13 @@
 
 #define kWMUserDefaultsLastScreenPositionKey @"lastScreenPosition"
 
+#define kWMSpotIdKey @"id"
 #define kWMSpotNameKey @"name"
 #define kWMSpotPasswordKey @"password"
 #define kWMSpotLattitudeKey @"lattitude"
 #define kWMSpotLongitudeKey @"longitude"
+#define kWMSpotAuthorKey @"author"
+
 #define kWMSpotsKey @"spots"
 #define kWMServerURL @"http://fierce-mountain-3562.herokuapp.com"
 
