@@ -26,10 +26,9 @@
         [self setEnabled:YES];
         [self setCanShowCallout:YES];
         [self setPinColor:MKPinAnnotationColorGreen];
-        UIButton *menuButton = [[[UIButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 20.0f, 30.0f)] autorelease];
-        [menuButton setBackgroundColor:[UIColor redColor]];
+        UIButton *menuButton = [[[UIButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 32.0f, 32.0f)] autorelease];
         [menuButton addTarget:self action:@selector(menuButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-        //[menuButton setImage: forState:UIControlStateNormal];
+        [menuButton setImage:[UIImage imageNamed:@"edit.png"] forState:UIControlStateNormal];
         self.rightCalloutAccessoryView = menuButton;
     }
     return self;

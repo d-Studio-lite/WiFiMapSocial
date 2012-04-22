@@ -66,6 +66,7 @@
 
 - (void)dealloc
 {
+    [self removeAllSpots];
     self.mapView = nil;
     self.offlineOverlay = nil;
     [super dealloc];
@@ -156,7 +157,10 @@
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
 #warning kill me!
+    CGRect testFrame = [self.view frame];
+    NSLog(@"frame = %f %f", testFrame.size.width, testFrame.size.height);
     MKMapRect testRect = [mapView visibleMapRect];
+    NSLog(@"test rect = %f %f %f %f", testRect.origin.x, testRect.origin.y, testRect.size.width, testRect.size.height);
     MKCoordinateRegion region = [mapView region];
     NSArray *regionArray = [NSArray arrayWithObjects:[NSNumber numberWithDouble:region.center.latitude], [NSNumber numberWithDouble:region.center.longitude], [NSNumber numberWithDouble:region.span.latitudeDelta], [NSNumber numberWithDouble:region.span.longitudeDelta], nil];
     [[NSUserDefaults standardUserDefaults] setObject:regionArray forKey:kWMUserDefaultsLastScreenPositionKey];
@@ -189,6 +193,7 @@
         return userLocationView;   
     }
     WMSpotView *spotView = [[[WMSpotView alloc] initWithSpotAnnotation:annotation] autorelease];
+    [spotView setDelegate:self];
     [spotView setDraggable:NO];
     return spotView;
 }
