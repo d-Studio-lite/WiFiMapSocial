@@ -115,6 +115,9 @@
             [coreDataSpot setPassword:[spot password]];
             [coreDataSpot setLatitude:[NSNumber numberWithDouble:[spot location].x]];
             [coreDataSpot setLongtitude:[NSNumber numberWithDouble:[spot location].y]];
+            [coreDataSpot setSpotId:[NSNumber numberWithInteger:[spot spotId]]];
+            [coreDataSpot setAuthor:[spot author]];
+            [coreDataSpot setLikeCount:[NSNumber numberWithInteger:[spot likeCount]]];
             [[self managedObjectContext] insertObject:coreDataSpot];
         }
         [[self managedObjectContext] save:&error];

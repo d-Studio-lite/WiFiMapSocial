@@ -32,6 +32,7 @@ typedef enum
 @synthesize longitudeLabel = _longitudeLabel;
 
 @synthesize currentLocation = _currentLocation;
+@synthesize currentUserID = _currentUserID;
 
 -(void)dealloc
 {
