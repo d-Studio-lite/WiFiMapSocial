@@ -17,5 +17,6 @@
 @dynamic password;
 @dynamic spotId;
 @dynamic author;
+@dynamic likeCount;
 
 @end

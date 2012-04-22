@@ -126,7 +126,7 @@
 
 - (NSUInteger)likeCount
 {
-    return [[self.spec valueForKey:kWMSpotLikeCountKey] unsignedIntegerValue];
+    return [[self.spec valueForKey:kWMSpotLikeCountKey] integerValue];
 }
 
 - (void)setLikeCount:(NSUInteger)likeCount

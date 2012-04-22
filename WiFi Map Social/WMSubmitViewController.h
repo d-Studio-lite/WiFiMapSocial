@@ -22,6 +22,7 @@
 
 
 @property (assign, nonatomic) CLLocationCoordinate2D currentLocation;
+@property (retain, nonatomic) NSString *currentUserID;
 
 - (NSDictionary *)paramsDictionary;
 

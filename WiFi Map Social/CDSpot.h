@@ -18,5 +18,6 @@
 @property (nonatomic, retain) NSString * password;
 @property (nonatomic, retain) NSNumber * spotId;
 @property (nonatomic, retain) NSString * author;
+@property (nonatomic, retain) NSNumber * likeCount;
 
 @end

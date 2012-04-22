@@ -142,7 +142,7 @@
 
 - (NSDictionary *)paramsDictionary
 {
-    WMSpot *spot = [self.spot copy];
+    WMSpot *spot = self.spot;
     [spot setPassword:[self.passwordTextField text]];
     
     return [spot dictionary];
