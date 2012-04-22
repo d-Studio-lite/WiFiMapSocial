@@ -27,6 +27,7 @@
     
     WMMainViewController *mainViewController = [[[WMMainViewController alloc] initWithRootViewController:mapViewController] autorelease];
     mainViewController.mapViewController = mapViewController;
+    [mapViewController setDelegate:mainViewController];
     [mainViewController setNavigationBarHidden:YES];
 
     [mainViewController setToolbarHidden:NO animated:NO];

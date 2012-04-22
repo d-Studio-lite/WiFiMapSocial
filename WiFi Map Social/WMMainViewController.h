@@ -11,8 +11,9 @@
 @class WMDataController;
 @class WMMapViewController;
 @class WMSubmitViewController;
+#import "WMMapViewController.h"
 
-@interface WMMainViewController : UINavigationController
+@interface WMMainViewController : UINavigationController <WMMapViewControllerDelegate>
 
 @property (retain, nonatomic) WMDataController *dataController;
 @property (retain, nonatomic) WMMapViewController *mapViewController;
