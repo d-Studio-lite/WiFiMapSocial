@@ -55,13 +55,6 @@
         [self.mapView setRegion:region];
     }
     [self addSpots:[self.delegate getSpotsAroundLocation:[self currentLocation] forMapViewController:self]];
-#warning remove me!
-    for (int i = 0; i < 2; ++i)
-    {
-        NSDictionary *networks = [NSDictionary dictionaryWithObjectsAndKeys:@"1", @"test1", @"2", @"test2", @"", @"test3", nil];
-        WMSpotData *spotData = [[[WMSpotData alloc] initWithTitle:@"test" networks:networks coordinates:CLLocationCoordinate2DMake(50.45 + i /100.0 , 30.51 + i / 100.0)] autorelease];
-        [self addSpots:[NSArray arrayWithObject:spotData]];
-    }
 }
 
 - (void)viewDidUnload
@@ -81,6 +74,11 @@
 - (CLLocationCoordinate2D)currentLocation
 {
     return [[[self.mapView userLocation] location] coordinate];
+}
+
+- (void)centerMapOnCurrentLocation
+{
+    [self.mapView setCenterCoordinate:[self currentLocation]];
 }
 
 - (void)setUsingOnlineMaps:(BOOL)online

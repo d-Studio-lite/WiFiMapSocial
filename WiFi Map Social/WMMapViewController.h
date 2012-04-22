@@ -20,6 +20,7 @@
 - (void)setUsingOnlineMaps:(BOOL)online;
 - (CLLocationCoordinate2D)currentLocation;
 
+- (void)centerMapOnCurrentLocation;
 - (void)addSpots:(NSArray *)spots;
 - (void)removeAllSpots;
 
