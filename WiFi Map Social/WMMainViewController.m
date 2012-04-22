@@ -139,7 +139,7 @@
 //array of WMSpotData
 - (NSArray *)getSpotsAroundLocation:(CLLocationCoordinate2D)location forMapViewController:(WMMapViewController *)controller
 {
-    NSArray *result = [[self dataController] spotDataArrayInRect:CGRectMake(45, 25, 10, 10)];
+    NSArray *result = [[self dataController] spotDataArrayInRect:CGRectMake(48.5, 28.5, 3.0, 3.0)];
     return result;
 }
 
