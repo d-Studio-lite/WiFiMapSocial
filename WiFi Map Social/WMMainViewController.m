@@ -75,16 +75,17 @@
 
 - (WMDataController *)dataController
 {
-    if (nil != _dataController)
+    if (nil == _dataController)
     {
         [self setDataController:[[[WMDataController alloc] init] autorelease]];
+        _dataController.delegate = self;
     }
     return _dataController;
 }
 
 - (void)update:(id)sender
 {
-    
+    [[self dataController] update];
 }
 
 - (void)submit:(id)sender
@@ -92,6 +93,19 @@
     CLLocationCoordinate2D currentLocation = [self.mapViewController currentLocation];
     [self.submitViewController setCurrentLocation:currentLocation];
     [self pushViewController:self.submitViewController animated:YES];
+}
+
+- (void)dataController:(WMDataController *)dataController updateDidFinishedWithError:(NSError *)error
+{
+    if (nil != error)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Update Error" message:[NSError description] delegate:nil cancelButtonTitle:@"OK"otherButtonTitles:nil];
+        [alert show];
+    }
+    else
+    {
+        
+    }
 }
 
 #pragma mark WMMapViewControllerDelegate methods

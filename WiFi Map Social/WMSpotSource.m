@@ -16,6 +16,8 @@
 @interface WMSpotSource()<ASIHTTPRequestDelegate>
 
 - (NSManagedObjectContext *)managedObjectContext;
+- (void)resetCoreData:(NSArray *)spots;
+- (NSArray *)fetchSpotsFromResponseString:(NSString *)response;
 
 @end
 
@@ -101,6 +103,11 @@ NSUInteger kMaxHorizontalRowOfStopsLength = 15;
 	return results;
 }
 
+- (void)resetCoreData:(NSArray *)spots
+{
+    
+}
+
 - (void)update
 {
     NSURL *serverURL = [NSURL URLWithString:kWMServerURL];
@@ -114,10 +121,11 @@ NSUInteger kMaxHorizontalRowOfStopsLength = 15;
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
     NSString *responseString = [request responseString];
-    [self fetchSpotsFromResponseString:responseString];
+    NSArray * spots = [self fetchSpotsFromResponseString:responseString];
+    [self resetCoreData:spots];
 }
 
-- (void)fetchSpotsFromResponseString:(NSString *)response
+- (NSArray *)fetchSpotsFromResponseString:(NSString *)response
 {
     SBJsonParser *parser = [[[SBJsonParser alloc] init] autorelease];
     id responseObject = [parser objectWithString:response];
@@ -126,6 +134,7 @@ NSUInteger kMaxHorizontalRowOfStopsLength = 15;
     {
         [spotObjects addObject:[WMSpot spotWithSpec:spec]];
     }
+    return spotObjects;
 }
 
 @end

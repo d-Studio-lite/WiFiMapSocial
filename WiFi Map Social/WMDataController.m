@@ -39,7 +39,7 @@
 
 - (void)update
 {
-    //[[self spotSource] update];
+    [[self spotSource] update];
 }
 
 @end
