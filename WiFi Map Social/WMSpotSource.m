@@ -10,9 +10,10 @@
 #import "WMAppDelegate.h"
 #import "JSON.h"
 #import "WMSpot.h"
+#import "ASIHTTPRequest.h"
 #import <CoreData/CoreData.h>
 
-@interface WMSpotSource()
+@interface WMSpotSource()<ASIHTTPRequestDelegate>
 
 - (NSManagedObjectContext *)managedObjectContext;
 
@@ -75,6 +76,22 @@
 	[fetchRequest release];
 	
 	return results;
+}
+
+- (void)update
+{
+    NSURL *serverURL = [NSURL URLWithString:kWMServerURL];
+    NSString *spotsJSON = [kWMSpotsKey stringByAppendingPathExtension:@"json"];
+    NSURL *spotsURL = [serverURL URLByAppendingPathComponent:spotsJSON];
+    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:spotsURL];
+    [request setDelegate:self];
+    [request startAsynchronous];
+}
+
+- (void)requestFinished:(ASIHTTPRequest *)request
+{
+    NSString *responseString = [request responseString];
+    [self fetchSpotsFromResponseString:responseString];
 }
 
 - (void)fetchSpotsFromResponseString:(NSString *)response
