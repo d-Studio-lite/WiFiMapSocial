@@ -8,6 +8,7 @@
 
 #import "WMSpotSource.h"
 #import "WMAppDelegate.h"
+#import "JSON.h"
 #import "WMSpot.h"
 #import <CoreData/CoreData.h>
 
@@ -97,6 +98,17 @@ NSUInteger kMaxHorizontalRowOfStopsLength = 15;
 	[fetchRequest release];
 	
 	return results;
+}
+
+- (void)fetchSpotsFromResponseString:(NSString *)response
+{
+    SBJsonParser *parser = [[[SBJsonParser alloc] init] autorelease];
+    id responseObject = [parser objectWithString:response];
+    NSMutableArray *spotObjects = [NSMutableArray arrayWithCapacity:10];
+    for (NSDictionary *spec in responseObject)
+    {
+        [spotObjects addObject:[WMSpot spotWithSpec:spec]];
+    }
 }
 
 @end
