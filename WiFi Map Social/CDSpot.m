@@ -15,5 +15,7 @@
 @dynamic longtitude;
 @dynamic name;
 @dynamic password;
+@dynamic id;
+@dynamic author;
 
 @end
