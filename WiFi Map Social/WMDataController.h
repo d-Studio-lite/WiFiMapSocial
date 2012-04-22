@@ -22,6 +22,7 @@
 - (void)update;
 
 - (NSArray *)spotDataArrayInRect:(CGRect)rect;
+- (NSArray *)offlineMapsForLocation:(CLLocationCoordinate2D)location;
 
 @end
 
