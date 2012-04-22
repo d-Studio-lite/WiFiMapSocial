@@ -8,14 +8,19 @@
 
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
+#import "WMSpot.h"
 
 @interface WMSpotData : NSObject
 
-- (id)initWithEngineSpotsArray:(NSArray *)spots;
-- (id)initWithTitle:(NSString *)title networks:(NSDictionary *)networks coordinates:(CLLocationCoordinate2D)coordinates;
+- (id)initWithEngineSpot:(WMSpot *)spot;
+- (id)initWithTitle:(NSString *)title password:(NSString *)password coordinates:(CLLocationCoordinate2D)coordinates hiddenState:(BOOL)hidden;
+
+- (void)setNewPassword:(NSString *)password;
+- (void)setNewHiddenNetworkState:(BOOL)state;
 
 @property (retain, nonatomic, readonly) NSString *spotTitle;
-@property (retain, nonatomic, readonly) NSDictionary *networks; //key - @"networkName", value - @"password" (or @"" for free network)
+@property (retain, nonatomic, readonly) NSString *password;
 @property (assign, nonatomic, readonly) CLLocationCoordinate2D coordinates;
+@property (assign, nonatomic, readonly, getter = isHiddenNetwork) BOOL hiddenNetwork;
 
 @end

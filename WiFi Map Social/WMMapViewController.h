@@ -22,6 +22,7 @@
 
 - (void)centerMapOnCurrentLocation;
 - (void)addSpots:(NSArray *)spots;
+- (void)removeSpotWithSpotData:(WMSpotData *)spotData;
 - (void)removeAllSpots;
 
 @end

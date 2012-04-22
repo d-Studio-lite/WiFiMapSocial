@@ -74,7 +74,7 @@
         for (CDSpot *coreDataSpot in results)
         {
             WMSpot *spot = [[[WMSpot alloc] initWithCDSpot:coreDataSpot] autorelease];
-            WMSpotData *spotData = [[[WMSpotData alloc] initWithEngineSpotsArray:[NSArray arrayWithObject:spot]] autorelease];
+            WMSpotData *spotData = [[[WMSpotData alloc] initWithEngineSpot:spot] autorelease];
             if (nil != spot  && nil != spotData)
             {
                 [spotDatas addObject:spotData];

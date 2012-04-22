@@ -12,54 +12,60 @@
 @interface WMSpotData ()
 
 @property (retain, nonatomic) NSString *spotTitle;
-@property (retain, nonatomic) NSDictionary *networks;
+@property (retain, nonatomic) NSString *password;
 @property (assign, nonatomic) CLLocationCoordinate2D coordinates;
+@property (assign, nonatomic, getter = isHiddenNetwork) BOOL hiddenNetwork;
 
 @end
 
 @implementation WMSpotData
 
 @synthesize spotTitle = _spotTitle;
-@synthesize networks = _networks;
+@synthesize password = _password;
 @synthesize coordinates = _coordinates;
+@synthesize hiddenNetwork = _hiddenNetwork;
 
-- (id)initWithEngineSpotsArray:(NSArray *)spots
+
+- (id)initWithEngineSpot:(WMSpot *)spot
 {
-    if (0 == [spots count])
+    if (nil == spot)
     {
         [self release];
         return nil;
     }
-    NSMutableDictionary *networks = [NSMutableDictionary dictionaryWithCapacity:[spots count]];
-    WMSpot *firstSpot = [spots objectAtIndex:0];
-    CGPoint firstSpotCoord = [firstSpot location];
-    CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(firstSpotCoord.x, firstSpotCoord.y);
-    NSString *name = [firstSpot name];
-    for (WMSpot *spot in spots)
-    {
-        [networks setValue:[spot password] forKey:[spot name]];
-    }
-    self = [self initWithTitle:name networks:networks coordinates:coord];
+    CGPoint spotCoord = [spot location];
+    CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(spotCoord.x, spotCoord.y);
+    self = [self initWithTitle:[spot name] password:[spot password] coordinates:coord hiddenState:NO];
     return self;
 }
 
-- (id)initWithTitle:(NSString *)title networks:(NSDictionary *)networks coordinates:(CLLocationCoordinate2D)coordinates
+- (id)initWithTitle:(NSString *)title password:(NSString *)password coordinates:(CLLocationCoordinate2D)coordinates hiddenState:(BOOL)hidden
 {
     self = [super init];
     if (nil != self)
     {
         self.coordinates = coordinates;
-        self.networks = networks;
+        self.password = password;
         self.spotTitle = title;
+        self.hiddenNetwork = hidden;
     }
     return self;
 }
 
 - (void)dealloc
 {
-    self.networks = nil;
+    self.password = nil;
     self.spotTitle = nil;
     [super dealloc];
+}
+
+- (void)setNewPassword:(NSString *)password
+{
+    self.password = password;
+}
+- (void)setNewHiddenNetworkState:(BOOL)state
+{
+    self.hiddenNetwork = state;
 }
 
 @end

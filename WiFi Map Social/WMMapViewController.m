@@ -109,6 +109,23 @@
     [self.view setNeedsDisplay];
 }
 
+- (void)removeSpotWithSpotData:(WMSpotData *)spotData
+{
+    NSArray *annotations = [self.mapView annotations];
+    for (id <MKAnnotation> annotation in annotations)
+    {
+        if ([annotation isKindOfClass:[WMMapViewSpotsAnnotation class]])
+        {
+            WMMapViewSpotsAnnotation *spotAnnotation = (WMMapViewSpotsAnnotation *)annotation;
+            if ([spotAnnotation spotData] == spotData)
+            {
+                [self.mapView removeAnnotation:spotAnnotation];
+            }
+        }
+    }
+    [self.view setNeedsDisplay];
+}
+
 - (void)removeAllSpots
 {
     NSArray *annotations = [self.mapView annotations];
