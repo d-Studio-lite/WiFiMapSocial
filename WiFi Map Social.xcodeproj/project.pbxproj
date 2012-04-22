@@ -46,6 +46,8 @@
 		B22D35FB154330A30023A8E6 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B22D35FA154330A30023A8E6 /* MapKit.framework */; };
 		B240126D154361D30010EA75 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B240126C154361D30010EA75 /* CoreData.framework */; };
 		B26CF63D1543AC8E003799E5 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B26CF63C1543AC8E003799E5 /* icon.png */; };
+		B26CF6431543B96E003799E5 /* WMUpdateSpotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B26CF6421543B96E003799E5 /* WMUpdateSpotViewController.m */; };
+		B26CF6451543BD2E003799E5 /* UpdateSpotView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B26CF6441543BD2E003799E5 /* UpdateSpotView.xib */; };
 		B2C36D5A15430D4500B30A36 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2C36D5915430D4500B30A36 /* UIKit.framework */; };
 		B2C36D5C15430D4500B30A36 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2C36D5B15430D4500B30A36 /* Foundation.framework */; };
 		B2C36D5E15430D4500B30A36 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2C36D5D15430D4500B30A36 /* CoreGraphics.framework */; };
@@ -139,6 +141,9 @@
 		B22D35FA154330A30023A8E6 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		B240126C154361D30010EA75 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		B26CF63C1543AC8E003799E5 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../icon.png; sourceTree = "<group>"; };
+		B26CF6411543B96E003799E5 /* WMUpdateSpotViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMUpdateSpotViewController.h; sourceTree = "<group>"; };
+		B26CF6421543B96E003799E5 /* WMUpdateSpotViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMUpdateSpotViewController.m; sourceTree = "<group>"; };
+		B26CF6441543BD2E003799E5 /* UpdateSpotView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UpdateSpotView.xib; sourceTree = "<group>"; };
 		B2C36D5515430D4500B30A36 /* WiFi Map Social.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WiFi Map Social.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2C36D5915430D4500B30A36 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B2C36D5B15430D4500B30A36 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -246,6 +251,7 @@
 				B2C36D79154325D900B30A36 /* MainViewController */,
 				B2C36D7A1543269400B30A36 /* DataController */,
 				B2C36D7C154326B200B30A36 /* MapController */,
+				B26CF6401543B4E2003799E5 /* UpdateController */,
 				B2C36D7B154326A300B30A36 /* SubmitController */,
 			);
 			name = controllers;
@@ -327,6 +333,16 @@
 			);
 			name = Resources;
 			path = "WiFi Map Social";
+			sourceTree = "<group>";
+		};
+		B26CF6401543B4E2003799E5 /* UpdateController */ = {
+			isa = PBXGroup;
+			children = (
+				B26CF6411543B96E003799E5 /* WMUpdateSpotViewController.h */,
+				B26CF6421543B96E003799E5 /* WMUpdateSpotViewController.m */,
+				B26CF6441543BD2E003799E5 /* UpdateSpotView.xib */,
+			);
+			name = UpdateController;
 			sourceTree = "<group>";
 		};
 		B2C36D4A15430D4500B30A36 = {
@@ -503,6 +519,7 @@
 				18709D761543831D00AA5EC2 /* Entitlements.plist in Resources */,
 				1590E0601543A6CA005CA0A8 /* FBDialog.bundle in Resources */,
 				B26CF63D1543AC8E003799E5 /* icon.png in Resources */,
+				B26CF6451543BD2E003799E5 /* UpdateSpotView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -551,6 +568,7 @@
 				1590E0621543A6CA005CA0A8 /* FBFrictionlessRequestSettings.m in Sources */,
 				1590E0631543A6CA005CA0A8 /* FBLoginDialog.m in Sources */,
 				1590E0641543A6CA005CA0A8 /* FBRequest.m in Sources */,
+				B26CF6431543B96E003799E5 /* WMUpdateSpotViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

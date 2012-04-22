@@ -10,6 +10,7 @@
 #import "WMDataController.h"
 #import "WMMapViewController.h"
 #import "WMSubmitViewController.h"
+#import "WMUpdateSpotViewController.h"
 #import "WMSpotData.h"
 
 @interface WMMainViewController ()
@@ -21,6 +22,7 @@
 @synthesize dataController = _dataController;
 @synthesize mapViewController = _mapViewController;
 @synthesize submitViewController = _submitViewController;
+@synthesize updateSpotViewController = _updateSpotViewController;
 
 + (WMMainViewController *)mainViewController;
 {
@@ -63,6 +65,7 @@
     self.mapViewController = nil;
     self.dataController = nil;
     self.submitViewController = nil;
+    self.updateSpotViewController = nil;
     [super dealloc];
 }
 
@@ -71,7 +74,6 @@
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
-
 - (WMSubmitViewController *)submitViewController
 {
     if (nil == _submitViewController)
@@ -79,6 +81,15 @@
         [self setSubmitViewController:[[[WMSubmitViewController alloc] initWithNibName:@"SubmitView" bundle:nil] autorelease]];
     }
     return _submitViewController;
+}
+
+- (WMUpdateSpotViewController *)updateSpotViewController
+{
+    if (nil == _updateSpotViewController)
+    {
+        [self setUpdateSpotViewController:[[[WMUpdateSpotViewController alloc] initWithNibName:@"UpdateSpotView" bundle:nil] autorelease]];
+    }
+    return _updateSpotViewController;
 }
 
 - (WMDataController *)dataController
@@ -140,7 +151,9 @@
 
 - (void)mapViewController:(WMMapViewController *)controller didCallMenuForSpotData:(WMSpotData *)spotData
 {
-    
+    [[self updateSpotViewController] setSpot:[spotData engineSpot]];
+    [self pushViewController:self.updateSpotViewController animated:YES];
+
 }
 
 @end

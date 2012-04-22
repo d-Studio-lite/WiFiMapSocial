@@ -10,6 +10,7 @@
 
 @class WMMapViewController;
 @class WMSubmitViewController;
+@class WMUpdateSpotViewController;
 #import "WMMapViewController.h"
 #import "WMDataController.h"
 
@@ -18,6 +19,7 @@
 @property (retain, nonatomic) WMDataController *dataController;
 @property (retain, nonatomic) WMMapViewController *mapViewController;
 @property (retain, nonatomic) WMSubmitViewController *submitViewController;
+@property (retain, nonatomic) WMUpdateSpotViewController *updateSpotViewController;
 
 + (WMMainViewController *)mainViewController;
 
