@@ -16,5 +16,7 @@
 @property (nonatomic, retain) NSNumber * longtitude;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * password;
+@property (nonatomic, retain) NSNumber * spotId;
+@property (nonatomic, retain) NSString * author;
 
 @end

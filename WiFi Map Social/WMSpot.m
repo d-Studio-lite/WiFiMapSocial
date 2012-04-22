@@ -45,8 +45,10 @@
         self.spec = [NSMutableDictionary dictionary];
         self.name = spot.name;
         self.password = spot.password;
+        self.spotId = [spot.spotId integerValue];
         self.lattitude = [spot.latitude doubleValue];
         self.longitude = [spot.longtitude doubleValue];
+        self.author = spot.author;
     }
     return self;
 }

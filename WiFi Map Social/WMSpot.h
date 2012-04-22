@@ -12,7 +12,9 @@
 
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *password;
+@property (nonatomic, assign) NSInteger spotId;
 @property (nonatomic, assign) CGPoint location;
+@property (nonatomic, copy) NSString *author;
 
 + (WMSpot *)spotWithSpec:(NSDictionary *)spec;
 - (id)initWithCDSpot:(CDSpot *)spot;
