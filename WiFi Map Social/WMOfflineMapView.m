@@ -43,7 +43,9 @@
 
 - (void)drawMapRect:(MKMapRect)mapRect zoomScale:(MKZoomScale)zoomScale inContext:(CGContextRef)context
 {
-    
+    UIImage *mapImage = [[[self offlineOverlay] mapData] imageForMapRect:mapRect scale:zoomScale];
+    CGRect drawingRect = [self rectForMapRect:mapRect];
+    CGContextDrawImage(context, drawingRect, [mapImage CGImage]);
 }
 
 @end

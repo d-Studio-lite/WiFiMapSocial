@@ -10,11 +10,11 @@
 
 @interface WMSpotView ()
 
-- (WMMapViewSpotsAnnotation *)spotAnnotation;
-
 @end
 
 @implementation WMSpotView
+
+@synthesize delegate = _delegate;
 
 - (id)initWithSpotAnnotation:(WMMapViewSpotsAnnotation *)spotAnnotation
 {
@@ -26,10 +26,10 @@
         [self setEnabled:YES];
         [self setCanShowCallout:YES];
         [self setPinColor:MKPinAnnotationColorGreen];
-        self.leftCalloutAccessoryView = [[[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 100.0f, 100.0f)] autorelease];
-        [self.leftCalloutAccessoryView setBackgroundColor:[UIColor redColor]];
-        self.rightCalloutAccessoryView = [[[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 100.0f, 100.0f)] autorelease];
-        [self.rightCalloutAccessoryView setBackgroundColor:[UIColor greenColor]];
+        UIButton *menuButton = [[[UIButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 32.0f, 32.0f)] autorelease];
+        [menuButton addTarget:self action:@selector(menuButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+        [menuButton setImage:[UIImage imageNamed:@"edit.png"] forState:UIControlStateNormal];
+        self.rightCalloutAccessoryView = menuButton;
     }
     return self;
 }
@@ -42,6 +42,11 @@
 - (WMMapViewSpotsAnnotation *)spotAnnotation
 {
     return (WMMapViewSpotsAnnotation *)self.annotation;
+}
+         
+- (void)menuButtonPressed
+{
+    [self.delegate spotViewDidCallMenu:self];
 }
 
 @end

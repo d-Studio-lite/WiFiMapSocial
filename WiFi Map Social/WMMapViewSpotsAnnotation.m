@@ -41,12 +41,12 @@
 
 - (NSString *)title
 {
-    return [[self.spotData spotTitle] copy];
+    return [[NSString stringWithFormat:@"name:%@", [self.spotData spotTitle]] copy];
 }
 
 - (NSString *)subtitle
 {
-    return [[self.spotData spotTitle] copy];
+    return [[NSString stringWithFormat:@"psw:%@", [self.spotData password]] copy];
 }
 
 @end

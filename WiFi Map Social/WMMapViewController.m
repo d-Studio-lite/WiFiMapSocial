@@ -55,13 +55,6 @@
         [self.mapView setRegion:region];
     }
     [self addSpots:[self.delegate getSpotsAroundLocation:[self currentLocation] forMapViewController:self]];
-#warning remove me!
-    for (int i = 0; i < 2; ++i)
-    {
-        NSDictionary *networks = [NSDictionary dictionaryWithObjectsAndKeys:@"1", @"test1", @"2", @"test2", @"", @"test3", nil];
-        WMSpotData *spotData = [[[WMSpotData alloc] initWithTitle:@"test" networks:networks coordinates:CLLocationCoordinate2DMake(50.45 + i /100.0 , 30.51 + i / 100.0)] autorelease];
-        [self addSpots:[NSArray arrayWithObject:spotData]];
-    }
 }
 
 - (void)viewDidUnload
@@ -73,6 +66,7 @@
 
 - (void)dealloc
 {
+    [self removeAllSpots];
     self.mapView = nil;
     self.offlineOverlay = nil;
     [super dealloc];
@@ -81,6 +75,11 @@
 - (CLLocationCoordinate2D)currentLocation
 {
     return [[[self.mapView userLocation] location] coordinate];
+}
+
+- (void)centerMapOnCurrentLocation
+{
+    [self.mapView setCenterCoordinate:[self currentLocation]];
 }
 
 - (void)setUsingOnlineMaps:(BOOL)online
@@ -108,6 +107,24 @@
         WMMapViewSpotsAnnotation *spotAnnotation = [[[WMMapViewSpotsAnnotation alloc] initWithSpotData:spotData] autorelease];
         [self.mapView addAnnotation:spotAnnotation];
     }
+    [self.view setNeedsDisplay];
+}
+
+- (void)removeSpotWithSpotData:(WMSpotData *)spotData
+{
+    NSArray *annotations = [self.mapView annotations];
+    for (id <MKAnnotation> annotation in annotations)
+    {
+        if ([annotation isKindOfClass:[WMMapViewSpotsAnnotation class]])
+        {
+            WMMapViewSpotsAnnotation *spotAnnotation = (WMMapViewSpotsAnnotation *)annotation;
+            if ([spotAnnotation spotData] == spotData)
+            {
+                [self.mapView removeAnnotation:spotAnnotation];
+            }
+        }
+    }
+    [self.view setNeedsDisplay];
 }
 
 - (void)removeAllSpots
@@ -120,6 +137,7 @@
             [self.mapView removeAnnotation:annotation];
         }
     }
+    [self.view setNeedsDisplay];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -127,10 +145,22 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+#pragma mark WMSpotViewDelegate methods
+
+- (void)spotViewDidCallMenu:(WMSpotView *)spotView
+{
+    [self.delegate mapViewController:self didCallMenuForSpotData:spotView.spotAnnotation.spotData];
+}
+
 #pragma mark MKMapViewDelegate methods
 
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
+#warning kill me!
+    CGRect testFrame = [self.view frame];
+    NSLog(@"frame = %f %f", testFrame.size.width, testFrame.size.height);
+    MKMapRect testRect = [mapView visibleMapRect];
+    NSLog(@"test rect = %f %f %f %f", testRect.origin.x, testRect.origin.y, testRect.size.width, testRect.size.height);
     MKCoordinateRegion region = [mapView region];
     NSArray *regionArray = [NSArray arrayWithObjects:[NSNumber numberWithDouble:region.center.latitude], [NSNumber numberWithDouble:region.center.longitude], [NSNumber numberWithDouble:region.span.latitudeDelta], [NSNumber numberWithDouble:region.span.longitudeDelta], nil];
     [[NSUserDefaults standardUserDefaults] setObject:regionArray forKey:kWMUserDefaultsLastScreenPositionKey];
@@ -163,6 +193,7 @@
         return userLocationView;   
     }
     WMSpotView *spotView = [[[WMSpotView alloc] initWithSpotAnnotation:annotation] autorelease];
+    [spotView setDelegate:self];
     [spotView setDraggable:NO];
     return spotView;
 }

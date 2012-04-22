@@ -11,6 +11,7 @@
 @class WMMapViewController;
 @class WMSubmitViewController;
 @class Facebook;
+@class WMUpdateSpotViewController;
 #import "WMMapViewController.h"
 #import "WMDataController.h"
 
@@ -19,6 +20,7 @@
 @property (retain, nonatomic) WMDataController *dataController;
 @property (retain, nonatomic) WMMapViewController *mapViewController;
 @property (retain, nonatomic) WMSubmitViewController *submitViewController;
+@property (retain, nonatomic) WMUpdateSpotViewController *updateSpotViewController;
 
 @property (nonatomic, retain) Facebook *facebook;
 
@@ -26,5 +28,6 @@
 
 - (IBAction)update:(id)sender;
 - (IBAction)submit:(id)sender;
+- (IBAction)center:(id)sender;
 
 @end

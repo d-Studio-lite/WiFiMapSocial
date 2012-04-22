@@ -10,6 +10,7 @@
 #import "WMDataController.h"
 #import "WMMapViewController.h"
 #import "WMSubmitViewController.h"
+#import "WMUpdateSpotViewController.h"
 #import "WMSpotData.h"
 
 #import "FBConnect.h"
@@ -22,6 +23,7 @@
 @synthesize dataController = _dataController;
 @synthesize mapViewController = _mapViewController;
 @synthesize submitViewController = _submitViewController;
+@synthesize updateSpotViewController = _updateSpotViewController;
 
 @synthesize facebook;
 
@@ -64,7 +66,6 @@
                                                                       style:UIBarButtonItemStyleBordered
                                                                      target:self
                                                                      action:@selector(submit:)] autorelease];
-    
     NSString *title = nil;
     SEL action = NULL;
     if (![facebook isSessionValid])
@@ -105,7 +106,6 @@
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
-
 - (WMSubmitViewController *)submitViewController
 {
     if (nil == _submitViewController)
@@ -113,6 +113,15 @@
         [self setSubmitViewController:[[[WMSubmitViewController alloc] initWithNibName:@"SubmitView" bundle:nil] autorelease]];
     }
     return _submitViewController;
+}
+
+- (WMUpdateSpotViewController *)updateSpotViewController
+{
+    if (nil == _updateSpotViewController)
+    {
+        [self setUpdateSpotViewController:[[[WMUpdateSpotViewController alloc] initWithNibName:@"UpdateSpotView" bundle:nil] autorelease]];
+    }
+    return _updateSpotViewController;
 }
 
 - (WMDataController *)dataController
@@ -141,6 +150,11 @@
     [self pushViewController:self.submitViewController animated:YES];
 }
 
+- (void)center:(id)sender
+{
+    [self.mapViewController centerMapOnCurrentLocation];
+}
+
 - (void)dataController:(WMDataController *)dataController updateDidFinishedWithError:(NSError *)error
 {
     if (nil != error)
@@ -150,7 +164,8 @@
     }
     else
     {
-        
+        [self.mapViewController removeAllSpots];
+        [self.mapViewController addSpots:[[self dataController] spotDataArrayInRect:CGRectMake(45, 25, 10, 10)]];
     }
 }
 
@@ -183,11 +198,6 @@
         facebook.accessToken = [defaults objectForKey:@"FBAccessTokenKey"];
         facebook.expirationDate = [defaults objectForKey:@"FBExpirationDateKey"];
     }
-    
-    if (![facebook isSessionValid])
-    {
-        [facebook authorize:nil];
-    }
 }
 
 #pragma mark FBSessionDelegate methods
@@ -211,6 +221,13 @@
         [defaults synchronize];
     }
     [self setupToolbar];
+}
+    
+- (void)mapViewController:(WMMapViewController *)controller didCallMenuForSpotData:(WMSpotData *)spotData
+{
+    [[self updateSpotViewController] setSpot:[spotData engineSpot]];
+    [self pushViewController:self.updateSpotViewController animated:YES];
+
 }
 
 @end

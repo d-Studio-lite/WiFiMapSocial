@@ -38,7 +38,7 @@
 
 - (UIImage *)imageForMapRect:(MKMapRect)rect scale:(MKZoomScale)scale
 {
-    return nil;
+    return [UIImage imageNamed:@"icon.png"];
 }
 
 @end
