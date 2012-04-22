@@ -19,7 +19,7 @@
 
 @synthesize spec = _spec;
 
-@dynamic name, password, location, spotId, author;
+@dynamic name, password, location, spotId, author, likeCount;
 
 
 + (WMSpot *)spotWithSpec:(NSDictionary *)spec
@@ -122,6 +122,16 @@
 - (void)setAuthor:(NSString *)author
 {
     [self.spec setValue:[author copy] forKey:kWMSpotAuthorKey];
+}
+
+- (NSUInteger)likeCount
+{
+    return [[self.spec valueForKey:kWMSpotLikeCountKey] unsignedIntegerValue];
+}
+
+- (void)setLikeCount:(NSUInteger)likeCount
+{
+    [self.spec setValue:[NSNumber numberWithUnsignedInt:likeCount] forKey:kWMSpotLikeCountKey];
 }
 
 - (NSString *)description
