@@ -15,6 +15,7 @@
 #import "WMSpotData.h"
 #import "WMOfflineMapData.h"
 #import "WMConstants.h"
+#import "Reachability.h"
 
 @interface WMMapViewController ()
 
@@ -27,6 +28,8 @@
 @synthesize mapView = _mapView;
 @synthesize delegate = _delegate;
 @synthesize online = _online;
+@synthesize internetReachability = _internetReachability;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -53,6 +56,11 @@
         [self.mapView setRegion:region];
     }
     [self addSpots:[self.delegate getSpotsAroundLocation:[self currentLocation] forMapViewController:self]];
+    
+    
+    self.internetReachability = [Reachability reachabilityForInternetConnection];
+    [self.internetReachability startNotifier];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkNetworkStatus:) name:kReachabilityChangedNotification object:nil];
 }
 
 - (void)viewDidUnload
@@ -60,6 +68,8 @@
     [self removeAllOfflineOverlays];
     [self removeAllSpots];
     self.mapView = nil;
+    self.internetReachability = nil;
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [super viewDidUnload];
 }
 
@@ -79,6 +89,12 @@
 - (void)centerMapOnCurrentLocation
 {
     [self.mapView setCenterCoordinate:[self currentLocation]];
+}
+
+-(void)checkNetworkStatus:(NSNotification *)notice
+{
+    NetworkStatus internetStatus = [self.internetReachability currentReachabilityStatus];
+    [self setUsingOnlineMaps:internetStatus != NotReachable];
 }
 
 - (void)setUsingOnlineMaps:(BOOL)online

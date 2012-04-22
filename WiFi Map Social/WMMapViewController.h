@@ -12,10 +12,13 @@
 
 @protocol WMMapViewControllerDelegate;
 
+@class Reachability;
+
 @interface WMMapViewController : UIViewController <MKMapViewDelegate, WMSpotViewDelegate>
 
 @property (retain, nonatomic) IBOutlet MKMapView *mapView;
 @property (assign, nonatomic) id <WMMapViewControllerDelegate> delegate;
+@property (retain, nonatomic) Reachability *internetReachability;
 
 - (void)setUsingOnlineMaps:(BOOL)online;
 - (CLLocationCoordinate2D)currentLocation;
@@ -24,6 +27,8 @@
 - (void)addSpots:(NSArray *)spots;
 - (void)removeSpotWithSpotData:(WMSpotData *)spotData;
 - (void)removeAllSpots;
+
+-(void)checkNetworkStatus:(NSNotification *)notice;
 
 @end
 
