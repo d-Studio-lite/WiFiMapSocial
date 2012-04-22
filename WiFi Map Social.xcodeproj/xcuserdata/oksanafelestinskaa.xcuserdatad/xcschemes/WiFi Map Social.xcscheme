@@ -15,7 +15,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B2C36D5415430D4500B30A36"
                BuildableName = "WiFi Map Social.app"
-               BlueprintName = "WiFi Map Social"
+               BlueprintName = "Truloo"
                ReferencedContainer = "container:WiFi Map Social.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -33,7 +33,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B2C36D5415430D4500B30A36"
             BuildableName = "WiFi Map Social.app"
-            BlueprintName = "WiFi Map Social"
+            BlueprintName = "Truloo"
             ReferencedContainer = "container:WiFi Map Social.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -52,7 +52,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B2C36D5415430D4500B30A36"
             BuildableName = "WiFi Map Social.app"
-            BlueprintName = "WiFi Map Social"
+            BlueprintName = "Truloo"
             ReferencedContainer = "container:WiFi Map Social.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -70,7 +70,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B2C36D5415430D4500B30A36"
             BuildableName = "WiFi Map Social.app"
-            BlueprintName = "WiFi Map Social"
+            BlueprintName = "Truloo"
             ReferencedContainer = "container:WiFi Map Social.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
