@@ -28,7 +28,7 @@ CLLocationDegrees validatedDegree(CLLocationDegrees degree)
 
 MKMapRect mapRectWithRegion(MKCoordinateRegion region)
 {
-    MK
+    //MK
 }
 
 NSUInteger getScaleWith(MKCoordinateRegion mapRegion, CGRect screenRect, NSUInteger minScale, NSUInteger maxScale, NSUInteger scaleDelta)
