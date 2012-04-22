@@ -211,7 +211,6 @@
 }
 
 #pragma mark WMMapViewControllerDelegate methods
-#warning implement me
 
 //array of WMSpotData
 - (NSArray *)getSpotsAroundLocation:(CLLocationCoordinate2D)location forMapViewController:(WMMapViewController *)controller
@@ -223,7 +222,7 @@
 //array of WMOfflineMapData
 - (NSArray *)getOfflineMapDataAroundLocation:(CLLocationCoordinate2D)location forMapViewController:(WMMapViewController *)controller
 {
-    return [NSArray array];
+    return [self.dataController offlineMapsForLocation:location];
 }
 
 #pragma mark FACEBOOK

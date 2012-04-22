@@ -15,6 +15,8 @@
 
 @property (assign, nonatomic, readonly) MKCoordinateRegion region;
 
+- (CLLocationCoordinate2D)coordinate;
+
 - (void)prepareToDrawImageForRegion:(MKCoordinateRegion)region scale:(MKZoomScale)scale;
 - (void)drawImageForRegion:(MKCoordinateRegion)region scale:(MKZoomScale)scale inRect:(CGRect)rect inContext:(CGContextRef)context;
 

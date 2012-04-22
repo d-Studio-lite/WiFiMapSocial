@@ -42,6 +42,11 @@
     [super dealloc];
 }
 
+- (CLLocationCoordinate2D)coordinate
+{
+    return self.region.center;
+}
+
 - (void)prepareToDrawImageForRegion:(MKCoordinateRegion)region scale:(MKZoomScale)scale
 {
     
