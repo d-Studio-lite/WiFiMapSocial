@@ -39,6 +39,7 @@
 		18709D5F15435B6300AA5EC2 /* WMOfflineMapData.m in Sources */ = {isa = PBXBuildFile; fileRef = 18709D5E15435B6300AA5EC2 /* WMOfflineMapData.m */; };
 		18709D6215435B9100AA5EC2 /* WMSpotData.m in Sources */ = {isa = PBXBuildFile; fileRef = 18709D6115435B9000AA5EC2 /* WMSpotData.m */; };
 		18709D761543831D00AA5EC2 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18709D751543831D00AA5EC2 /* Entitlements.plist */; };
+		18709D851543C45C00AA5EC2 /* WMMapDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 18709D841543C45C00AA5EC2 /* WMMapDataSource.m */; };
 		18C2ABDB15433265002016B4 /* WMMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C2ABDA15433265002016B4 /* WMMapView.m */; };
 		18C2ABDD1543371A002016B4 /* WMMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C2ABDC1543371A002016B4 /* WMMapView.xib */; };
 		18C2ABFA15434583002016B4 /* WMMapViewOfflineOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C2ABF715434583002016B4 /* WMMapViewOfflineOverlay.m */; };
@@ -132,6 +133,8 @@
 		18709D6015435B9000AA5EC2 /* WMSpotData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMSpotData.h; sourceTree = "<group>"; };
 		18709D6115435B9000AA5EC2 /* WMSpotData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMSpotData.m; sourceTree = "<group>"; };
 		18709D751543831D00AA5EC2 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = SOURCE_ROOT; };
+		18709D831543C45C00AA5EC2 /* WMMapDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMMapDataSource.h; sourceTree = "<group>"; };
+		18709D841543C45C00AA5EC2 /* WMMapDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMMapDataSource.m; sourceTree = "<group>"; };
 		18C2ABD915433265002016B4 /* WMMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMMapView.h; sourceTree = "<group>"; };
 		18C2ABDA15433265002016B4 /* WMMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMMapView.m; sourceTree = "<group>"; };
 		18C2ABDC1543371A002016B4 /* WMMapView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WMMapView.xib; sourceTree = "<group>"; };
@@ -420,6 +423,8 @@
 			children = (
 				B2C36D7E1543276200B30A36 /* WMDataController.h */,
 				B2C36D7F1543276200B30A36 /* WMDataController.m */,
+				18709D831543C45C00AA5EC2 /* WMMapDataSource.h */,
+				18709D841543C45C00AA5EC2 /* WMMapDataSource.m */,
 			);
 			name = DataController;
 			sourceTree = "<group>";
@@ -573,6 +578,7 @@
 				1590E0631543A6CA005CA0A8 /* FBLoginDialog.m in Sources */,
 				1590E0641543A6CA005CA0A8 /* FBRequest.m in Sources */,
 				B26CF6431543B96E003799E5 /* WMUpdateSpotViewController.m in Sources */,
+				18709D851543C45C00AA5EC2 /* WMMapDataSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
