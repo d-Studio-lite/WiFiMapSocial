@@ -10,6 +10,7 @@
 #import "WMSubmitViewController.h"
 
 @class WMSpot;
+@class FBLikeButton;
 
 @interface WMUpdateSpotViewController : UIViewController
 
@@ -22,7 +23,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *latitudeLabel;
 @property (retain, nonatomic) IBOutlet UILabel *longitudeLabel;
 @property (retain, nonatomic) IBOutlet UILabel *authorLabel;
-@property (retain, nonatomic) IBOutlet UIButton *likeButton;
+@property (retain, nonatomic) FBLikeButton *likeButton;
 
 @property (retain, nonatomic) WMSpot *spot;
 
