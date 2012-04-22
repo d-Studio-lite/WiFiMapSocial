@@ -48,6 +48,7 @@
 		B26CF63D1543AC8E003799E5 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B26CF63C1543AC8E003799E5 /* icon.png */; };
 		B26CF6431543B96E003799E5 /* WMUpdateSpotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B26CF6421543B96E003799E5 /* WMUpdateSpotViewController.m */; };
 		B26CF6451543BD2E003799E5 /* UpdateSpotView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B26CF6441543BD2E003799E5 /* UpdateSpotView.xib */; };
+		B26CF6471543C2EF003799E5 /* edit.png in Resources */ = {isa = PBXBuildFile; fileRef = B26CF6461543C2EF003799E5 /* edit.png */; };
 		B2C36D5A15430D4500B30A36 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2C36D5915430D4500B30A36 /* UIKit.framework */; };
 		B2C36D5C15430D4500B30A36 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2C36D5B15430D4500B30A36 /* Foundation.framework */; };
 		B2C36D5E15430D4500B30A36 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2C36D5D15430D4500B30A36 /* CoreGraphics.framework */; };
@@ -144,6 +145,7 @@
 		B26CF6411543B96E003799E5 /* WMUpdateSpotViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMUpdateSpotViewController.h; sourceTree = "<group>"; };
 		B26CF6421543B96E003799E5 /* WMUpdateSpotViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMUpdateSpotViewController.m; sourceTree = "<group>"; };
 		B26CF6441543BD2E003799E5 /* UpdateSpotView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UpdateSpotView.xib; sourceTree = "<group>"; };
+		B26CF6461543C2EF003799E5 /* edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = edit.png; path = ../edit.png; sourceTree = "<group>"; };
 		B2C36D5515430D4500B30A36 /* WiFi Map Social.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WiFi Map Social.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2C36D5915430D4500B30A36 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B2C36D5B15430D4500B30A36 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -330,6 +332,7 @@
 			isa = PBXGroup;
 			children = (
 				B26CF63C1543AC8E003799E5 /* icon.png */,
+				B26CF6461543C2EF003799E5 /* edit.png */,
 			);
 			name = Resources;
 			path = "WiFi Map Social";
@@ -520,6 +523,7 @@
 				1590E0601543A6CA005CA0A8 /* FBDialog.bundle in Resources */,
 				B26CF63D1543AC8E003799E5 /* icon.png in Resources */,
 				B26CF6451543BD2E003799E5 /* UpdateSpotView.xib in Resources */,
+				B26CF6471543C2EF003799E5 /* edit.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
