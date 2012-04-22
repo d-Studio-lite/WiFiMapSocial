@@ -46,7 +46,6 @@
 		18C2ABDD1543371A002016B4 /* WMMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C2ABDC1543371A002016B4 /* WMMapView.xib */; };
 		18C2ABFA15434583002016B4 /* WMMapViewOfflineOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C2ABF715434583002016B4 /* WMMapViewOfflineOverlay.m */; };
 		18C2ABFE15434BFC002016B4 /* WMMapViewSpotsAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C2ABFD15434BFC002016B4 /* WMMapViewSpotsAnnotation.m */; };
-		B22284C01543CBE700E692A0 /* CDSpot.m in Sources */ = {isa = PBXBuildFile; fileRef = B22284BF1543CBE700E692A0 /* CDSpot.m */; };
 		B22D35FB154330A30023A8E6 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B22D35FA154330A30023A8E6 /* MapKit.framework */; };
 		B240126D154361D30010EA75 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B240126C154361D30010EA75 /* CoreData.framework */; };
 		B26CF63D1543AC8E003799E5 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B26CF63C1543AC8E003799E5 /* icon.png */; };
@@ -69,6 +68,7 @@
 		B2D89C261543DA5A0073029F /* WMSpotBaloonView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D89C251543DA5A0073029F /* WMSpotBaloonView.m */; };
 		B2D89C2B1543E1680073029F /* WMAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D89C291543E1680073029F /* WMAboutViewController.m */; };
 		B2D89C2C1543E1680073029F /* AboutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2D89C2A1543E1680073029F /* AboutView.xib */; };
+		B2D89C371543F40A0073029F /* CDSpot.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D89C361543F40A0073029F /* CDSpot.m */; };
 		B2F86AC8154364B7006E4FF2 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B2F86AC6154364B7006E4FF2 /* Model.xcdatamodeld */; };
 		B2F86ACB154365A1006E4FF2 /* WMSpotSource.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F86ACA154365A1006E4FF2 /* WMSpotSource.m */; };
 /* End PBXBuildFile section */
@@ -153,8 +153,6 @@
 		18C2ABF715434583002016B4 /* WMMapViewOfflineOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMMapViewOfflineOverlay.m; sourceTree = "<group>"; };
 		18C2ABF815434583002016B4 /* WMMapViewSpotsAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMMapViewSpotsAnnotation.h; sourceTree = "<group>"; };
 		18C2ABFD15434BFC002016B4 /* WMMapViewSpotsAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMMapViewSpotsAnnotation.m; sourceTree = "<group>"; };
-		B22284BE1543CBE700E692A0 /* CDSpot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDSpot.h; sourceTree = "<group>"; };
-		B22284BF1543CBE700E692A0 /* CDSpot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDSpot.m; sourceTree = "<group>"; };
 		B22D35FA154330A30023A8E6 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		B240126C154361D30010EA75 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		B26CF63C1543AC8E003799E5 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../icon.png; sourceTree = "<group>"; };
@@ -188,6 +186,8 @@
 		B2D89C281543E1680073029F /* WMAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMAboutViewController.h; sourceTree = "<group>"; };
 		B2D89C291543E1680073029F /* WMAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMAboutViewController.m; sourceTree = "<group>"; };
 		B2D89C2A1543E1680073029F /* AboutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutView.xib; sourceTree = "<group>"; };
+		B2D89C351543F40A0073029F /* CDSpot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDSpot.h; sourceTree = "<group>"; };
+		B2D89C361543F40A0073029F /* CDSpot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDSpot.m; sourceTree = "<group>"; };
 		B2F86AC7154364B7006E4FF2 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		B2F86AC9154365A1006E4FF2 /* WMSpotSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WMSpotSource.h; path = "WiFi Map Social/WMSpotSource.h"; sourceTree = SOURCE_ROOT; };
 		B2F86ACA154365A1006E4FF2 /* WMSpotSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WMSpotSource.m; path = "WiFi Map Social/WMSpotSource.m"; sourceTree = SOURCE_ROOT; };
@@ -347,8 +347,8 @@
 			isa = PBXGroup;
 			children = (
 				B2F86AC6154364B7006E4FF2 /* Model.xcdatamodeld */,
-				B22284BE1543CBE700E692A0 /* CDSpot.h */,
-				B22284BF1543CBE700E692A0 /* CDSpot.m */,
+				B2D89C351543F40A0073029F /* CDSpot.h */,
+				B2D89C361543F40A0073029F /* CDSpot.m */,
 			);
 			name = CoreData;
 			sourceTree = "<group>";
@@ -618,9 +618,9 @@
 				18709D851543C45C00AA5EC2 /* WMMapDataSource.m in Sources */,
 				159714DD1543C870005D2508 /* FBLikeButton.m in Sources */,
 				159714E51543CC75005D2508 /* FBCustomLoginDialog.m in Sources */,
-				B22284C01543CBE700E692A0 /* CDSpot.m in Sources */,
 				B2D89C261543DA5A0073029F /* WMSpotBaloonView.m in Sources */,
 				B2D89C2B1543E1680073029F /* WMAboutViewController.m in Sources */,
+				B2D89C371543F40A0073029F /* CDSpot.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

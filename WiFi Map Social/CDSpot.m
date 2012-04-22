@@ -11,12 +11,12 @@
 
 @implementation CDSpot
 
+@dynamic author;
 @dynamic latitude;
+@dynamic likeCount;
 @dynamic longtitude;
 @dynamic name;
 @dynamic password;
 @dynamic spotId;
-@dynamic author;
-@dynamic likeCount;
 
 @end
