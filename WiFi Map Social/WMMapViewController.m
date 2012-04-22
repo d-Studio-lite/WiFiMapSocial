@@ -133,7 +133,9 @@
     }
     if ([annotation isKindOfClass:[MKUserLocation class]])
     {
-        return [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"userLocation"] autorelease];        
+        MKPinAnnotationView *userLocationView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"userLocation"] autorelease];
+        [userLocationView setEnabled:NO];
+        return userLocationView;   
     }
     WMSpotView *spotView = [[[WMSpotView alloc] initWithSpotAnnotation:annotation] autorelease];
     [spotView setDraggable:NO];
