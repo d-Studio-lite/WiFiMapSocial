@@ -45,6 +45,11 @@
 - (void)update
 {
     [[self spotSource] update];
+    [self performSelector:@selector(updateMapData) withObject:nil afterDelay:15.0];
+}
+
+- (void)updateMapData
+{
     [[self mapDataSource] updateForLocation:[self.delegate dataControllerGetCurrentLocation:self]];
 }
 

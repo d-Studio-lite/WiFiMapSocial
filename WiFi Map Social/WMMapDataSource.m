@@ -11,6 +11,7 @@
 
 #define WMMapDataSourceMaxScale 19
 #define WMMapDataSourceTileSize 512.0
+#define WMMapDataSourceScaleDelta 2
 
 @interface WMMapDataSource ()
 
@@ -77,13 +78,11 @@
         CLLocationCoordinate2D rightBottom;
         rightBottom.latitude = validatedDegree(center.latitude + delta);
         rightBottom.longitude = validatedDegree(center.longitude - delta);
-        [self getTileAndSubtilesWithCenter:leftBottom andScale:(scale + 1) andMaxScale:maxScale];
-        [self getTileAndSubtilesWithCenter:leftTop andScale:(scale + 1) andMaxScale:maxScale];
-        [self getTileAndSubtilesWithCenter:rightTop andScale:(scale + 1) andMaxScale:maxScale];
-        [self getTileAndSubtilesWithCenter:rightBottom andScale:(scale + 1) andMaxScale:maxScale];
-        return;
+        [self getTileAndSubtilesWithCenter:leftBottom andScale:(scale + WMMapDataSourceScaleDelta) andMaxScale:maxScale];
+        [self getTileAndSubtilesWithCenter:leftTop andScale:(scale + WMMapDataSourceScaleDelta) andMaxScale:maxScale];
+        [self getTileAndSubtilesWithCenter:rightTop andScale:(scale + WMMapDataSourceScaleDelta) andMaxScale:maxScale];
+        [self getTileAndSubtilesWithCenter:rightBottom andScale:(scale + WMMapDataSourceScaleDelta) andMaxScale:maxScale];
     }
-    NSLog(@"finished");
 }
 
 - (void)getImageWithCenter:(CLLocationCoordinate2D)center andScale:(NSUInteger)scale

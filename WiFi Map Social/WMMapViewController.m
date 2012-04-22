@@ -156,13 +156,7 @@
 
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
-#warning kill me!
-    CGRect testFrame = [self.view frame];
-    NSLog(@"frame = %f %f", testFrame.size.width, testFrame.size.height);
-    MKMapRect testRect = [mapView visibleMapRect];
- //   NSLog(@"test rect = %f %f %f %f", testRect.origin.x, testRect.origin.y, testRect.size.width, testRect.size.height);
     MKCoordinateRegion region = [mapView region];
-//    NSLog(@"%f %f %f %f", region.center.latitude, region.center.longitude, region.span.latitudeDelta, region.span.longitudeDelta);
     NSArray *regionArray = [NSArray arrayWithObjects:[NSNumber numberWithDouble:region.center.latitude], [NSNumber numberWithDouble:region.center.longitude], [NSNumber numberWithDouble:region.span.latitudeDelta], [NSNumber numberWithDouble:region.span.longitudeDelta], nil];
     [[NSUserDefaults standardUserDefaults] setObject:regionArray forKey:kWMUserDefaultsLastScreenPositionKey];
     [[NSUserDefaults standardUserDefaults] synchronize];

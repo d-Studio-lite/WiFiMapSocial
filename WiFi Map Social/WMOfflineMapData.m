@@ -10,23 +10,22 @@
 
 @interface WMOfflineMapData ()
 
-@property (assign, nonatomic) CLLocationCoordinate2D coordinate;
-@property (assign, nonatomic) MKMapRect boundingMapRect;
+@property (assign, nonatomic) MKCoordinateRegion region;
+@property (assign, nonatomic) NSUInteger minScale;
+@property (assign, nonatomic) NSUInteger maxScale;
 
 @end
 
 @implementation WMOfflineMapData
 
-@synthesize coordinate = _coordinate;
-@synthesize boundingMapRect = _boundingMapRect;
+@synthesize region = _region;
 
-- (id)initWithRect:(MKMapRect)rect coordinate:(CLLocationCoordinate2D)coordinate
+- (id)initWithRegion:(MKCoordinateRegion)region minScale:(NSUInteger)minScale maxScale:(NSUInteger)maxScale
 {
     self = [super init];
     if (nil != self)
     {
-        self.boundingMapRect = rect;
-        self.coordinate = coordinate;
+        self.region = region;
     }
     return self;
 }
@@ -36,9 +35,14 @@
     [super dealloc];
 }
 
-- (UIImage *)imageForMapRect:(MKMapRect)rect scale:(MKZoomScale)scale
+- (void)prepareToDrawImageForRegion:(MKCoordinateRegion)region scale:(MKZoomScale)scale
 {
-    return [UIImage imageNamed:@"icon.png"];
+    
+}
+
+- (void)drawImageForRegion:(MKCoordinateRegion)region scale:(MKZoomScale)scale inRect:(CGRect)rect inContext:(CGContextRef)context
+{
+    
 }
 
 @end
