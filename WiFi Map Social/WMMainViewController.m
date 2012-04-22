@@ -10,6 +10,7 @@
 #import "WMDataController.h"
 #import "WMMapViewController.h"
 #import "WMSubmitViewController.h"
+#import "WMSpotData.h"
 
 @interface WMMainViewController ()
 
@@ -28,6 +29,7 @@
     WMMainViewController *mainViewController = [[[WMMainViewController alloc] initWithRootViewController:mapViewController] autorelease];
     mainViewController.mapViewController = mapViewController;
     [mapViewController setDelegate:mainViewController];
+    
     [mainViewController setNavigationBarHidden:YES];
 
     [mainViewController setToolbarHidden:NO animated:NO];
