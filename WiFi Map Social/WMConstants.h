@@ -15,4 +15,6 @@
 #define kWMSpotsKey @"spots"
 #define kWMServerURL @"http://fierce-mountain-3562.herokuapp.com"
 
+#define k_APP_ID @"342499875814355"
+
 extern NSString *const a;

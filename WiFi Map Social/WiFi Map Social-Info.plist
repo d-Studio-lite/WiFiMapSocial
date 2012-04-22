@@ -36,5 +36,14 @@
 	</array>
 	<key>UIStatusBarHidden</key>
 	<false/>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb342499875814355</string>
+			</array>
+		</dict>
+	</array>
 </dict>
 </plist>
