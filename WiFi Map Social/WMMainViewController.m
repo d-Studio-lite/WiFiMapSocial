@@ -12,8 +12,9 @@
 #import "WMSubmitViewController.h"
 #import "WMSpotData.h"
 
-@interface WMMainViewController ()
+#import "FBConnect.h"
 
+@interface WMMainViewController()<FBSessionDelegate>
 @end
 
 @implementation WMMainViewController
@@ -21,6 +22,8 @@
 @synthesize dataController = _dataController;
 @synthesize mapViewController = _mapViewController;
 @synthesize submitViewController = _submitViewController;
+
+@synthesize facebook;
 
 + (WMMainViewController *)mainViewController;
 {
@@ -30,24 +33,9 @@
     mainViewController.mapViewController = mapViewController;
     [mapViewController setDelegate:mainViewController];
     
-    [mainViewController setNavigationBarHidden:YES];
-
-    [mainViewController setToolbarHidden:NO animated:NO];
-
-    UIBarButtonItem *updateButton = [[[UIBarButtonItem alloc] initWithTitle:@"Update"
-                                                                      style:UIBarButtonItemStyleBordered
-                                                                     target:mainViewController
-                                                                     action:@selector(update:)] autorelease];
+    [mainViewController setupFacebook];
     
-    UIBarButtonItem *submitButton = [[[UIBarButtonItem alloc] initWithTitle:@"Submit"
-                                                                      style:UIBarButtonItemStyleBordered
-                                                                     target:mainViewController
-                                                                     action:@selector(submit:)] autorelease];
-    UIBarButtonItem *flexibleSpace = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
-    
-    NSArray *toolbarItems = [NSArray arrayWithObjects:updateButton, flexibleSpace, submitButton, nil];
-    [mapViewController setToolbarItems:toolbarItems];
-
+    [mainViewController setupToolbar];
     
     return mainViewController;
 }
@@ -57,7 +45,59 @@
     self.mapViewController = nil;
     self.dataController = nil;
     self.submitViewController = nil;
+    facebook = nil;
     [super dealloc];
+}
+
+- (void)setupToolbar
+{
+    [self setNavigationBarHidden:YES];
+    
+    [self setToolbarHidden:NO animated:NO];
+    
+    UIBarButtonItem *updateButton = [[[UIBarButtonItem alloc] initWithTitle:@"Update"
+                                                                      style:UIBarButtonItemStyleBordered
+                                                                     target:self
+                                                                     action:@selector(update:)] autorelease];
+    
+    UIBarButtonItem *submitButton = [[[UIBarButtonItem alloc] initWithTitle:@"Submit"
+                                                                      style:UIBarButtonItemStyleBordered
+                                                                     target:self
+                                                                     action:@selector(submit:)] autorelease];
+    
+    NSString *title = nil;
+    SEL action = NULL;
+    if (![facebook isSessionValid])
+    {
+        title = @"Log in";
+        action = @selector(login:);
+    }
+    else
+    {
+        title = @"Log out";
+        action = @selector(logout:);
+    }
+    
+    UIBarButtonItem *facebookButton = [[[UIBarButtonItem alloc] initWithTitle:title
+                                                                      style:UIBarButtonItemStyleBordered
+                                                                     target:self
+                                                                     action:action] autorelease];
+    
+    
+    UIBarButtonItem *flexibleSpace = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
+    
+    NSArray *toolbarItems = [NSArray arrayWithObjects:updateButton, flexibleSpace, facebookButton, flexibleSpace, submitButton, nil];
+    [self.mapViewController setToolbarItems:toolbarItems];
+}
+
+- (void)login:(id)sender
+{
+    [facebook authorize:nil];
+}
+
+- (void)logout:(id)sender
+{
+    [facebook logout];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -92,6 +132,10 @@
 
 - (void)submit:(id)sender
 {
+    if (![facebook isSessionValid])
+    {
+        [self login:self];
+    }
     CLLocationCoordinate2D currentLocation = [self.mapViewController currentLocation];
     [self.submitViewController setCurrentLocation:currentLocation];
     [self pushViewController:self.submitViewController animated:YES];
@@ -124,6 +168,49 @@
 - (NSArray *)getOfflineMapDataAroundLocation:(CLLocationCoordinate2D)location forMapViewController:(WMMapViewController *)controller
 {
     return [NSArray array];
+}
+
+#pragma mark FACEBOOK
+
+- (void)setupFacebook
+{
+    facebook = [[Facebook alloc] initWithAppId:k_APP_ID andDelegate:self];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if ([defaults objectForKey:@"FBAccessTokenKey"] 
+        && [defaults objectForKey:@"FBExpirationDateKey"])
+    {
+        facebook.accessToken = [defaults objectForKey:@"FBAccessTokenKey"];
+        facebook.expirationDate = [defaults objectForKey:@"FBExpirationDateKey"];
+    }
+    
+    if (![facebook isSessionValid])
+    {
+        [facebook authorize:nil];
+    }
+}
+
+#pragma mark FBSessionDelegate methods
+
+- (void)fbDidLogin
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:[facebook accessToken] forKey:@"FBAccessTokenKey"];
+    [defaults setObject:[facebook expirationDate] forKey:@"FBExpirationDateKey"];
+    [defaults synchronize];
+    [self setupToolbar];
+}
+
+- (void)fbDidLogout
+{
+    // Remove saved authorization information if it exists
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if ([defaults objectForKey:@"FBAccessTokenKey"]) {
+        [defaults removeObjectForKey:@"FBAccessTokenKey"];
+        [defaults removeObjectForKey:@"FBExpirationDateKey"];
+        [defaults synchronize];
+    }
+    [self setupToolbar];
 }
 
 @end
