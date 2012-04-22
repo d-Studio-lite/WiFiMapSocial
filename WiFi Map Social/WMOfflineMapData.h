@@ -11,7 +11,7 @@
 
 @interface WMOfflineMapData : NSObject
 
-- (id)initWithRegion:(MKCoordinateRegion)region minScale:(NSUInteger)minScale maxScale:(NSUInteger)maxScale;
+- (id)initWithRegion:(MKCoordinateRegion)region minScale:(NSUInteger)minScale maxScale:(NSUInteger)maxScale scaleDelta:(NSUInteger)delta;
 
 @property (assign, nonatomic, readonly) MKCoordinateRegion region;
 
