@@ -158,6 +158,10 @@
 - (void)requestFailed:(ASIHTTPRequest *)request
 {
     NSError *error = [request error];
+    if (nil != error)
+    {
+        NSLog(@"Error %@", error);
+    }
 }
 
 #pragma mark UITextFieldDelegate methods
