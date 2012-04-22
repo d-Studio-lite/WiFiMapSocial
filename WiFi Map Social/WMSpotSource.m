@@ -38,7 +38,10 @@
     return [(WMAppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
 }
 
-- (NSArray *)spotsInRect:(CGRect)rect
+NSUInteger kMaxVerticalRowOfStopsLength = 20;
+NSUInteger kMaxHorizontalRowOfStopsLength = 15;
+
+- (NSArray *)spotDataArrayInRect:(CGRect)rect
 {
     NSArray *result = nil;
     
@@ -58,15 +61,35 @@
     }
     else
     {
-        NSMutableArray *spotsArray = [NSMutableArray arrayWithCapacity:[results count]];
-        for (CDSpot *coreDataSpot in results)
+        NSMutableArray *spotsDataArray = [NSMutableArray arrayWithCapacity:kMaxVerticalRowOfStopsLength * kMaxHorizontalRowOfStopsLength];
+        for (NSUInteger i = kMaxVerticalRowOfStopsLength * kMaxHorizontalRowOfStopsLength; i > 0; --i)
         {
-            [spotsArray addObject:[[[WMSpot alloc] initWithCDSpot:coreDataSpot] autorelease]];
+            [spotsDataArray addObject:[NSMutableArray array]];
         }
         
-        if ([spotsArray count] > 0)
+        CGFloat widthPerRect = rect.size.width / (CGFloat)kMaxHorizontalRowOfStopsLength;
+        CGFloat heightPerRect = rect.size.height / (CGFloat)kMaxVerticalRowOfStopsLength;
+        
+        for (CDSpot *coreDataSpot in results)
         {
-            result = [NSArray arrayWithArray:spotsArray];
+            WMSpot *spot = [[[WMSpot alloc] initWithCDSpot:coreDataSpot] autorelease];
+            
+            NSUInteger ix = (spot.location.x - rect.origin.x) / widthPerRect;
+            NSUInteger iy = (spot.location.y - rect.origin.y) / heightPerRect;
+            NSUInteger index = (iy * kMaxHorizontalRowOfStopsLength + ix);
+            [(NSMutableArray *)[spotsDataArray objectAtIndex:index] addObject:spot];
+        }
+        
+        BOOL (^ block)(id, NSDictionary *) = ^(id object, NSDictionary *binds) {
+            NSArray *array = (NSArray *)object;
+            return (BOOL)([array count] > 0);
+        };
+
+        NSPredicate *predicate = [NSPredicate predicateWithBlock:block];
+        [spotsDataArray filterUsingPredicate:predicate];
+        if ([spotsDataArray count] > 0)
+        {
+            result = [NSArray arrayWithArray:spotsDataArray];
         }
     }
 	
