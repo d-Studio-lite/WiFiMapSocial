@@ -43,7 +43,7 @@
 {
     NSUInteger minScale = [self getRegionScaleForLocation:location];
     CLLocationCoordinate2D regionCenter = [self getRegionCenterForLocation:location];
-    [self getTileAndSubtilesWithCenter:regionCenter andScale:minScale andMaxScale:WMMapDataSourceMaxScale];
+    [self getTileAndSubtilesWithCenter:regionCenter andScale:minScale andMaxScale:13];
 }
 
 - (CLLocationCoordinate2D)getRegionCenterForLocation:(CLLocationCoordinate2D)location
@@ -81,13 +81,14 @@
         [self getTileAndSubtilesWithCenter:leftTop andScale:(scale + 1) andMaxScale:maxScale];
         [self getTileAndSubtilesWithCenter:rightTop andScale:(scale + 1) andMaxScale:maxScale];
         [self getTileAndSubtilesWithCenter:rightBottom andScale:(scale + 1) andMaxScale:maxScale];
+        return;
     }
+    NSLog(@"finished");
 }
 
 - (void)getImageWithCenter:(CLLocationCoordinate2D)center andScale:(NSUInteger)scale
 {
     NSURL *requestURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://maps.google.com/maps/api/staticmap?center=%f,%f&zoom=%u&size=512x512&sensor=true", center.latitude, center.longitude, scale]];
-    NSLog(@"%@", [requestURL absoluteString]);
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:120.0];
     [request setValue:@"Mozilla/5.0" forHTTPHeaderField:@"User-Agent"];
     [NSURLConnection sendAsynchronousRequest:request queue:self.queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
