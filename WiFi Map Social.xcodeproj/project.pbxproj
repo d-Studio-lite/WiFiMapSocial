@@ -145,6 +145,7 @@
 		18709D751543831D00AA5EC2 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = SOURCE_ROOT; };
 		18709D831543C45C00AA5EC2 /* WMMapDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMMapDataSource.h; sourceTree = "<group>"; };
 		18709D841543C45C00AA5EC2 /* WMMapDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMMapDataSource.m; sourceTree = "<group>"; };
+		18709D951543E3EF00AA5EC2 /* WMMapMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMMapMath.h; sourceTree = "<group>"; };
 		18C2ABD915433265002016B4 /* WMMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMMapView.h; sourceTree = "<group>"; };
 		18C2ABDA15433265002016B4 /* WMMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMMapView.m; sourceTree = "<group>"; };
 		18C2ABDC1543371A002016B4 /* WMMapView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WMMapView.xib; sourceTree = "<group>"; };
@@ -162,7 +163,7 @@
 		B26CF6441543BD2E003799E5 /* UpdateSpotView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UpdateSpotView.xib; sourceTree = "<group>"; };
 		B26CF6461543C2EF003799E5 /* edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = edit.png; path = ../edit.png; sourceTree = "<group>"; };
 		B26CF64C1543C764003799E5 /* pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pin.png; sourceTree = SOURCE_ROOT; };
-		B2C36D5515430D4500B30A36 /* WiFi Map Social.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WiFi Map Social.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B2C36D5515430D4500B30A36 /* WiFi Map Social.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "WiFi Map Social.app"; path = Truloo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2C36D5915430D4500B30A36 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B2C36D5B15430D4500B30A36 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B2C36D5D15430D4500B30A36 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -443,6 +444,7 @@
 		B2C36D7A1543269400B30A36 /* DataController */ = {
 			isa = PBXGroup;
 			children = (
+				18709D951543E3EF00AA5EC2 /* WMMapMath.h */,
 				B2C36D7E1543276200B30A36 /* WMDataController.h */,
 				B2C36D7F1543276200B30A36 /* WMDataController.m */,
 				18709D831543C45C00AA5EC2 /* WMMapDataSource.h */,

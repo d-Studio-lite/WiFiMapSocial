@@ -48,7 +48,7 @@
     
     self.passwordTextField.delegate = self;
     
-    self.likeButton = [[[FBLikeButton alloc] initWithFrame:CGRectMake(114, 237, 200, 200) andUrl:@"" andStyle:FBLikeButtonStyleBoxCount andColor:FBLikeButtonColorLight] autorelease];
+    self.likeButton = [[[FBLikeButton alloc] initWithFrame:CGRectMake(114, 257, 200, 200) andUrl:@"" andStyle:FBLikeButtonStyleButtonCount andColor:FBLikeButtonColorLight] autorelease];
     [self.view addSubview:self.likeButton];
     [super viewDidLoad];
 }
@@ -106,13 +106,12 @@
 - (void)update:(id)sender
 {
     NSURL *serverURL = [NSURL URLWithString:kWMServerURL];
-    NSURL *spotsURL = [serverURL URLByAppendingPathComponent:[kWMSpotsKey stringByAppendingPathExtension:@"json"]];
-    
-    serverURL = [NSURL URLWithString:@"http://fierce-mountain-3562.herokuapp.com/spots.json"];
+    NSString *concreteSpot = [kWMSpotsKey stringByAppendingPathComponent:[[NSNumber numberWithInteger:self.spot.spotId] stringValue]];
+    NSURL *spotsURL = [serverURL URLByAppendingPathComponent:[concreteSpot stringByAppendingPathExtension:@"json"]];
     
     ASIFormDataRequest *postRequest = [ASIFormDataRequest requestWithURL:spotsURL];
     [ASIFormDataRequest initialize];
-    [postRequest setRequestMethod:@"POST"];
+    [postRequest setRequestMethod:@"PUT"];
     [postRequest addRequestHeader:@"Content-Type" value:@"application/json; charset=utf-8"];
     
     NSDictionary *params = [self paramsDictionary];
