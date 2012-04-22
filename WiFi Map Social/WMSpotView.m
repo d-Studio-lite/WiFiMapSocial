@@ -23,7 +23,7 @@
     self = [super initWithAnnotation:spotAnnotation reuseIdentifier:reuseIdentifier];
     if (nil != self)
     {
-        
+        [self setPinColor:MKPinAnnotationColorGreen];
     }
     return self;
 }

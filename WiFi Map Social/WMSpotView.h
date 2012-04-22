@@ -10,7 +10,7 @@
 #import "WMMapView.h"
 #import "WMMapViewSpotsAnnotation.h"
 
-@interface WMSpotView : MKAnnotationView
+@interface WMSpotView : MKPinAnnotationView
 
 - (id)initWithSpotAnnotation:(WMMapViewSpotsAnnotation *)spotAnnotation;
 
