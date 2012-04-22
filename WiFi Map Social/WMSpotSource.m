@@ -54,7 +54,7 @@
 {
     NSArray *result = nil;
     
-	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+	NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
 	NSEntityDescription *entity = [NSEntityDescription entityForName:@"CDSpot" inManagedObjectContext:[self managedObjectContext]];
 	[fetchRequest setEntity:entity];
 	
@@ -86,22 +86,17 @@
         }
     }
 	
-	// Memory management.
-	[fetchRequest release];
-	
 	return result;
 }
 
 - (void)resetCoreData:(NSArray *)spots
 {
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"CDSpot" inManagedObjectContext:[self managedObjectContext]];
     [fetchRequest setEntity:entity];
     
     NSError *error = nil;
     NSArray *items = [[self managedObjectContext] executeFetchRequest:fetchRequest error:&error];
-    [fetchRequest release];
-    
     
     for (NSManagedObject *managedObject in items)
     {

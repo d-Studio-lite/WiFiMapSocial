@@ -9,8 +9,18 @@
 #import "WMSpot.h"
 #import "CDSpot.h"
 
+@interface WMSpot()
+
+@property (retain, nonatomic) NSMutableDictionary *spec;
+
+@end
+
 @implementation WMSpot
+
+@synthesize spec = _spec;
+
 @dynamic name, password, location;
+
 
 + (WMSpot *)spotWithSpec:(NSDictionary *)spec
 {
@@ -22,7 +32,7 @@
     self = [self init];
     if (nil != self)
     {
-        _spec = [NSMutableDictionary dictionaryWithDictionary:newSpec];
+        self.spec = [NSMutableDictionary dictionaryWithDictionary:newSpec];
     }
     return self;
 }
@@ -32,7 +42,7 @@
     self = [self init];
     if (nil != self)
     {
-        _spec = [NSMutableDictionary dictionary];
+        self.spec = [NSMutableDictionary dictionary];
         self.name = spot.name;
         self.password = spot.password;
         self.lattitude = [spot.latitude doubleValue];
@@ -43,54 +53,48 @@
 
 - (void)dealloc
 {
-    [_spec release];
-    _spec = nil;
+    self.spec = nil;
     [super dealloc];
 }
 
 - (NSString *)name
 {
-    return [[_spec valueForKey:kWMSpotNameKey] copy];
+    return [[self.spec valueForKey:kWMSpotNameKey] copy];
 }
 
 - (void)setName:(NSString *)name
 {
-    [_spec setValue:[name copy] forKey:kWMSpotNameKey];
+    [self.spec setValue:[name copy] forKey:kWMSpotNameKey];
 }
 
 - (NSString *)password
 {
-    return [[_spec valueForKey:kWMSpotPasswordKey] copy];
+    return [[self.spec valueForKey:kWMSpotPasswordKey] copy];
 }
 
 - (void)setPassword:(NSString *)password
 {
-    [_spec setValue:[password copy] forKey:kWMSpotPasswordKey];
+    [self.spec setValue:[password copy] forKey:kWMSpotPasswordKey];
 }
 
 - (CGFloat)lattitude
 {
-    return [[_spec valueForKey:kWMSpotLattitudeKey] doubleValue];
+    return [[self.spec valueForKey:kWMSpotLattitudeKey] doubleValue];
 }
 
 - (void)setLattitude:(CGFloat)lattitude
 {
-    [_spec setValue:[NSNumber numberWithDouble:lattitude] forKey:kWMSpotLattitudeKey];
+    [self.spec setValue:[NSNumber numberWithDouble:lattitude] forKey:kWMSpotLattitudeKey];
 }
 
 - (CGFloat)longitude
 {
-    return [[_spec valueForKey:kWMSpotLongitudeKey] doubleValue];
+    return [[self.spec valueForKey:kWMSpotLongitudeKey] doubleValue];
 }
 
 - (void)setLongitude:(CGFloat)longitude
 {
-    [_spec setValue:[NSNumber numberWithDouble:longitude] forKey:kWMSpotLongitudeKey];
-}
-
-- (NSDictionary *)spec
-{
-    return [_spec copy];
+    [self.spec setValue:[NSNumber numberWithDouble:longitude] forKey:kWMSpotLongitudeKey];
 }
 
 - (CGPoint)location

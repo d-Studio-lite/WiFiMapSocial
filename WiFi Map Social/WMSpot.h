@@ -9,10 +9,6 @@
 @class CDSpot;
 
 @interface WMSpot : NSObject
-{
-@private
-    NSMutableDictionary *_spec;
-}
 
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *password;
