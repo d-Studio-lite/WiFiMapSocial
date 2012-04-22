@@ -61,6 +61,7 @@
     self.internetReachability = [Reachability reachabilityForInternetConnection];
     [self.internetReachability startNotifier];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkNetworkStatus:) name:kReachabilityChangedNotification object:self.internetReachability];
+    [self setUsingOnlineMaps:[self.internetReachability isReachable]];
 }
 
 - (void)viewDidUnload
