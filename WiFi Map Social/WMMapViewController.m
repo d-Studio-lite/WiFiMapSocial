@@ -155,6 +155,8 @@
 
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
+#warning kill me!
+    MKMapRect testRect = [mapView visibleMapRect];
     MKCoordinateRegion region = [mapView region];
     NSArray *regionArray = [NSArray arrayWithObjects:[NSNumber numberWithDouble:region.center.latitude], [NSNumber numberWithDouble:region.center.longitude], [NSNumber numberWithDouble:region.span.latitudeDelta], [NSNumber numberWithDouble:region.span.longitudeDelta], nil];
     [[NSUserDefaults standardUserDefaults] setObject:regionArray forKey:kWMUserDefaultsLastScreenPositionKey];

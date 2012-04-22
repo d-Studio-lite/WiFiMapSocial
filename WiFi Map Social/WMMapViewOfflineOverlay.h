@@ -14,6 +14,7 @@
 
 - (id)initWithMapData:(WMOfflineMapData *)mapData;
 
+@property (retain, nonatomic, readonly) WMOfflineMapData *mapData;
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
 @property (nonatomic, readonly) MKMapRect boundingMapRect;
 

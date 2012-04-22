@@ -13,11 +13,10 @@
 @interface WMSpotData : NSObject
 
 - (id)initWithEngineSpot:(WMSpot *)spot;
-- (id)initWithTitle:(NSString *)title password:(NSString *)password coordinates:(CLLocationCoordinate2D)coordinates hiddenState:(BOOL)hidden;
 
-- (void)setNewPassword:(NSString *)password;
-- (void)setNewHiddenNetworkState:(BOOL)state;
+- (void)setNewEngineSpot:(WMSpot *)spot;
 
+@property (retain, nonatomic, readonly) WMSpot *engineSpot;
 @property (retain, nonatomic, readonly) NSString *spotTitle;
 @property (retain, nonatomic, readonly) NSString *password;
 @property (assign, nonatomic, readonly) CLLocationCoordinate2D coordinates;

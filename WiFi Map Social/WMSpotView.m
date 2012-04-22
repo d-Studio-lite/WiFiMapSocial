@@ -26,7 +26,7 @@
         [self setEnabled:YES];
         [self setCanShowCallout:YES];
         [self setPinColor:MKPinAnnotationColorGreen];
-        UIButton *menuButton = [[[UIButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 20.0f, 40.0f)] autorelease];
+        UIButton *menuButton = [[[UIButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 20.0f, 30.0f)] autorelease];
         [menuButton setBackgroundColor:[UIColor redColor]];
         [menuButton addTarget:self action:@selector(menuButtonPressed) forControlEvents:UIControlEventTouchUpInside];
         //[menuButton setImage: forState:UIControlStateNormal];

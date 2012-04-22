@@ -11,61 +11,52 @@
 
 @interface WMSpotData ()
 
-@property (retain, nonatomic) NSString *spotTitle;
-@property (retain, nonatomic) NSString *password;
-@property (assign, nonatomic) CLLocationCoordinate2D coordinates;
+@property (retain, nonatomic) WMSpot *engineSpot;
 @property (assign, nonatomic, getter = isHiddenNetwork) BOOL hiddenNetwork;
 
 @end
 
 @implementation WMSpotData
 
-@synthesize spotTitle = _spotTitle;
-@synthesize password = _password;
-@synthesize coordinates = _coordinates;
+@synthesize engineSpot = _engineSpot;
 @synthesize hiddenNetwork = _hiddenNetwork;
 
-
 - (id)initWithEngineSpot:(WMSpot *)spot
-{
-    if (nil == spot)
-    {
-        [self release];
-        return nil;
-    }
-    CGPoint spotCoord = [spot location];
-    CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(spotCoord.x, spotCoord.y);
-    self = [self initWithTitle:[spot name] password:[spot password] coordinates:coord hiddenState:NO];
-    return self;
-}
-
-- (id)initWithTitle:(NSString *)title password:(NSString *)password coordinates:(CLLocationCoordinate2D)coordinates hiddenState:(BOOL)hidden
 {
     self = [super init];
     if (nil != self)
     {
-        self.coordinates = coordinates;
-        self.password = password;
-        self.spotTitle = title;
-        self.hiddenNetwork = hidden;
+        self.engineSpot = spot;
     }
     return self;
 }
 
 - (void)dealloc
 {
-    self.password = nil;
-    self.spotTitle = nil;
+    self.engineSpot = nil;
     [super dealloc];
 }
 
-- (void)setNewPassword:(NSString *)password
+- (void)setNewEngineSpot:(WMSpot *)spot
 {
-    self.password = password;
+    self.engineSpot = spot;
 }
-- (void)setNewHiddenNetworkState:(BOOL)state
+
+- (NSString *)spotTitle
 {
-    self.hiddenNetwork = state;
+    return [self.engineSpot name];
+}
+
+- (NSString *)password
+{
+    return [self.engineSpot password];
+}
+
+- (CLLocationCoordinate2D)coordinates
+{
+    CGPoint spotCoord = [self.engineSpot location];
+    CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(spotCoord.x, spotCoord.y);
+    return coord;
 }
 
 @end
