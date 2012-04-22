@@ -17,12 +17,7 @@ typedef enum
     WMResolveDuplicatesCloseSpotWithDifferentPasswordReturnCode,
 } WMResolveDuplicatesReturnCode;
 
-@interface NSArray(JSONextension)
-+ (NSArray *)arrayWithJSONString:(NSString *)jsonString;
-@end
-
 @interface WMSubmitViewController()<ASIHTTPRequestDelegate, UITextFieldDelegate>
-
 
 @end
 
@@ -60,6 +55,7 @@ typedef enum
  
     self.nameTextField.delegate = self;
     self.passwordTextField.delegate = self;
+    [self validateSubmitButton];
     [super viewDidLoad];
 }
 
@@ -145,6 +141,11 @@ typedef enum
     [[self navigationController] popViewControllerAnimated:YES];
 }
 
+- (void)validateSubmitButton
+{
+    self.submitButton.enabled = [[self.nameTextField text] length] > 1 ? YES : NO;
+}
+
 - (NSArray *)toolbarItems
 {
     UIBarButtonItem *flexibleSpace = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
@@ -180,6 +181,7 @@ typedef enum
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
+    [self validateSubmitButton];
     return YES;
 }
 @end

@@ -140,14 +140,12 @@
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
-    NSString *responseString = [request responseString];
-    NSArray * spots = [self fetchSpotsFromResponseString:responseString];
-    [self resetCoreData:spots];
     NSString *requestType = [request.userInfo valueForKey:kWMRequestTypeKey];
     if ([requestType isEqualToString:kWMUpdaetRequestString])
     {
         NSString *responseString = [request responseString];
-        [self fetchSpotsFromResponseString:responseString];
+        NSArray *spots = [self fetchSpotsFromResponseString:responseString];
+        [self resetCoreData:spots];
     }
 }
 
