@@ -269,8 +269,21 @@
 - (void)mapViewController:(WMMapViewController *)controller didCallMenuForSpotData:(WMSpotData *)spotData
 {
     [[self updateSpotViewController] setSpot:[spotData engineSpot]];
+    self.updateSpotViewController.delegate = self;
     [self pushViewController:self.updateSpotViewController animated:YES];
 
+}
+
+#pragma mark WMFBConnectManager methods
+
+- (NSString *)controllerAsksForCurrentUserID:(UIViewController *)controller
+{
+    return [self.currentUserID copy];
+}
+
+- (NSString *)controllerAsksForCurrentAccessToken:(UIViewController *)controller
+{
+    return [[self.facebook accessToken] copy];
 }
 
 @end

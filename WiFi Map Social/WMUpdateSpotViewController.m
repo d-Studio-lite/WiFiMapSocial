@@ -11,9 +11,10 @@
 #import "JSON.h"
 #import "WMSpot.h"
 #import "FBLikeButton.h"
+#import "WMMainViewController.h"
 
 @interface WMUpdateSpotViewController ()<ASIHTTPRequestDelegate, UITextFieldDelegate>
-
+@property (nonatomic, retain) NSString *authorLink;
 @end
 
 @implementation WMUpdateSpotViewController
@@ -30,6 +31,10 @@
 
 @synthesize spot = _spot;
 
+@synthesize delegate = _delegate;
+
+@synthesize authorLink = _authorLink;
+
 -(void)dealloc
 {
     self.cancelButton = nil;
@@ -39,6 +44,8 @@
     self.latitudeLabel = nil;
     self.longitudeLabel = nil;
     self.authorLabel = nil;
+    self.delegate = nil;
+    self.authorLink = nil;
     [super dealloc];
 }
 
@@ -48,7 +55,7 @@
     
     self.passwordTextField.delegate = self;
     
-    self.likeButton = [[[FBLikeButton alloc] initWithFrame:CGRectMake(114, 257, 200, 200) andUrl:@"" andStyle:FBLikeButtonStyleButtonCount andColor:FBLikeButtonColorLight] autorelease];
+    self.likeButton = [[[FBLikeButton alloc] initWithFrame:CGRectMake(110, 270, 200, 200) andUrl:@"" andStyle:FBLikeButtonStyleButtonCount andColor:FBLikeButtonColorLight] autorelease];
     [self.view addSubview:self.likeButton];
     [super viewDidLoad];
 }
@@ -66,6 +73,15 @@
     self.authorLabel = nil;
 }
 
+- (void)requestFullUserNameFromFacebookID:(NSString *)anID
+{
+    NSString *queryFormat = @"https://graph.facebook.com/%@";
+    NSURL *searchLink = [NSURL URLWithString:[NSString stringWithFormat:queryFormat,anID]];
+    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:searchLink];
+    [request setDelegate:self];
+    [request startAsynchronous];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -74,7 +90,7 @@
     [self.passwordTextField setText:[self.spot password]];
     [self.latitudeLabel setText:[[NSNumber numberWithDouble:[self.spot location].x] stringValue]];
     [self.longitudeLabel setText:[[NSNumber numberWithDouble:[self.spot location].y] stringValue]];
-    [self.authorLabel setText:[self.spot author]];
+    [self requestFullUserNameFromFacebookID:[self.spot author]];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -150,9 +166,32 @@
 
 #pragma mark ASIHTTPRequestDelegate methods
 
+- (void)openAuthorLink
+{
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.authorLink]];
+}
+
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
-    [[self navigationController] popViewControllerAnimated:YES];
+    if ([request.requestMethod isEqualToString:@"GET"])
+    {
+        SBJsonParser *parser = [[[SBJsonParser alloc] init] autorelease];
+        NSString *responseString = [request responseString];
+        id responseObject = [parser objectWithString:responseString];
+        self.authorLabel.text = [responseObject valueForKey:@"name"];
+        self.authorLink = [responseObject valueForKey:@"link"];
+        self.authorLabel.userInteractionEnabled = YES;
+        
+        UITapGestureRecognizer *gestureRec = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(openAuthorLink)];
+        gestureRec.numberOfTouchesRequired = 1;
+        gestureRec.numberOfTapsRequired = 1;
+        [self.authorLabel addGestureRecognizer:gestureRec];
+        [gestureRec release];
+    }
+    else
+    {
+        [[self navigationController] popViewControllerAnimated:YES];
+    }
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request

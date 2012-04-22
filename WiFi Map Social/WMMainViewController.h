@@ -17,7 +17,14 @@
 #import "WMMapViewController.h"
 #import "WMDataController.h"
 
-@interface WMMainViewController : UINavigationController <WMMapViewControllerDelegate, WMDataContollerDelegate>
+@protocol WMFBConnectManager <NSObject>
+
+- (NSString *)controllerAsksForCurrentUserID:(UIViewController *)controller;
+- (NSString *)controllerAsksForCurrentAccessToken:(UIViewController *)controller;
+
+@end
+
+@interface WMMainViewController : UINavigationController <WMMapViewControllerDelegate, WMDataContollerDelegate, WMFBConnectManager>
 
 @property (retain, nonatomic) WMDataController *dataController;
 @property (retain, nonatomic) WMMapViewController *mapViewController;

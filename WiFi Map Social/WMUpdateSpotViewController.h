@@ -12,6 +12,8 @@
 @class WMSpot;
 @class FBLikeButton;
 
+@protocol WMFBConnectManager;
+
 @interface WMUpdateSpotViewController : UIViewController
 
 @property (retain, nonatomic) UIBarButtonItem *updateButton;
@@ -26,6 +28,8 @@
 @property (retain, nonatomic) FBLikeButton *likeButton;
 
 @property (retain, nonatomic) WMSpot *spot;
+
+@property (assign, nonatomic) id<WMFBConnectManager> delegate;
 
 - (NSDictionary *)paramsDictionary;
 

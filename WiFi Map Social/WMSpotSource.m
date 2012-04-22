@@ -116,7 +116,7 @@
             [coreDataSpot setLatitude:[NSNumber numberWithDouble:[spot location].x]];
             [coreDataSpot setLongtitude:[NSNumber numberWithDouble:[spot location].y]];
             [coreDataSpot setSpotId:[NSNumber numberWithInteger:[spot spotId]]];
-            [coreDataSpot setAuthor:[spot author]];
+            [coreDataSpot setAuthor:[spot author] == nil ? @"0000000" : [spot author]];
             [coreDataSpot setLikeCount:[NSNumber numberWithInteger:[spot likeCount]]];
             [[self managedObjectContext] insertObject:coreDataSpot];
         }
