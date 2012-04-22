@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "WMMapView.h"
+#import "WMSpotView.h"
 
 @protocol WMMapViewControllerDelegate;
 
-@interface WMMapViewController : UIViewController <MKMapViewDelegate>
+@interface WMMapViewController : UIViewController <MKMapViewDelegate, WMSpotViewDelegate>
 
 @property (retain, nonatomic) IBOutlet MKMapView *mapView;
 @property (assign, nonatomic) id <WMMapViewControllerDelegate> delegate;
@@ -28,6 +29,7 @@
 
 @required
 
+- (void)mapViewController:(WMMapViewController *)controller didCallMenuForSpotData:(WMSpotData *)spotData;
 - (NSArray *)getSpotsAroundLocation:(CLLocationCoordinate2D)location forMapViewController:(WMMapViewController *)controller;
 - (NSArray *)getOfflineMapDataAroundLocation:(CLLocationCoordinate2D)location forMapViewController:(WMMapViewController *)controller;
 

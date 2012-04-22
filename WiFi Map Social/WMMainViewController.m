@@ -127,4 +127,9 @@
     return [NSArray array];
 }
 
+- (void)mapViewController:(WMMapViewController *)controller didCallMenuForSpotData:(WMSpotData *)spotData
+{
+    
+}
+
 @end

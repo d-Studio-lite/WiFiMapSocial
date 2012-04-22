@@ -108,6 +108,7 @@
         WMMapViewSpotsAnnotation *spotAnnotation = [[[WMMapViewSpotsAnnotation alloc] initWithSpotData:spotData] autorelease];
         [self.mapView addAnnotation:spotAnnotation];
     }
+    [self.view setNeedsDisplay];
 }
 
 - (void)removeAllSpots
@@ -120,11 +121,19 @@
             [self.mapView removeAnnotation:annotation];
         }
     }
+    [self.view setNeedsDisplay];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+#pragma mark WMSpotViewDelegate methods
+
+- (void)spotViewDidCallMenu:(WMSpotView *)spotView
+{
+    [self.delegate mapViewController:self didCallMenuForSpotData:spotView.spotAnnotation.spotData];
 }
 
 #pragma mark MKMapViewDelegate methods
