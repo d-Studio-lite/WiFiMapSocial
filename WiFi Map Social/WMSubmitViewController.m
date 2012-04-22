@@ -131,9 +131,6 @@ typedef enum
     
     [postRequest setDelegate:self];
     [postRequest startAsynchronous];
-    
-    UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Submitting" message:[[self paramsDictionary] description] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-    [alert show];
 }
 
 - (void)cancel:(id)sender

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FBConnect.h"
 
 @class WMMainViewController;
 @class NSManagedObjectContext;
@@ -14,7 +15,7 @@
 @class NSPersistentStoreCoordinator;
 
 
-@interface WMAppDelegate : UIResponder <UIApplicationDelegate>
+@interface WMAppDelegate : UIResponder <UIApplicationDelegate, FBSessionDelegate>
 
 @property (retain, nonatomic) UIWindow *window;
 @property (retain, nonatomic) WMMainViewController *mainViewController;
@@ -23,6 +24,8 @@
 @property (retain, nonatomic, readonly) NSManagedObjectContext *managedObjectContext;
 @property (retain, nonatomic, readonly) NSManagedObjectModel *managedObjectModel;
 @property (retain, nonatomic, readonly) NSPersistentStoreCoordinator *persistantStoreCoordinator;
+
+@property (nonatomic, retain) Facebook *facebook;
 
 - (NSString *)applicationDocumentsDirectory;
 
