@@ -43,7 +43,6 @@
 
 - (void)drawMapRect:(MKMapRect)mapRect zoomScale:(MKZoomScale)zoomScale inContext:(CGContextRef)context
 {
-    NSLog(@"zoomScale = %f", zoomScale);
     CGRect rect = [self rectForMapRect:mapRect];
     MKCoordinateRegion region = MKCoordinateRegionForMapRect(mapRect);
     [[self.offlineOverlay mapData] drawImageForRegion:region scale:zoomScale inRect:rect inContext:context];
